@@ -1,0 +1,1530 @@
+
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Warehouse Medallion | Miguel Heuya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="LogoNew2 - Copy.png">
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Outfit:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #fec400;
+            --primary-rgb: 254, 196, 0;
+            --bg-custom: #050505;
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-custom);
+            color: #e2e8f0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg-custom); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 99px; }
+
+        .glass {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.07);
+        }
+        .glass-gold {
+            background: rgba(var(--primary-rgb), 0.04);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(var(--primary-rgb), 0.18);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, #ffffff 60%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-primary  { color: var(--primary) !important; }
+        .bg-primary    { background-color: var(--primary) !important; }
+        .border-primary { border-color: var(--primary) !important; }
+
+        .nav-link {
+            color: rgba(255,255,255,0.7);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            position: relative;
+            padding-bottom: 3px;
+            transition: color 0.25s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 2px;
+            bottom: 0; left: 50%;
+            background: var(--primary);
+            border-radius: 99px;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover { color: var(--primary); }
+        .nav-link:hover::after { width: 100%; }
+
+        #theme-sidebar {
+            transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+            transform: translateY(-50%) translateX(180%);
+            width: 190px;
+        }
+        #theme-sidebar.active { transform: translateY(-50%) translateX(0); }
+        #mobile-menu { transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), visibility 0.4s; transform: translateX(100%); visibility: hidden; }
+        #mobile-menu.active { transform: translateX(0); visibility: visible; }
+
+        .color-picker-wrapper {
+            width: 100%; height: 38px; border-radius: 10px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1); position: relative; cursor: pointer;
+        }
+        input[type="color"] { position: absolute; top:-5px; left:-5px; width:120%; height:120%; cursor:pointer; border:none; background:none; }
+
+        @keyframes heartbeat-large {
+            0%   { transform: scale(1); }
+            15%  { transform: scale(1.3); }
+            30%  { transform: scale(1.1); }
+            45%  { transform: scale(1.4); }
+            70%  { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+        #theme-toggle-btn { animation: heartbeat-large 1.2s ease-in-out infinite; display:inline-flex; transform-origin:center; will-change:transform; }
+        #theme-toggle-btn.stop-animation { animation: none !important; transform: scale(1); }
+
+        .hero-mesh {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 60% 40%, rgba(var(--primary-rgb),0.07) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 50% at 10% 80%, rgba(var(--primary-rgb),0.04) 0%, transparent 55%);
+            pointer-events: none;
+        }
+        .grid-dots {
+            position: absolute; inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none;
+        }
+        .section-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem; font-weight: 700;
+            color: var(--primary); text-transform: uppercase;
+            letter-spacing: 0.35em;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .section-num::before {
+            content: ''; display: block;
+            width: 28px; height: 1px;
+            background: var(--primary);
+        }
+        .hover-card {
+            transition: transform 0.35s cubic-bezier(0.175,0.885,0.32,1.275),
+                        border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary) !important;
+            box-shadow: 0 24px 48px -12px rgba(var(--primary-rgb),0.25);
+        }
+        .step-badge {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 36px; height: 36px; border-radius: 50%;
+            background: rgba(var(--primary-rgb), 0.12);
+            border: 1px solid rgba(var(--primary-rgb), 0.3);
+            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem; font-weight: 700; flex-shrink: 0;
+        }
+        .title-line {
+            width: 60px; height: 3px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            border-radius: 99px;
+            box-shadow: 0 0 10px rgba(var(--primary-rgb),0.5);
+            margin-top: 12px;
+        }
+        body::before {
+            content: "MIGUEL HEUYA";
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%,-50%) rotate(-12deg);
+            font-size: 8vw; font-weight: 900;
+            text-transform: uppercase; color: white;
+            opacity: 0.015; pointer-events: none; z-index: -1;
+            letter-spacing: 0.5em; white-space: nowrap;
+        }
+        .reveal {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        .tech-tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 4px 12px; border-radius: 99px;
+            background: rgba(var(--primary-rgb),0.08);
+            border: 1px solid rgba(var(--primary-rgb),0.2);
+            color: var(--primary); font-size: 10px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.1em;
+        }
+        .glow-orb {
+            position: absolute; border-radius: 50%;
+            pointer-events: none; filter: blur(80px);
+            opacity: 0.12; background: var(--primary);
+        }
+        .code-bg {
+            position: absolute; inset: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px; line-height: 1.8;
+            color: rgba(255,255,255,0.025);
+            overflow: hidden; pointer-events: none;
+            padding: 1.5rem; word-break: break-all;
+        }
+        .quote-section::before {
+            content: '"';
+            position: absolute; top: -60px; left: 50%;
+            transform: translateX(-50%);
+            font-size: 14rem; line-height: 1;
+            color: rgba(var(--primary-rgb), 0.06);
+            font-family: Georgia, serif; pointer-events: none;
+        }
+
+        /* Medallion badges */
+        .badge-bronze { background: rgba(205,127,50,0.12); border: 1px solid rgba(205,127,50,0.35); color: #cd7f32; }
+        .badge-silver { background: rgba(192,192,192,0.10); border: 1px solid rgba(192,192,192,0.30); color: #c0c0c0; }
+        .badge-gold   { background: rgba(var(--primary-rgb),0.10); border: 1px solid rgba(var(--primary-rgb),0.35); color: var(--primary); }
+
+        /* Problem/Impact cards color accent */
+        .accent-red   { border-top-color: #ef4444 !important; }
+        .accent-orange{ border-top-color: #f97316 !important; }
+        .accent-yellow{ border-top-color: #eab308 !important; }
+        .accent-blue  { border-top-color: #3b82f6 !important; }
+        .accent-purple{ border-top-color: #a855f7 !important; }
+        .accent-rose  { border-top-color: #f43f5e !important; }
+        .accent-green { border-top-color: #22c55e !important; }
+        .accent-teal  { border-top-color: #14b8a6 !important; }
+        .accent-primary{ border-top-color: var(--primary) !important; }
+
+        /* Metric tiles */
+        .metric-tile {
+            background: rgba(var(--primary-rgb),0.04);
+            border: 1px solid rgba(var(--primary-rgb),0.15);
+            border-radius: 16px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        /* Pipeline flow arrow */
+        .flow-arrow {
+            color: rgba(255,255,255,0.2);
+            font-size: 0.7rem;
+        }
+
+        /* Table styling */
+        .dw-table { width: 100%; border-collapse: collapse; }
+        .dw-table th {
+            background: rgba(var(--primary-rgb),0.08);
+            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.2em;
+            padding: 10px 14px; text-align: left;
+            border-bottom: 1px solid rgba(var(--primary-rgb),0.2);
+        }
+        .dw-table td {
+            padding: 10px 14px;
+            font-size: 12px; color: #94a3b8;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            vertical-align: top;
+        }
+        .dw-table td strong { color: #e2e8f0; }
+        .dw-table tr:last-child td { border-bottom: none; }
+
+        /* Star schema diagram */
+        .schema-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 1.2rem 1.5rem;
+        }
+        .schema-box.gold-box {
+            background: rgba(var(--primary-rgb),0.05);
+            border-color: rgba(var(--primary-rgb),0.25);
+        }
+        .schema-field {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: #64748b;
+            padding: 2px 0;
+        }
+        .schema-field.pk { color: var(--primary); }
+        .schema-field.fk { color: #60a5fa; }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        .pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+        /* Divider */
+        .section-divider {
+            width: 1px; height: 60px;
+            background: linear-gradient(to bottom, transparent, rgba(var(--primary-rgb),0.3), transparent);
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ─── Theme Sidebar ─── -->
+<div id="theme-sidebar" class="fixed right-6 top-1/2 z-[100] glass p-5 rounded-[28px] flex flex-col items-center border-white/10 shadow-2xl space-y-5">
+    <div class="text-center w-full">
+        <p class="text-[9px] font-black uppercase mb-2 opacity-50 tracking-widest text-white">Accent</p>
+        <div class="color-picker-wrapper"><input type="color" id="accent-picker" value="#fec400"></div>
+    </div>
+    <div class="w-full h-px bg-white/10"></div>
+    <div class="text-center w-full">
+        <p class="text-[9px] font-black uppercase mb-2 opacity-50 tracking-widest text-white">Fond</p>
+        <div class="color-picker-wrapper"><input type="color" id="bg-picker" value="#050505"></div>
+    </div>
+</div>
+
+<!-- ─── Mobile Menu ─── -->
+<div id="mobile-menu" class="fixed inset-0 z-[120] bg-black/95 flex flex-col items-center justify-center space-y-8 text-xl font-bold uppercase md:hidden">
+    <button id="close-btn" class="absolute top-6 right-6 text-primary text-3xl"><i class="fas fa-times"></i></button>
+    <a href="#probleme"  class="nav-link text-base">Problèmes</a>
+    <a href="#architecture" class="nav-link text-base">Architecture</a>
+    <a href="#pipeline"  class="nav-link text-base">Pipeline</a>
+    <a href="#impacts"   class="nav-link text-base">Impacts</a>
+    <a href="#resume"    class="nav-link text-base">Synthèse</a>
+    <a href="https://miguelheuya.netlify.app/#portfolio" target="_blank"
+       class="px-8 py-3 border border-primary text-primary rounded-full text-sm font-black hover:bg-primary hover:text-black transition">
+        ← Portfolio
+    </a>
+</div>
+
+<!-- ─── Navigation ─── -->
+<nav class="fixed w-full z-50 glass backdrop-blur-xl border-b border-white/[0.05] py-4">
+    <div class="container mx-auto px-6 flex justify-between items-center relative min-h-[56px]">
+        <a href="https://miguelheuya.netlify.app" class="text-white no-underline">
+            <div style="font-family:'Allura',cursive; color:var(--primary); opacity:0.9; transform:rotate(-5deg); white-space:nowrap; font-size:clamp(1.4rem,3.5vw,2rem);">
+                Miguel Heuya
+            </div>
+        </a>
+        <div class="hidden md:flex absolute left-1/2 -translate-x-1/2">
+            <div class="flex space-x-6 lg:space-x-8 items-center">
+                <a href="#probleme"    class="nav-link whitespace-nowrap">Problèmes</a>
+                <a href="#architecture" class="nav-link whitespace-nowrap">Architecture</a>
+                <a href="#pipeline"    class="nav-link whitespace-nowrap">Pipeline</a>
+                <a href="#impacts"     class="nav-link whitespace-nowrap">Impacts</a>
+                <a href="#resume"      class="nav-link whitespace-nowrap">Synthèse</a>
+                <a href="https://miguelheuya.netlify.app/#portfolio" target="_blank"
+                   class="px-5 py-2 border border-white/30 text-white rounded-full text-[10px] font-black hover:border-primary hover:text-primary transition ml-2 whitespace-nowrap">
+                    ← Portfolio
+                </a>
+            </div>
+        </div>
+        <div class="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 flex items-center gap-3">
+            <button id="theme-toggle-btn"
+                class="bg-primary text-black w-10 h-10 rounded-full shadow-[0_0_20px_rgba(var(--primary-rgb),0.4)] flex items-center justify-center text-base hover:scale-110 transition-all duration-300 z-[110]">
+                <i class="fas fa-palette"></i>
+            </button>
+        </div>
+        <button id="menu-btn" class="ml-auto md:hidden text-primary text-2xl z-[110]">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<header class="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-20 px-6 overflow-hidden">
+    <div class="hero-mesh"></div>
+    <div class="grid-dots opacity-40"></div>
+    <div class="glow-orb w-[600px] h-[600px] top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+
+    <!-- Floating code decorations -->
+    <div class="absolute top-32 left-8 md:left-20 opacity-[0.07] text-[10px] font-mono text-primary rotate-[-8deg] select-none hidden md:block">
+        CREATE SCHEMA Bronze;<br>CREATE SCHEMA Silver;<br>CREATE SCHEMA Gold;
+    </div>
+    <div class="absolute bottom-24 right-8 md:right-24 opacity-[0.07] text-[10px] font-mono text-primary rotate-[6deg] select-none hidden md:block">
+        python Orchestrateur.py<br>-- Bronze ✓ Silver ✓ Gold ✓<br>Pipeline completed successfully
+    </div>
+
+    <div class="relative z-10 text-center max-w-5xl mx-auto">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2.5 px-5 py-2 glass-gold rounded-full mb-10 reveal">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            <span class="text-primary text-[10px] font-black tracking-[0.3em] uppercase font-mono">Enterprise Data Warehouse · Medallion Architecture</span>
+        </div>
+
+        <!-- Medallion badges -->
+        <div class="flex items-center justify-center gap-3 mb-8 reveal reveal-delay-1">
+            <span class="badge-bronze px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest">⬡ Bronze</span>
+            <span class="text-white/20 text-xs">·</span>
+            <span class="badge-silver px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest">⬡ Silver</span>
+            <span class="text-white/20 text-xs">·</span>
+            <span class="badge-gold px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest">⬡ Gold</span>
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-[1.0] reveal reveal-delay-1">
+            Transformer des données<br>
+            <span class="text-gradient">dispersées</span> en un système<br>
+            <span class="text-white/30 text-3xl sm:text-4xl md:text-5xl font-light tracking-widest uppercase italic">centralisé &amp; structuré</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-slate-400 text-base md:text-lg max-w-3xl mx-auto font-light leading-relaxed mb-12 reveal reveal-delay-2">
+            Le <strong class="text-white font-semibold">Data Warehouse</strong> comme fondation d'une décision fiable
+            et d'une <strong class="text-white font-semibold">performance durable</strong> —
+            du fichier CSV brut jusqu'au tableau de bord décisionnel, en un pipeline automatisé.
+        </p>
+
+        <!-- Tech stack -->
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-14 reveal reveal-delay-3">
+            <span class="tech-tag"><i class="fab fa-python text-xs"></i> Python ETL</span>
+            <span class="tech-tag"><i class="fas fa-database text-xs"></i> PostgreSQL</span>
+            <span class="tech-tag"><i class="fas fa-chart-pie text-xs"></i> Power BI</span>
+            <span class="tech-tag"><i class="fas fa-project-diagram text-xs"></i> Star Schema</span>
+            <span class="tech-tag"><i class="fas fa-layer-group text-xs"></i> Medallion Architecture</span>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap items-center justify-center gap-4 reveal reveal-delay-3">
+            <a href="#probleme"
+               class="px-8 py-4 bg-primary text-black font-black rounded-xl hover:scale-105 transition shadow-[0_0_30px_rgba(var(--primary-rgb),0.4)] uppercase tracking-widest text-sm flex items-center gap-2">
+                Voir le Contexte <i class="fas fa-arrow-down"></i>
+            </a>
+            <a href="#architecture"
+               class="px-8 py-4 border-2 border-primary/40 text-primary font-black rounded-xl hover:border-primary hover:bg-primary/10 transition uppercase tracking-widest text-sm flex items-center gap-2">
+                <i class="fas fa-layer-group"></i> Architecture
+            </a>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="mt-20 flex flex-col items-center gap-2 opacity-30 reveal">
+            <span class="text-[9px] font-mono uppercase tracking-[0.4em]">Défiler</span>
+            <div class="w-px h-12 bg-gradient-to-b from-primary to-transparent"></div>
+        </div>
+    </div>
+</header>
+
+
+<main class="container mx-auto px-6 space-y-32 pb-32">
+
+
+    <!-- ═══════════════════════════════════════════
+         01 PROBLÈMES
+    ═══════════════════════════════════════════ -->
+    <section id="probleme" class="scroll-mt-28">
+        <div class="flex flex-col items-center text-center mb-16 reveal">
+            <div class="section-num mb-4">01 / Contexte opérationnel</div>
+            <h2 class="text-3xl md:text-5xl font-black tracking-tight">Problèmes de l'Entreprise</h2>
+            <div class="title-line mx-auto mt-3"></div>
+            <p class="text-slate-500 text-sm mt-4 max-w-xl">Les frictions décisionnelles et opérationnelles à l'origine du projet.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+            <!-- P1 -->
+            <div class="glass flex flex-col rounded-[28px] overflow-hidden hover-card border-t-2 accent-red reveal reveal-delay-1">
+                <div class="p-7 flex-1 flex flex-col">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 mb-4">
+                        <i class="fas fa-chart-line-down text-base"></i>
+                    </div>
+                    <p class="text-[9px] font-black uppercase tracking-widest text-red-400 mb-2 font-mono">Finances</p>
+                    <h4 class="text-base font-black text-white mb-3">Rentabilité incertaine</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-4 flex-1">L'entreprise enregistre des ventes… mais ne maîtrise pas réellement sa rentabilité. Impossible d'identifier les produits rentables vs déficitaires. Coûts incomplets, marge brute non fiable.</p>
+                    <div class="glass-gold px-3 py-2 rounded-xl text-[10px] text-primary font-black flex items-start gap-2">
+                        <i class="fas fa-arrow-right mt-0.5"></i>
+                        Décisions d'investissement prises à l'intuition.
+                    </div>
+                </div>
+            </div>
+
+            <!-- P2 -->
+            <div class="glass flex flex-col rounded-[28px] overflow-hidden hover-card border-t-2 accent-orange reveal reveal-delay-2">
+                <div class="p-7 flex-1 flex flex-col">
+                    <div class="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 mb-4">
+                        <i class="fas fa-puzzle-piece text-base"></i>
+                    </div>
+                    <p class="text-[9px] font-black uppercase tracking-widest text-orange-400 mb-2 font-mono">Données</p>
+                    <h4 class="text-base font-black text-white mb-3">Données fragmentées</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-4 flex-1">Ventes, clients (multiples systèmes), produits, localisation, catégories — dispersées sans structure commune ni centralisation. Aucune vision globale fiable n'est possible.</p>
+                    <div class="glass-gold px-3 py-2 rounded-xl text-[10px] text-primary font-black flex items-start gap-2">
+                        <i class="fas fa-arrow-right mt-0.5"></i>
+                        Zéro vision globale consolidée.
+                    </div>
+                </div>
+            </div>
+
+            <!-- P3 -->
+            <div class="glass flex flex-col rounded-[28px] overflow-hidden hover-card border-t-2 accent-yellow reveal reveal-delay-3">
+                <div class="p-7 flex-1 flex flex-col">
+                    <div class="w-10 h-10 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 mb-4">
+                        <i class="fas fa-triangle-exclamation text-base"></i>
+                    </div>
+                    <p class="text-[9px] font-black uppercase tracking-widest text-yellow-400 mb-2 font-mono">Qualité</p>
+                    <h4 class="text-base font-black text-white mb-3">Incohérences critiques</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-4 flex-1">Identifiants différents selon les sources, doublons, formats hétérogènes (préfixes, tirets), données manquantes. Une même réalité business interprétée différemment selon les équipes.</p>
+                    <div class="glass-gold px-3 py-2 rounded-xl text-[10px] text-primary font-black flex items-start gap-2">
+                        <i class="fas fa-arrow-right mt-0.5"></i>
+                        Analyses faussées par les anomalies.
+                    </div>
+                </div>
+            </div>
+
+            <!-- P4 -->
+            <div class="glass flex flex-col rounded-[28px] overflow-hidden hover-card border-t-2 accent-blue reveal reveal-delay-1">
+                <div class="p-7 flex-1 flex flex-col">
+                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-4">
+                        <i class="fas fa-users text-base"></i>
+                    </div>
+                    <p class="text-[9px] font-black uppercase tracking-widest text-blue-400 mb-2 font-mono">Clients</p>
+                    <h4 class="text-base font-black text-white mb-3">Vision client inexploitable</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-4 flex-1">Impossible de savoir qui sont les meilleurs clients, où ils se trouvent, quels segments génèrent le plus de valeur. Campagnes marketing mal ciblées, gaspillage de budget.</p>
+                    <div class="glass-gold px-3 py-2 rounded-xl text-[10px] text-primary font-black flex items-start gap-2">
+                        <i class="fas fa-arrow-right mt-0.5"></i>
+                        Budget marketing non optimisé.
+                    </div>
+                </div>
+            </div>
+
+            <!-- P5 -->
+            <div class="glass flex flex-col rounded-[28px] overflow-hidden hover-card border-t-2 accent-purple reveal reveal-delay-2">
+                <div class="p-7 flex-1 flex flex-col">
+                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-4">
+                        <i class="fas fa-gauge-simple-low text-base"></i>
+                    </div>
+                    <p class="text-[9px] font-black uppercase tracking-widest text-purple-400 mb-2 font-mono">Pilotage</p>
+                    <h4 class="text-base font-black text-white mb-3">Absence d'indicateurs fiables</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-4 flex-1">Impossible de répondre : quels produits génèrent de la marge ? Où se situent les pertes ? Quels leviers améliorer en priorité ? Les décisions sont ralenties par manque de confiance.</p>
+                    <div class="glass-gold px-3 py-2 rounded-xl text-[10px] text-primary font-black flex items-start gap-2">
+                        <i class="fas fa-arrow-right mt-0.5"></i>
+                        Décisions bloquées ou risquées.
+                    </div>
+                </div>
+            </div>
+
+            <!-- P6 -->
+            <div class="glass flex flex-col rounded-[28px] overflow-hidden hover-card border-t-2 accent-rose reveal reveal-delay-3">
+                <div class="p-7 flex-1 flex flex-col">
+                    <div class="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 mb-4">
+                        <i class="fas fa-hourglass-half text-base"></i>
+                    </div>
+                    <p class="text-[9px] font-black uppercase tracking-widest text-rose-400 mb-2 font-mono">Efficacité</p>
+                    <h4 class="text-base font-black text-white mb-3">Inefficacité opérationnelle</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-4 flex-1">Les Data Analysts passent l'essentiel de leur temps sur le nettoyage manuel, la correction d'erreurs, la consolidation de fichiers. Jusqu'à 80% du temps perdu avant même d'analyser.</p>
+                    <div class="glass-gold px-3 py-2 rounded-xl text-[10px] text-primary font-black flex items-start gap-2">
+                        <i class="fas fa-arrow-right mt-0.5"></i>
+                        80% du temps sur du technique, pas de l'analyse.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Strategic summary -->
+        <div class="mt-8 glass-gold p-8 rounded-[32px] reveal border border-primary/20">
+            <div class="flex flex-col lg:flex-row items-center gap-10">
+
+                <!-- Texte (gauche) -->
+                <div class="flex-1 text-center lg:text-left">
+                    <p class="text-primary text-[10px] font-black uppercase tracking-[0.3em] font-mono mb-3">Synthèse Stratégique</p>
+                    <p class="text-white text-xl md:text-2xl font-black mb-3">L'entreprise ne manque pas de données.</p>
+                    <p class="text-slate-400 text-sm mb-6">Elle manque d'un système capable de transformer ces données en <strong class="text-white">décisions fiables</strong>.</p>
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-6">
+                        <span class="flex items-center gap-2 text-xs text-slate-500"><i class="fas fa-eye-slash text-red-400 text-[10px]"></i> Perte de visibilité</span>
+                        <span class="flex items-center gap-2 text-xs text-slate-500"><i class="fas fa-battery-quarter text-orange-400 text-[10px]"></i> Perte d'efficacité</span>
+                        <span class="flex items-center gap-2 text-xs text-slate-500"><i class="fas fa-magnifying-glass-minus text-yellow-400 text-[10px]"></i> Perte d'opportunités</span>
+                        <span class="flex items-center gap-2 text-xs text-slate-500"><i class="fas fa-arrow-trend-down text-red-400 text-[10px]"></i> Risque sur la rentabilité</span>
+                    </div>
+                </div>
+
+                <!-- Image (droite) -->
+                <div class="w-full lg:w-2/5 shrink-0">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-primary/20 to-transparent rounded-[20px] blur opacity-30 group-hover:opacity-60 transition duration-700"></div>
+                        <div class="relative rounded-[16px] overflow-hidden border border-white/10 shadow-2xl">
+                            <img
+                                src="problème.png"
+                                alt="Synthèse stratégique"
+                                class="w-full h-auto block"
+                                style="object-fit: contain; max-height: 420px;"
+                            >
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         02 ARCHITECTURE
+    ═══════════════════════════════════════════ -->
+    <section id="architecture" class="scroll-mt-28">
+        <div class="flex flex-col items-center text-center mb-16 reveal">
+            <div class="section-num mb-4">02 / Architecture Technique</div>
+            <h2 class="text-3xl md:text-5xl font-black tracking-tight">Medallion Architecture</h2>
+            <div class="title-line mx-auto mt-3"></div>
+            <p class="text-slate-500 text-sm mt-4 max-w-xl">Bronze · Silver · Gold — trois couches progressives de raffinement de la donnée.</p>
+        </div>
+
+        <!-- Flow diagram -->
+        <div class="flex items-center justify-center gap-2 md:gap-4 mb-12 flex-wrap reveal">
+            <div class="flex items-center gap-2 px-4 py-2 badge-bronze rounded-full text-xs font-black uppercase tracking-widest">
+                <i class="fas fa-database text-[10px]"></i> Sources CSV
+            </div>
+            <i class="fas fa-arrow-right flow-arrow"></i>
+            <div class="flex items-center gap-2 px-4 py-2 badge-bronze rounded-full text-xs font-black uppercase tracking-widest">
+                ⬡ Bronze
+            </div>
+            <i class="fas fa-arrow-right flow-arrow"></i>
+            <div class="flex items-center gap-2 px-4 py-2 badge-silver rounded-full text-xs font-black uppercase tracking-widest">
+                ⬡ Silver
+            </div>
+            <i class="fas fa-arrow-right flow-arrow"></i>
+            <div class="flex items-center gap-2 px-4 py-2 badge-gold rounded-full text-xs font-black uppercase tracking-widest">
+                ⬡ Gold
+            </div>
+            <i class="fas fa-arrow-right flow-arrow"></i>
+            <div class="flex items-center gap-2 px-4 py-2 glass-gold rounded-full text-xs font-black uppercase tracking-widest text-primary">
+                <i class="fas fa-lightbulb text-[10px]"></i> Décision
+            </div>
+        </div>
+
+        <!-- Key metrics -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-12 reveal">
+            <div class="metric-tile">
+                <p class="text-primary text-2xl font-black">6</p>
+                <p class="text-slate-500 text-[9px] uppercase tracking-widest mt-1">Sources CSV</p>
+            </div>
+            <div class="metric-tile">
+                <p class="text-primary text-2xl font-black">6</p>
+                <p class="text-slate-500 text-[9px] uppercase tracking-widest mt-1">Tables Bronze</p>
+            </div>
+            <div class="metric-tile">
+                <p class="text-primary text-2xl font-black">6</p>
+                <p class="text-slate-500 text-[9px] uppercase tracking-widest mt-1">Tables Silver</p>
+            </div>
+            <div class="metric-tile">
+                <p class="text-primary text-2xl font-black">3</p>
+                <p class="text-slate-500 text-[9px] uppercase tracking-widest mt-1">Vues Gold</p>
+            </div>
+            <div class="metric-tile">
+                <p class="text-primary text-2xl font-black">4</p>
+                <p class="text-slate-500 text-[9px] uppercase tracking-widest mt-1">Scripts Python</p>
+            </div>
+            <div class="metric-tile">
+                <p class="text-primary text-2xl font-black">10</p>
+                <p class="text-slate-500 text-[9px] uppercase tracking-widest mt-1">Scripts SQL</p>
+            </div>
+        </div>
+
+        <!-- 3 layer cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- Bronze -->
+            <div class="glass flex flex-col rounded-[32px] overflow-hidden hover-card reveal reveal-delay-1 border-t-2" style="border-top-color:#cd7f32">
+                <div class="h-44 relative flex items-center justify-center overflow-hidden" style="background: linear-gradient(135deg, rgba(205,127,50,0.1), black)">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="relative z-10 text-center">
+                        <div class="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center mb-3" style="background:rgba(205,127,50,0.15); border:1px solid rgba(205,127,50,0.3)">
+                            <i class="fas fa-file-csv text-3xl" style="color:#cd7f32"></i>
+                        </div>
+                        <div class="step-badge mx-auto">01</div>
+                    </div>
+                </div>
+                <div class="p-8 flex-1 flex flex-col">
+                    <p class="text-[9px] font-black uppercase tracking-widest mb-2 font-mono" style="color:#cd7f32">Ingestion Brute</p>
+                    <h4 class="text-xl font-black text-white mb-4">Couche Bronze</h4>
+                    <ul class="space-y-3 flex-1 mb-6">
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">Extract.py :</strong> Scan auto des *.csv, tout typé VARCHAR/TEXT.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">Idempotence :</strong> if_exists='replace' — pipeline rejouable à l'infini.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">Chemins dynamiques :</strong> pathlib.Path pour portabilité totale.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">6 tables :</strong> cust_info, cust_az12, loc_a101, prd_info, px_cat_g1v2, sales_details.</span>
+                        </li>
+                    </ul>
+                    <div class="glass px-4 py-2 rounded-xl text-center">
+                        <span class="font-mono text-[10px] text-slate-500">pandas + SQLAlchemy + psycopg2</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Silver -->
+            <div class="glass flex flex-col rounded-[32px] overflow-hidden hover-card reveal reveal-delay-2 border-t-2" style="border-top-color:#c0c0c0">
+                <div class="h-44 relative flex items-center justify-center overflow-hidden" style="background: linear-gradient(135deg, rgba(192,192,192,0.08), black)">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="relative z-10 text-center">
+                        <div class="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center mb-3" style="background:rgba(192,192,192,0.12); border:1px solid rgba(192,192,192,0.25)">
+                            <i class="fas fa-broom text-3xl" style="color:#c0c0c0"></i>
+                        </div>
+                        <div class="step-badge mx-auto">02</div>
+                    </div>
+                </div>
+                <div class="p-8 flex-1 flex flex-col">
+                    <p class="text-[9px] font-black uppercase tracking-widest mb-2 font-mono" style="color:#c0c0c0">Nettoyage & Data Quality</p>
+                    <h4 class="text-xl font-black text-white mb-4">Couche Silver</h4>
+                    <ul class="space-y-3 flex-1 mb-6">
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">Transaction atomique :</strong> Rollback automatique sur échec psycopg2.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">SCD Type 2 :</strong> LEAD() pour historique des versions produits.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">Dédoublonnage :</strong> ROW_NUMBER() OVER(PARTITION BY cst_id).</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">Cohérence comptable :</strong> ABS(), recalcul Sales = Qty × Price.</span>
+                        </li>
+                    </ul>
+                    <div class="glass px-4 py-2 rounded-xl text-center">
+                        <span class="font-mono text-[10px] text-slate-500">6 scripts SQL · Transform.py</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gold -->
+            <div class="glass flex flex-col rounded-[32px] overflow-hidden hover-card reveal reveal-delay-3 border-t-2 border-primary/30">
+                <div class="h-44 relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary/8 to-black">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="relative z-10 text-center">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-primary/15 border border-primary/30 flex items-center justify-center mb-3">
+                            <i class="fas fa-star text-3xl text-primary"></i>
+                        </div>
+                        <div class="step-badge mx-auto">03</div>
+                    </div>
+                </div>
+                <div class="p-8 flex-1 flex flex-col">
+                    <p class="text-[9px] font-black uppercase tracking-widest text-primary mb-2 font-mono">Modèle Décisionnel</p>
+                    <h4 class="text-xl font-black text-white mb-4">Couche Gold</h4>
+                    <ul class="space-y-3 flex-1 mb-6">
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">Star Schema Kimball :</strong> dim_customer, dim_product, fact_sales.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">Vues SQL dynamiques :</strong> Power BI consulte toujours le plus récent.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">Fail-Fast :</strong> RuntimeError si vue corrompue — pipeline stoppé net.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">Zero NULL :</strong> COALESCE() systématique sur toutes les colonnes BI.</span>
+                        </li>
+                    </ul>
+                    <div class="glass px-4 py-2 rounded-xl text-center">
+                        <span class="font-mono text-[10px] text-slate-500">3 vues SQL · Load.py · Power BI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image bas de section Architecture -->
+        <div class="mt-12 reveal flex justify-center">
+            <div class="relative group w-full max-w-3xl">
+                <div class="absolute -inset-[3px] rounded-[28px]"
+                    style="background: linear-gradient(135deg, #cd7f32, #c0c0c0, var(--primary)); opacity: 0.5; filter: blur(6px); transition: opacity 0.5s;"
+                    onmouseenter="this.style.opacity='0.9'" onmouseleave="this.style.opacity='0.5'"></div>
+                <div class="relative rounded-[24px] overflow-hidden shadow-2xl"
+                    style="border: 1px solid rgba(255,255,255,0.12); padding: 6px; background: rgba(255,255,255,0.03);">
+                    <div class="rounded-[20px] overflow-hidden">
+                        <img
+                            src="data_architecture.png"
+                            alt="Architecture Medallion"
+                            class="w-full h-auto block"
+                            style="object-fit: contain;"
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         03 PIPELINE DÉTAILLÉ (contenu PDF)
+    ═══════════════════════════════════════════ -->
+    <section id="pipeline" class="scroll-mt-28">
+        <div class="flex flex-col items-center text-center mb-16 reveal">
+            <div class="section-num mb-4">03 / Rapport Technique</div>
+            <h2 class="text-3xl md:text-5xl font-black tracking-tight">Pipeline de Données</h2>
+            <div class="title-line mx-auto mt-3"></div>
+            <p class="text-slate-500 text-sm mt-4 max-w-xl">Architecture complète — extraction, modélisation, orchestration, audit.</p>
+        </div>
+
+        <!-- Principes d'ingénierie -->
+        <div class="glass p-8 md:p-12 rounded-[40px] relative overflow-hidden reveal mb-10">
+            <div class="code-bg select-none" aria-hidden="true">
+                export DATABASE_URL="postgresql://user:password@host:port/dbname" &nbsp; python Orchestrateur.py &nbsp; DROP TABLE IF EXISTS Bronze.sales_details CASCADE; &nbsp; SELECT COALESCE(c.cntry,'n/a') FROM Silver.cust_info ci LEFT JOIN Silver.loc_a101 c ON ci.cst_key = c.cid &nbsp; ROW_NUMBER() OVER(PARTITION BY cst_id ORDER BY cst_create_date DESC) AS rn &nbsp; LEAD(prd_start_dt,1,'9999-12-31') OVER(PARTITION BY prd_key ORDER BY prd_start_dt) - INTERVAL '1 day'
+            </div>
+            <div class="relative z-10">
+                <p class="text-primary text-[10px] font-black uppercase tracking-[0.3em] font-mono mb-6">Principes d'ingénierie logicielle</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="glass p-5 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-7 h-7 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center"><i class="fas fa-rotate text-primary text-xs"></i></div>
+                            <p class="text-white text-xs font-black">Idempotence totale</p>
+                        </div>
+                        <p class="text-slate-500 text-xs leading-relaxed">DROP TABLE/VIEW IF EXISTS + recréation complète. Pipeline rejouable N fois sans corruption.</p>
+                    </div>
+                    <div class="glass p-5 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-7 h-7 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center"><i class="fas fa-shield text-primary text-xs"></i></div>
+                            <p class="text-white text-xs font-black">Transaction atomique</p>
+                        </div>
+                        <p class="text-slate-500 text-xs leading-relaxed">Tout le pipeline Silver tourne dans une transaction unique. Échec → ROLLBACK instantané.</p>
+                    </div>
+                    <div class="glass p-5 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-7 h-7 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center"><i class="fas fa-bolt text-primary text-xs"></i></div>
+                            <p class="text-white text-xs font-black">Fail-Fast Gold</p>
+                        </div>
+                        <p class="text-slate-500 text-xs leading-relaxed">Si une vue dimensionnelle échoue → RuntimeError stoppe immédiatement le pipeline.</p>
+                    </div>
+                    <div class="glass p-5 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-7 h-7 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center"><i class="fas fa-ban text-primary text-xs"></i></div>
+                            <p class="text-white text-xs font-black">Zéro NULL en Gold</p>
+                        </div>
+                        <p class="text-slate-500 text-xs leading-relaxed">COALESCE() systématique sur toutes les colonnes de filtrage pour Power BI.</p>
+                    </div>
+                    <div class="glass p-5 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-7 h-7 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center"><i class="fas fa-key text-primary text-xs"></i></div>
+                            <p class="text-white text-xs font-black">Sécurité credentials</p>
+                        </div>
+                        <p class="text-slate-500 text-xs leading-relaxed">Chaîne de connexion lue via os.getenv('DATABASE_URL') — aucun mot de passe dans le code.</p>
+                    </div>
+                    <div class="glass p-5 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-7 h-7 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center"><i class="fas fa-folder-tree text-primary text-xs"></i></div>
+                            <p class="text-white text-xs font-black">Chemins dynamiques</p>
+                        </div>
+                        <p class="text-slate-500 text-xs leading-relaxed">pathlib.Path(__file__).resolve() — aucun chemin en dur, projet 100% portable.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Silver transformations -->
+        <div class="glass p-8 md:p-12 rounded-[40px] reveal mb-10">
+            <p class="section-num mb-6">03.1 / Transformations Silver</p>
+            <h3 class="text-2xl md:text-3xl font-black text-white mb-8">Data Quality — Règles appliquées</h3>
+            <div class="overflow-x-auto">
+                <table class="dw-table">
+                    <thead>
+                        <tr>
+                            <th># Règle</th>
+                            <th>Table ciblée</th>
+                            <th>Transformation</th>
+                            <th>Implémentation SQL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><span class="step-badge" style="width:28px;height:28px;font-size:0.6rem">01</span></td><td><strong>cust_info</strong></td><td>Dédoublonnage clients</td><td><code class="text-primary text-xs">ROW_NUMBER() OVER(PARTITION BY cst_id ORDER BY date DESC)</code></td></tr>
+                        <tr><td><span class="step-badge" style="width:28px;height:28px;font-size:0.6rem">02</span></td><td><strong>cust_info</strong></td><td>Mapping genre/statut marital</td><td><code class="text-primary text-xs">CASE WHEN M→'Male', F→'Female', ELSE 'n/a'</code></td></tr>
+                        <tr><td><span class="step-badge" style="width:28px;height:28px;font-size:0.6rem">03</span></td><td><strong>cust_az12</strong></td><td>Nettoyage préfixe NAS</td><td><code class="text-primary text-xs">SUBSTRING(cid FROM 4) WHERE cid LIKE 'NAS%'</code></td></tr>
+                        <tr><td><span class="step-badge" style="width:28px;height:28px;font-size:0.6rem">04</span></td><td><strong>loc_a101</strong></td><td>Normalisation des pays</td><td><code class="text-primary text-xs">US/USA/UNITED STATES → 'United States'</code></td></tr>
+                        <tr><td><span class="step-badge" style="width:28px;height:28px;font-size:0.6rem">05</span></td><td><strong>loc_a101</strong></td><td>Suppression espaces insécables</td><td><code class="text-primary text-xs">REPLACE(cntry, chr(160), '')</code></td></tr>
+                        <tr><td><span class="step-badge" style="width:28px;height:28px;font-size:0.6rem">06</span></td><td><strong>prd_info</strong></td><td>SCD Type 2 versions produits</td><td><code class="text-primary text-xs">LEAD(prd_start_dt,1,'9999-12-31') OVER(PARTITION BY prd_key)</code></td></tr>
+                        <tr><td><span class="step-badge" style="width:28px;height:28px;font-size:0.6rem">07</span></td><td><strong>sales_details</strong></td><td>Cohérence comptable</td><td><code class="text-primary text-xs">IF sls_sales=0: Qty×Price / IF price=0: Sales/Qty</code></td></tr>
+                        <tr><td><span class="step-badge" style="width:28px;height:28px;font-size:0.6rem">08</span></td><td><strong>sales_details</strong></td><td>Élimination des négatifs</td><td><code class="text-primary text-xs">ABS(sls_sales), ABS(sls_quantity), ABS(sls_price)</code></td></tr>
+                        <tr><td><span class="step-badge" style="width:28px;height:28px;font-size:0.6rem">09</span></td><td><strong>Toutes tables</strong></td><td>Sécurisation des dates</td><td><code class="text-primary text-xs">Validation longueur 8/10 avant TO_DATE — pivot 1900-01-01</code></td></tr>
+                        <tr><td><span class="step-badge" style="width:28px;height:28px;font-size:0.6rem">10</span></td><td><strong>Toutes tables</strong></td><td>Nettoyage espaces parasites</td><td><code class="text-primary text-xs">TRIM() systématique sur toutes colonnes texte</code></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Star Schema -->
+        <div class="glass p-8 md:p-12 rounded-[40px] reveal mb-10">
+            <p class="section-num mb-6">03.2 / Modèle Gold</p>
+            <h3 class="text-2xl md:text-3xl font-black text-white mb-8">Star Schema — Kimball</h3>
+            <div class="flex flex-col lg:flex-row items-center justify-center gap-6">
+
+                <!-- dim_customer -->
+                <div class="schema-box w-full lg:w-64 reveal reveal-delay-1">
+                    <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-3 font-mono">dim_customer</p>
+                    <div class="space-y-1">
+                        <p class="schema-field pk">PK: customer_id BIGINT</p>
+                        <p class="schema-field">customer_key VARCHAR</p>
+                        <p class="schema-field">customer_number VARCHAR</p>
+                        <p class="schema-field">first_name / last_name</p>
+                        <p class="schema-field">gender <span class="text-slate-600 text-[9px]">← fallback cross-source</span></p>
+                        <p class="schema-field">marital_status</p>
+                        <p class="schema-field">country</p>
+                        <p class="schema-field">birth_date DATE</p>
+                        <p class="schema-field">create_date DATE</p>
+                    </div>
+                </div>
+
+                <!-- Arrow -->
+                <div class="flex flex-col items-center gap-1 reveal reveal-delay-2">
+                    <span class="text-slate-600 text-[9px] font-mono">1:N</span>
+                    <i class="fas fa-arrow-right text-primary hidden lg:block"></i>
+                    <i class="fas fa-arrow-down text-primary lg:hidden"></i>
+                </div>
+
+                <!-- fact_sales -->
+                <div class="schema-box gold-box w-full lg:w-64 reveal reveal-delay-2">
+                    <p class="text-[9px] font-black uppercase tracking-widest text-primary mb-3 font-mono">fact_sales ⭐</p>
+                    <div class="space-y-1">
+                        <p class="schema-field text-white text-[10px]">sale_id VARCHAR</p>
+                        <p class="schema-field fk">FK: product_key BIGINT</p>
+                        <p class="schema-field fk">FK: customer_key BIGINT</p>
+                        <p class="schema-field">order_date DATE</p>
+                        <p class="schema-field">ship_date DATE</p>
+                        <p class="schema-field">due_date DATE</p>
+                        <p class="schema-field text-primary text-[10px]">sale_amount NUMERIC</p>
+                        <p class="schema-field text-primary text-[10px]">quantity NUMERIC</p>
+                        <p class="schema-field text-primary text-[10px]">price NUMERIC</p>
+                    </div>
+                </div>
+
+                <!-- Arrow -->
+                <div class="flex flex-col items-center gap-1 reveal reveal-delay-2">
+                    <span class="text-slate-600 text-[9px] font-mono">1:N</span>
+                    <i class="fas fa-arrow-left text-primary hidden lg:block"></i>
+                    <i class="fas fa-arrow-down text-primary lg:hidden"></i>
+                </div>
+
+                <!-- dim_product -->
+                <div class="schema-box w-full lg:w-64 reveal reveal-delay-3">
+                    <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-3 font-mono">dim_product</p>
+                    <div class="space-y-1">
+                        <p class="schema-field pk">PK: product_key BIGINT</p>
+                        <p class="schema-field">product_id INTEGER</p>
+                        <p class="schema-field">product_number VARCHAR</p>
+                        <p class="schema-field">product_name VARCHAR</p>
+                        <p class="schema-field">category / sub_category</p>
+                        <p class="schema-field">maintenance VARCHAR</p>
+                        <p class="schema-field">cost NUMERIC</p>
+                        <p class="schema-field">product_line VARCHAR</p>
+                        <p class="schema-field">start_date DATE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orchestration & Audit -->
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="glass p-8 rounded-[32px] reveal reveal-delay-1">
+                <p class="section-num mb-5">03.3 / Orchestration</p>
+                <h4 class="text-xl font-black text-white mb-6">Orchestrateur.py</h4>
+                <div class="space-y-3">
+                    <div class="glass p-4 rounded-2xl flex items-center gap-4">
+                        <div class="step-badge shrink-0">1/3</div>
+                        <div>
+                            <p class="text-white text-xs font-black">Bronze — Extract.py</p>
+                            <p class="text-slate-500 text-[10px]">pipeline_vers_bronze() · Arrêt sur échec</p>
+                        </div>
+                    </div>
+                    <div class="glass p-4 rounded-2xl flex items-center gap-4">
+                        <div class="step-badge shrink-0">2/3</div>
+                        <div>
+                            <p class="text-white text-xs font-black">Silver — Transform.py</p>
+                            <p class="text-slate-500 text-[10px]">run_silver_pipeline() · Rollback auto psycopg2</p>
+                        </div>
+                    </div>
+                    <div class="glass p-4 rounded-2xl flex items-center gap-4">
+                        <div class="step-badge shrink-0">3/3</div>
+                        <div>
+                            <p class="text-white text-xs font-black">Gold — Load.py</p>
+                            <p class="text-slate-500 text-[10px]">executer_generation_gold() · Fail-Fast RuntimeError</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 glass p-4 rounded-2xl font-mono text-xs text-slate-500">
+                    <span class="text-primary">$</span> export DATABASE_URL="postgresql://..."<br>
+                    <span class="text-primary">$</span> python Orchestrateur.py
+                </div>
+            </div>
+
+            <div class="glass p-8 rounded-[32px] reveal reveal-delay-2">
+                <p class="section-num mb-5">03.4 / Gouvernance</p>
+                <h4 class="text-xl font-black text-white mb-6">Schéma d'Audit</h4>
+                <div class="overflow-x-auto">
+                    <table class="dw-table">
+                        <thead><tr><th>Colonne</th><th>Type</th><th>Rôle</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>log_id</strong></td><td class="text-primary text-[10px] font-mono">SERIAL PK</td><td>Identifiant auto</td></tr>
+                            <tr><td><strong>script_name</strong></td><td class="text-primary text-[10px] font-mono">VARCHAR</td><td>Fichier exécuté</td></tr>
+                            <tr><td><strong>source/target_layer</strong></td><td class="text-primary text-[10px] font-mono">VARCHAR</td><td>Bronze→Silver…</td></tr>
+                            <tr><td><strong>duration_seconds</strong></td><td class="text-primary text-[10px] font-mono">NUMERIC</td><td>Performance</td></tr>
+                            <tr><td><strong>rows_inserted</strong></td><td class="text-primary text-[10px] font-mono">INT</td><td>Volumétrie</td></tr>
+                            <tr><td><strong>status</strong></td><td class="text-primary text-[10px] font-mono">VARCHAR</td><td>SUCCESS/FAILED</td></tr>
+                            <tr><td><strong>error_message</strong></td><td class="text-primary text-[10px] font-mono">TEXT</td><td>Debug complet</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Image bas de section Pipeline -->
+        <div class="mt-12 reveal flex justify-center">
+            <div class="relative group w-full max-w-3xl">
+                <div class="absolute -inset-[3px] rounded-[28px]"
+                    style="background: linear-gradient(135deg, var(--primary), #3b82f6, var(--primary)); opacity: 0.5; filter: blur(6px); transition: opacity 0.5s;"
+                    onmouseenter="this.style.opacity='0.9'" onmouseleave="this.style.opacity='0.5'"></div>
+                <div class="relative rounded-[24px] overflow-hidden shadow-2xl"
+                    style="border: 1px solid rgba(255,255,255,0.12); padding: 6px; background: rgba(255,255,255,0.03);">
+                    <div class="rounded-[20px] overflow-hidden">
+                        <img
+                            src="data_flow.png"
+                            alt="Pipeline de données"
+                            class="w-full h-auto block"
+                            style="object-fit: contain;"
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         04 IMPACTS BUSINESS
+    ═══════════════════════════════════════════ -->
+    <section id="impacts" class="scroll-mt-28">
+        <div class="flex flex-col items-center text-center mb-16 reveal">
+            <div class="section-num mb-4">04 / Transformation apportée</div>
+            <h2 class="text-3xl md:text-5xl font-black tracking-tight">Impacts Business</h2>
+            <div class="title-line mx-auto mt-3"></div>
+            <p class="text-slate-500 text-sm mt-4 max-w-xl">Un pilotage basé sur des faits, pas sur des intuitions.</p>
+        </div>
+
+        <!-- Dirigeants -->
+        <div class="mb-8 reveal">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary">
+                    <i class="fas fa-briefcase text-base"></i>
+                </div>
+                <div>
+                    <p class="text-[9px] font-black uppercase tracking-widest text-primary font-mono">Pour les dirigeants</p>
+                    <h3 class="text-xl font-black text-white">Décision basée sur les faits</h3>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="glass flex flex-col rounded-[24px] overflow-hidden hover-card border-t-2 accent-green reveal reveal-delay-1">
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="w-9 h-9 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center text-green-400 mb-4 shrink-0">
+                            <i class="fas fa-chart-line text-sm"></i>
+                        </div>
+                        <h4 class="text-sm font-black text-white mb-3">Visibilité sur la rentabilité réelle</h4>
+                        <ul class="space-y-2 flex-1 mb-4">
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Marge brute par produit mesurable</span></li>
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Rentabilité réelle de chaque vente</span></li>
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Quoi développer, optimiser, arrêter</span></li>
+                        </ul>
+                        <div class="glass-gold px-3 py-2 rounded-xl text-[10px] text-primary font-black">→ Décisions basées sur le profit réel</div>
+                    </div>
+                </div>
+                <div class="glass flex flex-col rounded-[24px] overflow-hidden hover-card border-t-2 accent-teal reveal reveal-delay-2">
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="w-9 h-9 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 mb-4 shrink-0">
+                            <i class="fas fa-clock-rotate-left text-sm"></i>
+                        </div>
+                        <h4 class="text-sm font-black text-white mb-3">Performance dans le temps</h4>
+                        <ul class="space-y-2 flex-1 mb-4">
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Trace fiable des évolutions de prix</span></li>
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Impact des décisions passées visible</span></li>
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Analyse des promotions et stratégies tarifaires</span></li>
+                        </ul>
+                        <div class="glass-gold px-3 py-2 rounded-xl text-[10px] text-primary font-black">→ Anticipation des tendances</div>
+                    </div>
+                </div>
+                <div class="glass flex flex-col rounded-[24px] overflow-hidden hover-card border-t-2 accent-blue reveal reveal-delay-3">
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-4 shrink-0">
+                            <i class="fas fa-users text-sm"></i>
+                        </div>
+                        <h4 class="text-sm font-black text-white mb-3">Vision client unifiée</h4>
+                        <ul class="space-y-2 flex-1 mb-4">
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Clients les plus rentables identifiés</span></li>
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Segmentation efficace de la clientèle</span></li>
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Campagnes marketing ciblées</span></li>
+                        </ul>
+                        <div class="glass-gold px-3 py-2 rounded-xl text-[10px] text-primary font-black">→ Réduction du gaspillage budgétaire</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Analysts -->
+        <div class="mb-8 reveal">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary">
+                    <i class="fas fa-brain text-base"></i>
+                </div>
+                <div>
+                    <p class="text-[9px] font-black uppercase tracking-widest text-primary font-mono">Pour les Data Analysts</p>
+                    <h3 class="text-xl font-black text-white">Du rôle technique au rôle stratégique</h3>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="glass flex flex-col rounded-[24px] overflow-hidden hover-card border-t-2 accent-purple reveal reveal-delay-1">
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="w-9 h-9 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-4 shrink-0">
+                            <i class="fas fa-brain text-sm"></i>
+                        </div>
+                        <h4 class="text-sm font-black text-white mb-3">Recentrage sur l'analyse</h4>
+                        <ul class="space-y-2 flex-1 mb-4">
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Tâches répétitives automatisées</span></li>
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Plus de temps pour comprendre le business</span></li>
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Proposer des actions concrètes</span></li>
+                        </ul>
+                        <div class="glass-gold px-3 py-2 rounded-xl text-[10px] text-primary font-black">→ Partenaires de décision</div>
+                    </div>
+                </div>
+                <div class="glass flex flex-col rounded-[24px] overflow-hidden hover-card border-t-2 accent-primary reveal reveal-delay-2">
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4 shrink-0">
+                            <i class="fas fa-check-double text-sm"></i>
+                        </div>
+                        <h4 class="text-sm font-black text-white mb-3">Rapports fiables & alignés</h4>
+                        <ul class="space-y-2 flex-1 mb-4">
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Un seul référentiel commun</span></li>
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Chiffres identiques pour toutes les équipes</span></li>
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Disparition des contradictions en réunion</span></li>
+                        </ul>
+                        <div class="glass-gold px-3 py-2 rounded-xl text-[10px] text-primary font-black">→ Confiance restaurée dans les données</div>
+                    </div>
+                </div>
+                <div class="glass flex flex-col rounded-[24px] overflow-hidden hover-card border-t-2 accent-yellow reveal reveal-delay-3">
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="w-9 h-9 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 mb-4 shrink-0">
+                            <i class="fas fa-bolt text-sm"></i>
+                        </div>
+                        <h4 class="text-sm font-black text-white mb-3">Décision rapide et fluide</h4>
+                        <ul class="space-y-2 flex-1 mb-4">
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Dashboards rapides et exploitables</span></li>
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Réponses immédiates aux questions business</span></li>
+                            <li class="flex items-start gap-2 text-xs text-slate-400"><i class="fas fa-circle text-primary mt-1 text-[4px] shrink-0"></i><span>Capacité à réagir en temps réel</span></li>
+                        </ul>
+                        <div class="glass-gold px-3 py-2 rounded-xl text-[10px] text-primary font-black">→ Logique lente → logique proactive</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Entreprise -->
+        <div class="reveal">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary">
+                    <i class="fas fa-building text-base"></i>
+                </div>
+                <div>
+                    <p class="text-[9px] font-black uppercase tracking-widest text-primary font-mono">Pour l'entreprise</p>
+                    <h3 class="text-xl font-black text-white">Transformation structurelle et durable</h3>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+                <div class="glass p-6 rounded-[24px] hover-card flex items-start gap-4 reveal reveal-delay-1">
+                    <div class="w-9 h-9 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center text-green-400 shrink-0">
+                        <i class="fas fa-lock text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="font-black text-white text-sm mb-2">Fiabilité & sécurité</p>
+                        <p class="text-slate-500 text-xs leading-relaxed">Accès sécurisé, données protégées, gestion maîtrisée des informations sensibles. Réduction des risques opérationnels.</p>
+                    </div>
+                </div>
+                <div class="glass p-6 rounded-[24px] hover-card flex items-start gap-4 reveal reveal-delay-2">
+                    <div class="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
+                        <i class="fas fa-rotate text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="font-black text-white text-sm mb-2">Continuité des analyses</p>
+                        <p class="text-slate-500 text-xs leading-relaxed">Aucun risque de données partielles. Système cohérent en permanence. Décisions toujours sur des données fiables.</p>
+                    </div>
+                </div>
+                <div class="glass p-6 rounded-[24px] hover-card flex items-start gap-4 reveal reveal-delay-3">
+                    <div class="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                        <i class="fas fa-piggy-bank text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="font-black text-white text-sm mb-2">Réduction des coûts cachés</p>
+                        <p class="text-slate-500 text-xs leading-relaxed">Moins de temps perdu, moins d'erreurs humaines, moins de retraitements. Amélioration directe de l'efficacité opérationnelle.</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Strategic summary impacts -->
+            <div class="glass-gold p-8 rounded-[32px] border border-primary/20">
+                <div class="flex flex-col lg:flex-row items-center gap-10">
+
+                    <!-- Texte (gauche) -->
+                    <div class="flex-1 text-center lg:text-left">
+                        <p class="text-primary text-[10px] font-black uppercase tracking-[0.3em] font-mono mb-3">Synthèse Stratégique</p>
+                        <p class="text-white text-xl md:text-2xl font-black mb-2">L'entreprise ne subit plus ses données.</p>
+                        <p class="text-primary font-black text-base mb-6">Elle les utilise pour piloter.</p>
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-6 mb-8">
+                            <span class="flex items-center gap-2 text-xs text-slate-400"><i class="fas fa-eye text-green-400 text-[10px]"></i> Meilleure visibilité</span>
+                            <span class="flex items-center gap-2 text-xs text-slate-400"><i class="fas fa-bolt text-primary text-[10px]"></i> Décisions plus rapides</span>
+                            <span class="flex items-center gap-2 text-xs text-slate-400"><i class="fas fa-bullseye text-blue-400 text-[10px]"></i> Actions plus ciblées</span>
+                            <span class="flex items-center gap-2 text-xs text-slate-400"><i class="fas fa-arrow-trend-up text-green-400 text-[10px]"></i> Rentabilité maîtrisée</span>
+                        </div>
+                        <div class="pt-6 border-t border-white/5">
+                            <p class="text-slate-400 text-sm"><span class="text-primary font-black">Ce projet</span> ne change pas seulement la manière de traiter la data.</p>
+                            <p class="text-white font-black text-sm mt-1">Il change la manière de piloter l'entreprise.</p>
+                        </div>
+                    </div>
+
+                    <!-- Image (droite) -->
+                    <div class="w-full lg:w-2/5 shrink-0">
+                        <div class="relative group">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-primary/20 to-transparent rounded-[20px] blur opacity-30 group-hover:opacity-60 transition duration-700"></div>
+                            <div class="relative rounded-[16px] overflow-hidden border border-white/10 shadow-2xl">
+                                <img
+                                    src="resolution.png"
+                                    alt="Synthèse stratégique"
+                                    class="w-full h-auto object-contain block"
+                                    style="max-height: 420px; object-fit: contain;"
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         05 RÉSUMÉ EXÉCUTIF
+    ═══════════════════════════════════════════ -->
+    <section id="resume" class="scroll-mt-28">
+        <div class="flex flex-col items-center text-center mb-16 reveal">
+            <div class="section-num mb-4">05 / Résumé Exécutif</div>
+            <h2 class="text-3xl md:text-5xl font-black tracking-tight">Modernisation du Pilotage</h2>
+            <div class="title-line mx-auto mt-3"></div>
+            <p class="text-slate-500 text-sm mt-4 max-w-xl">Transformation de la performance et de la rentabilité — vue d'ensemble stratégique.</p>
+        </div>
+
+        <div class="glass p-8 md:p-14 rounded-[40px] relative overflow-hidden reveal border-t border-white/8">
+            <div class="code-bg select-none" aria-hidden="true">
+                SELECT p.product_name, SUM(f.sale_amount) AS revenue, SUM(f.sale_amount - p.cost * f.quantity) AS gross_margin, ROUND(SUM(f.sale_amount - p.cost * f.quantity) / NULLIF(SUM(f.sale_amount),0) * 100,2) AS margin_pct FROM Gold.fact_sales f JOIN Gold.dim_product p ON f.product_key = p.product_key JOIN Gold.dim_customer c ON f.customer_key = c.customer_key GROUP BY 1 ORDER BY gross_margin DESC &nbsp;&nbsp; python Orchestrateur.py -- [1/3] Bronze pipeline OK (6 tables) -- [2/3] Silver pipeline OK (10 rules applied) -- [3/3] Gold pipeline OK (3 views created) -- Pipeline completed in 12.4s
+            </div>
+
+            <div class="relative z-10 space-y-12">
+
+                <!-- Objectif -->
+                <div class="flex flex-col lg:flex-row gap-10 items-start">
+                    <div class="lg:w-1/3 shrink-0">
+                        <div class="section-num mb-3">01 / Objectif</div>
+                        <h3 class="text-2xl font-black text-white">Transformer des données dispersées</h3>
+                        <p class="text-slate-500 text-sm mt-2">en un outil de décision fiable</p>
+                    </div>
+                    <div class="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="glass p-5 rounded-2xl text-center">
+                            <i class="fas fa-compress-arrows-alt text-primary text-2xl mb-3"></i>
+                            <p class="text-white text-xs font-black">Centraliser</p>
+                            <p class="text-slate-500 text-[10px] mt-1">Toutes les sources en un seul endroit</p>
+                        </div>
+                        <div class="glass p-5 rounded-2xl text-center">
+                            <i class="fas fa-sitemap text-primary text-2xl mb-3"></i>
+                            <p class="text-white text-xs font-black">Structurer</p>
+                            <p class="text-slate-500 text-[10px] mt-1">Star Schema optimisé pour BI</p>
+                        </div>
+                        <div class="glass p-5 rounded-2xl text-center">
+                            <i class="fas fa-shield-halved text-primary text-2xl mb-3"></i>
+                            <p class="text-white text-xs font-black">Fiabiliser</p>
+                            <p class="text-slate-500 text-[10px] mt-1">9 règles de Data Quality appliquées</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full h-px bg-white/5"></div>
+
+                <!-- Avant / Après -->
+                <div>
+                    <div class="section-num mb-6">02–03 / Avant → Après</div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                        <!-- AVANT -->
+                        <div class="space-y-3">
+                            <p class="text-red-400 text-[10px] font-black uppercase tracking-widest font-mono mb-4">❌ Situation initiale</p>
+                            <div class="glass p-4 rounded-xl flex items-start gap-3">
+                                <i class="fas fa-xmark text-red-400 mt-0.5 shrink-0"></i>
+                                <div>
+                                    <p class="text-white text-xs font-black">Pilotage financier incertain</p>
+                                    <p class="text-slate-500 text-[10px]">Marge réelle inconnue — décisions basées sur le CA seul</p>
+                                </div>
+                            </div>
+                            <div class="glass p-4 rounded-xl flex items-start gap-3">
+                                <i class="fas fa-xmark text-red-400 mt-0.5 shrink-0"></i>
+                                <div>
+                                    <p class="text-white text-xs font-black">Absence de vision dans le temps</p>
+                                    <p class="text-slate-500 text-[10px]">Aucune traçabilité des évolutions de prix ni des tendances</p>
+                                </div>
+                            </div>
+                            <div class="glass p-4 rounded-xl flex items-start gap-3">
+                                <i class="fas fa-xmark text-red-400 mt-0.5 shrink-0"></i>
+                                <div>
+                                    <p class="text-white text-xs font-black">Vision client fragmentée</p>
+                                    <p class="text-slate-500 text-[10px]">Données réparties sur plusieurs sources contradictoires</p>
+                                </div>
+                            </div>
+                            <div class="glass p-4 rounded-xl flex items-start gap-3">
+                                <i class="fas fa-xmark text-red-400 mt-0.5 shrink-0"></i>
+                                <div>
+                                    <p class="text-white text-xs font-black">Inefficacité des équipes data</p>
+                                    <p class="text-slate-500 text-[10px]">80% du temps en nettoyage manuel — peu d'analyse produite</p>
+                                </div>
+                            </div>
+                            <div class="glass p-4 rounded-xl flex items-start gap-3">
+                                <i class="fas fa-xmark text-red-400 mt-0.5 shrink-0"></i>
+                                <div>
+                                    <p class="text-white text-xs font-black">Manque de confiance dans les données</p>
+                                    <p class="text-slate-500 text-[10px]">Rapports incohérents — chiffres contestés entre services</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- APRÈS -->
+                        <div class="space-y-3">
+                            <p class="text-green-400 text-[10px] font-black uppercase tracking-widest font-mono mb-4">✅ Transformation apportée</p>
+                            <div class="glass-gold p-4 rounded-xl flex items-start gap-3">
+                                <i class="fas fa-check text-green-400 mt-0.5 shrink-0"></i>
+                                <div>
+                                    <p class="text-white text-xs font-black">Pilotage réel de la rentabilité</p>
+                                    <p class="text-slate-500 text-[10px]">Calcul fiable des marges — produits rentables vs non rentables</p>
+                                </div>
+                            </div>
+                            <div class="glass-gold p-4 rounded-xl flex items-start gap-3">
+                                <i class="fas fa-check text-green-400 mt-0.5 shrink-0"></i>
+                                <div>
+                                    <p class="text-white text-xs font-black">SCD Type 2 — historique complet</p>
+                                    <p class="text-slate-500 text-[10px]">Évolutions de prix tracées, promotions analysables, tendances lisibles</p>
+                                </div>
+                            </div>
+                            <div class="glass-gold p-4 rounded-xl flex items-start gap-3">
+                                <i class="fas fa-check text-green-400 mt-0.5 shrink-0"></i>
+                                <div>
+                                    <p class="text-white text-xs font-black">Vision client unifiée et exploitable</p>
+                                    <p class="text-slate-500 text-[10px]">dim_customer — segmentation fiable, profils à forte valeur identifiés</p>
+                                </div>
+                            </div>
+                            <div class="glass-gold p-4 rounded-xl flex items-start gap-3">
+                                <i class="fas fa-check text-green-400 mt-0.5 shrink-0"></i>
+                                <div>
+                                    <p class="text-white text-xs font-black">Revalorisation du rôle Analyst</p>
+                                    <p class="text-slate-500 text-[10px]">Pipeline automatisé — analystes recentrés sur la valeur business</p>
+                                </div>
+                            </div>
+                            <div class="glass-gold p-4 rounded-xl flex items-start gap-3">
+                                <i class="fas fa-check text-green-400 mt-0.5 shrink-0"></i>
+                                <div>
+                                    <p class="text-white text-xs font-black">Fiabilité & robustesse du système</p>
+                                    <p class="text-slate-500 text-[10px]">Idempotence totale, transactions atomiques, audit complet</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full h-px bg-white/5"></div>
+
+                <!-- Conclusion -->
+                <div class="text-center">
+                    <p class="text-primary text-[10px] font-black uppercase tracking-[0.3em] font-mono mb-4">Conclusion Stratégique</p>
+                    <p class="text-white text-2xl md:text-3xl font-black mb-4">Ce projet ne répond pas seulement à un besoin technique.</p>
+                    <p class="text-primary font-black text-lg">Il transforme la manière de gérer, décider et faire croître l'entreprise.</p>
+
+                    <!-- Metrics -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 mb-10">
+                        <div class="glass p-4 rounded-2xl text-center">
+                            <p class="text-primary text-xl font-black">3</p>
+                            <p class="text-slate-500 text-[9px] uppercase tracking-widest mt-1">Couches<br>Medallion</p>
+                        </div>
+                        <div class="glass p-4 rounded-2xl text-center">
+                            <p class="text-primary text-xl font-black">10</p>
+                            <p class="text-slate-500 text-[9px] uppercase tracking-widest mt-1">Règles<br>Data Quality</p>
+                        </div>
+                        <div class="glass p-4 rounded-2xl text-center">
+                            <p class="text-primary text-xl font-black">1</p>
+                            <p class="text-slate-500 text-[9px] uppercase tracking-widest mt-1">Commande<br>pipeline</p>
+                        </div>
+                        <div class="glass p-4 rounded-2xl text-center">
+                            <p class="text-primary text-xl font-black">∞</p>
+                            <p class="text-slate-500 text-[9px] uppercase tracking-widest mt-1">Rejeux<br>idempotents</p>
+                        </div>
+                    </div>
+
+                    <!-- Image sous les métriques -->
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-primary/20 to-transparent rounded-[20px] blur opacity-30 group-hover:opacity-60 transition duration-700"></div>
+                        <div class="relative rounded-[20px] overflow-hidden border border-white/10 shadow-2xl">
+                            <img
+                                src="engineer1.png"
+                                alt="Conclusion du projet"
+                                class="w-full h-auto block"
+                                style="object-fit: contain; max-height: 520px;"
+                            >
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         GITHUB
+    ═══════════════════════════════════════════ -->
+    <section class="max-w-4xl mx-auto reveal">
+        <div class="group relative">
+            <div class="absolute -inset-1 bg-gradient-to-r from-primary/30 to-transparent rounded-[32px] blur opacity-20 group-hover:opacity-50 transition duration-700"></div>
+            <a href="https://github.com/MiguelHeuya/De-donn-es-dispers-es-un-pilotage-ma-tris-un-Data-Warehouse-au-service-de-la-rentabilit-.git" target="_blank"
+               class="block relative glass p-8 rounded-[32px] hover-card overflow-hidden transition-all duration-500">
+                <div class="code-bg select-none" aria-hidden="true" style="font-size:9px; opacity: 0.04;">
+                    SELECT * FROM Gold.fact_sales WHERE sale_amount > 0 ORDER BY order_date DESC; &nbsp; python Orchestrateur.py &nbsp; CREATE VIEW Gold.dim_customer AS SELECT ROW_NUMBER() OVER() AS customer_id, ci.cst_id, COALESCE(ci.gender, az.gender, 'n/a') AS gender FROM Silver.cust_info ci LEFT JOIN Silver.cust_az12 az ON ci.cst_key = az.cid; &nbsp; git commit -m "feat: Add Medallion Architecture Data Warehouse"
+                </div>
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="flex items-center gap-5">
+                        <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white text-3xl group-hover:text-primary transition-colors duration-300">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-black text-white mb-1">Repository Source</h4>
+                            <p class="text-slate-500 text-sm font-mono">Consulter le code source complet du projet</p>
+                        </div>
+                    </div>
+                    <div class="glass-gold px-6 py-3 rounded-xl border border-primary/20 group-hover:bg-primary group-hover:text-black transition-all duration-300 flex items-center gap-2">
+                        <span class="text-[10px] font-black uppercase tracking-widest text-primary group-hover:text-black">Explorer le Code</span>
+                        <i class="fas fa-arrow-right text-xs text-primary group-hover:text-black"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         CITATION FINALE
+    ═══════════════════════════════════════════ -->
+    <section class="quote-section text-center pt-10 reveal">
+        <h2 class="text-4xl md:text-6xl font-black italic leading-tight tracking-tight">
+            "Transformer la donnée brute<br>
+            <span class="text-gradient">en décision fiable"</span>
+        </h2>
+        <div class="w-px h-16 bg-gradient-to-b from-primary to-transparent mx-auto mt-12 opacity-40"></div>
+    </section>
+
+</main>
+
+
+<!-- ─── Footer ─── -->
+<footer class="py-16 border-t border-white/5 bg-black/20">
+    <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div style="font-family:'Allura',cursive; color:var(--primary); font-size:1.8rem; opacity:0.7;">
+                Miguel Heuya
+            </div>
+            <p class="text-[10px] text-slate-600 tracking-[0.4em] uppercase text-center">
+                &copy; 2026 · Miguel Heuya · Decision Support & Analytics
+            </p>
+            <a href="https://miguelheuya.netlify.app" class="text-[10px] font-black uppercase tracking-widest text-primary/60 hover:text-primary transition flex items-center gap-2">
+                <i class="fas fa-arrow-left text-[9px]"></i> Retour au portfolio
+            </a>
+        </div>
+    </div>
+</footer>
+
+
+<!-- ─── Scripts ─── -->
+<script>
+    const accentPicker = document.getElementById('accent-picker');
+    const bgPicker     = document.getElementById('bg-picker');
+
+    accentPicker.addEventListener('input', (e) => {
+        const c = e.target.value;
+        document.documentElement.style.setProperty('--primary', c);
+        const r = parseInt(c.slice(1,3),16), g = parseInt(c.slice(3,5),16), b = parseInt(c.slice(5,7),16);
+        document.documentElement.style.setProperty('--primary-rgb', `${r},${g},${b}`);
+    });
+
+    bgPicker.addEventListener('input', (e) => {
+        document.documentElement.style.setProperty('--bg-custom', e.target.value);
+        document.body.style.backgroundColor = e.target.value;
+    });
+
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const themeSidebar   = document.getElementById('theme-sidebar');
+
+    themeToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        themeSidebar.classList.toggle('active');
+        themeToggleBtn.classList.add('stop-animation');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (themeSidebar.classList.contains('active') &&
+            !themeSidebar.contains(e.target) &&
+            !themeToggleBtn.contains(e.target)) {
+            themeSidebar.classList.remove('active');
+        }
+    });
+
+    document.getElementById('menu-btn').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.add('active');
+    });
+    document.getElementById('close-btn').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.remove('active');
+    });
+    document.querySelectorAll('#mobile-menu a').forEach(a => {
+        a.addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('active'));
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+
+</body>
+</html>

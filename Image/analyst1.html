@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="LogoNew2 - Copy.png">
+    <title>Rentabilité Commerciale | Miguel Heuya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Outfit:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ── Variables ── */
+        :root {
+            --primary: #fec400;
+            --primary-rgb: 254, 196, 0;
+            --bg-custom: #050505;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-custom);
+            color: #e2e8f0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg-custom); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 99px; }
+
+        /* ── Glass ── */
+        .glass {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.07);
+        }
+        .glass-gold {
+            background: rgba(var(--primary-rgb), 0.04);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(var(--primary-rgb), 0.18);
+        }
+
+        /* ── Text utilities ── */
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, #ffffff 60%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-primary  { color: var(--primary) !important; }
+        .bg-primary    { background-color: var(--primary) !important; }
+        .border-primary { border-color: var(--primary) !important; }
+
+        /* ── Nav links ── */
+        .nav-link {
+            color: rgba(255,255,255,0.7);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            position: relative;
+            padding-bottom: 3px;
+            transition: color 0.25s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 2px;
+            bottom: 0; left: 50%;
+            background: var(--primary);
+            border-radius: 99px;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover { color: var(--primary); }
+        .nav-link:hover::after { width: 100%; }
+
+        /* ── Theme sidebar ── */
+        #theme-sidebar {
+            transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+            transform: translateY(-50%) translateX(180%);
+            width: 190px;
+        }
+        #theme-sidebar.active { transform: translateY(-50%) translateX(0); }
+        #mobile-menu { transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), visibility 0.4s; transform: translateX(100%); visibility: hidden; }
+        #mobile-menu.active { transform: translateX(0); visibility: visible; }
+
+        /* ── Color picker ── */
+        .color-picker-wrapper {
+            width: 100%; height: 38px; border-radius: 10px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1); position: relative; cursor: pointer;
+        }
+        input[type="color"] { position: absolute; top:-5px; left:-5px; width:120%; height:120%; cursor:pointer; border:none; background:none; }
+
+        /* ── Heartbeat animation on palette btn ── */
+        @keyframes heartbeat-large {
+            0%   { transform: scale(1); }
+            15%  { transform: scale(1.3); }
+            30%  { transform: scale(1.1); }
+            45%  { transform: scale(1.4); }
+            70%  { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+        #theme-toggle-btn { animation: heartbeat-large 1.2s ease-in-out infinite; display:inline-flex; transform-origin:center; will-change:transform; }
+        #theme-toggle-btn.stop-animation { animation: none !important; transform: scale(1); }
+
+        /* ── Hero particles / mesh bg ── */
+        .hero-mesh {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 60% 40%, rgba(var(--primary-rgb),0.07) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 50% at 10% 80%, rgba(var(--primary-rgb),0.04) 0%, transparent 55%);
+            pointer-events: none;
+        }
+        .grid-dots {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none;
+        }
+
+        /* ── Section number ── */
+        .section-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.35em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-num::before {
+            content: '';
+            display: block;
+            width: 28px;
+            height: 1px;
+            background: var(--primary);
+        }
+
+        /* ── Cards ── */
+        .hover-card {
+            transition: transform 0.35s cubic-bezier(0.175,0.885,0.32,1.275),
+                        border-color 0.3s ease,
+                        box-shadow 0.3s ease;
+        }
+        .hover-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary) !important;
+            box-shadow: 0 24px 48px -12px rgba(var(--primary-rgb),0.25);
+        }
+
+        /* ── Pipeline step connector ── */
+        .pipeline-connector {
+            position: absolute;
+            right: -2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2rem;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(var(--primary-rgb),0.6), transparent);
+            display: none;
+        }
+        @media (min-width: 768px) { .pipeline-connector { display: block; } }
+
+        /* ── Step badge ── */
+        .step-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: rgba(var(--primary-rgb), 0.12);
+            border: 1px solid rgba(var(--primary-rgb), 0.3);
+            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* ── BI preview cards (lightbox trigger) ── */
+        .bi-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            cursor: zoom-in;
+        }
+        .bi-card img { transition: transform 0.5s ease; width: 100%; height: 100%; object-fit: cover; }
+        .bi-card:hover img { transform: scale(1.05); }
+        .bi-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            display: flex; align-items: flex-end; padding: 1rem;
+        }
+        .bi-card:hover .bi-card-overlay { opacity: 1; }
+
+        /* ── Lightbox ── */
+        #lightbox {
+            position: fixed; inset: 0; z-index: 9999;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(20px);
+            display: flex; align-items: center; justify-content: center;
+            padding: 2rem;
+        }
+        #lightbox.hidden { display: none; }
+        #lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 16px; box-shadow: 0 40px 80px rgba(0,0,0,0.8); }
+
+        /* ── Code watermark background ── */
+        .code-bg {
+            position: absolute;
+            inset: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.025);
+            overflow: hidden;
+            pointer-events: none;
+            padding: 1.5rem;
+            word-break: break-all;
+            select: none;
+        }
+
+        /* ── Quote section ── */
+        .quote-section {
+            position: relative;
+            text-align: center;
+        }
+        .quote-section::before {
+            content: '"';
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14rem;
+            line-height: 1;
+            color: rgba(var(--primary-rgb), 0.06);
+            font-family: Georgia, serif;
+            pointer-events: none;
+        }
+
+        /* ── Animated underline for section titles ── */
+        .title-line {
+            width: 60px; height: 3px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            border-radius: 99px;
+            box-shadow: 0 0 10px rgba(var(--primary-rgb),0.5);
+            margin-top: 12px;
+        }
+
+        /* ── Watermark body ── */
+        body::before {
+            content: "MIGUEL HEUYA";
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%) rotate(-12deg);
+            font-size: 8vw;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: white;
+            opacity: 0.015;
+            pointer-events: none;
+            z-index: -1;
+            letter-spacing: 0.5em;
+            white-space: nowrap;
+        }
+
+        /* ── Scroll animations ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* ── Tech tag ── */
+        .tech-tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 4px 12px;
+            border-radius: 99px;
+            background: rgba(var(--primary-rgb),0.08);
+            border: 1px solid rgba(var(--primary-rgb),0.2);
+            color: var(--primary);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* ── Glow orb ── */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(80px);
+            opacity: 0.12;
+            background: var(--primary);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ─── Lightbox ─────────────────────────────── -->
+<div id="lightbox" class="hidden" onclick="closeLightbox()">
+    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white/60 hover:text-white text-3xl transition z-10">
+        <i class="fas fa-times"></i>
+    </button>
+    <img id="lightbox-img" src="" alt="Aperçu">
+</div>
+
+<!-- ─── Theme Sidebar ─────────────────────────── -->
+<div id="theme-sidebar" class="fixed right-6 top-1/2 z-[100] glass p-5 rounded-[28px] flex flex-col items-center border-white/10 shadow-2xl space-y-5">
+    <div class="text-center w-full">
+        <p class="text-[9px] font-black uppercase mb-2 opacity-50 tracking-widest text-white">Accent</p>
+        <div class="color-picker-wrapper"><input type="color" id="accent-picker" value="#fec400"></div>
+    </div>
+    <div class="w-full h-px bg-white/10"></div>
+    <div class="text-center w-full">
+        <p class="text-[9px] font-black uppercase mb-2 opacity-50 tracking-widest text-white">Fond</p>
+        <div class="color-picker-wrapper"><input type="color" id="bg-picker" value="#050505"></div>
+    </div>
+</div>
+
+<!-- ─── Mobile Menu ───────────────────────────── -->
+<div id="mobile-menu" class="fixed inset-0 z-[120] bg-black/95 flex flex-col items-center justify-center space-y-8 text-xl font-bold uppercase md:hidden">
+    <button id="close-btn" class="absolute top-6 right-6 text-primary text-3xl"><i class="fas fa-times"></i></button>
+    <a href="#probleme"  class="nav-link text-base">Problème</a>
+    <a href="#pipeline"  class="nav-link text-base">Pipeline</a>
+    <a href="#bi"        class="nav-link text-base">Restitution BI</a>
+    <a href="#resume"    class="nav-link text-base">Synthèse</a>
+    <a href="https://miguelheuya.netlify.app/#portfolio" target="_blank"
+       class="px-8 py-3 border border-primary text-primary rounded-full text-sm font-black hover:bg-primary hover:text-black transition">
+        ← Portfolio
+    </a>
+</div>
+
+<!-- ─── Navigation (identique au site principal) ─ -->
+<nav class="fixed w-full z-50 glass backdrop-blur-xl border-b border-white/[0.05] py-4">
+    <div class="container mx-auto px-6 flex justify-between items-center relative min-h-[56px]">
+
+        <a href="https://miguelheuya.netlify.app" class="text-white no-underline">
+            <div style="font-family:'Allura',cursive; color:var(--primary); opacity:0.9; transform:rotate(-5deg); white-space:nowrap; font-size:clamp(1.4rem,3.5vw,2rem);">
+                Miguel Heuya
+            </div>
+        </a>
+
+        <div class="hidden md:flex absolute left-1/2 -translate-x-1/2">
+            <div class="flex space-x-6 lg:space-x-8 items-center">
+                <a href="#probleme" class="nav-link whitespace-nowrap">Problème</a>
+                <a href="#pipeline" class="nav-link whitespace-nowrap">Pipeline</a>
+                <a href="#bi"       class="nav-link whitespace-nowrap">Restitution</a>
+                <a href="#resume"   class="nav-link whitespace-nowrap">Synthèse</a>
+                <a href="https://miguelheuya.netlify.app/#portfolio" target="_blank"
+                   class="px-5 py-2 border border-white/30 text-white rounded-full text-[10px] font-black hover:border-primary hover:text-primary transition ml-2 whitespace-nowrap">
+                    ← Portfolio
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 flex items-center gap-3">
+            <div class="hidden lg:block mr-2 opacity-0 group-hover:opacity-100 transition-all duration-500" id="palette-hint">
+                <span class="px-3 py-1.5 bg-black border border-primary/40 text-primary text-[10px] font-black uppercase tracking-widest rounded-full">
+                    Thème
+                </span>
+            </div>
+            <button id="theme-toggle-btn"
+                class="bg-primary text-black w-10 h-10 rounded-full shadow-[0_0_20px_rgba(var(--primary-rgb),0.4)] flex items-center justify-center text-base hover:scale-110 transition-all duration-300 z-[110]">
+                <i class="fas fa-palette"></i>
+            </button>
+        </div>
+
+        <button id="menu-btn" class="ml-auto md:hidden text-primary text-2xl z-[110]">
+            <i class="fas fa-bars"></i>
+        </button>
+
+    </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════ -->
+<header class="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-20 px-6 overflow-hidden">
+
+    <!-- Background layers -->
+    <div class="hero-mesh"></div>
+    <div class="grid-dots opacity-40"></div>
+    <div class="glow-orb w-[500px] h-[500px] top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+
+    <!-- Floating code snippets (decorative) -->
+    <div class="absolute top-32 left-8 md:left-20 opacity-[0.07] text-[10px] font-mono text-primary rotate-[-8deg] select-none hidden md:block">
+        SELECT product_id,<br>SUM(revenue - cost) AS margin<br>FROM sales GROUP BY 1
+    </div>
+    <div class="absolute bottom-24 right-8 md:right-24 opacity-[0.07] text-[10px] font-mono text-primary rotate-[6deg] select-none hidden md:block">
+        df.groupby('category')<br>.agg({'profit':'sum'})<br>.sort_values(ascending=False)
+    </div>
+
+    <div class="relative z-10 text-center max-w-5xl mx-auto">
+
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2.5 px-5 py-2 glass-gold rounded-full mb-10 reveal">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            <span class="text-primary text-[10px] font-black tracking-[0.3em] uppercase font-mono">Decision Support & Analytics</span>
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-5xl sm:text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.95] reveal reveal-delay-1">
+            Optimisation de la<br>
+            <span class="text-gradient">Rentabilité</span><br>
+            <span class="text-white/30 text-4xl sm:text-5xl md:text-6xl font-light tracking-widest uppercase italic">Commerciale</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed mb-12 reveal reveal-delay-2">
+            Conception d'une solution <strong class="text-white font-semibold">bout en bout</strong> — 
+            du nettoyage des données brutes jusqu'au tableau de bord décisionnel — 
+            pour identifier les produits qui détruisent la marge.
+        </p>
+
+        <!-- Tech stack badges -->
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-14 reveal reveal-delay-3">
+            <span class="tech-tag"><i class="fab fa-python text-xs"></i> Python ETL</span>
+            <span class="tech-tag"><i class="fas fa-database text-xs"></i> PostgreSQL</span>
+            <span class="tech-tag"><i class="fas fa-chart-pie text-xs"></i> Power BI DAX</span>
+            <span class="tech-tag"><i class="fas fa-project-diagram text-xs"></i> Star Schema</span>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap items-center justify-center gap-4 reveal reveal-delay-3">
+            <a href="#pipeline"
+               class="px-8 py-4 bg-primary text-black font-black rounded-xl hover:scale-105 transition shadow-[0_0_30px_rgba(var(--primary-rgb),0.4)] uppercase tracking-widest text-sm flex items-center gap-2">
+                Voir le Pipeline <i class="fas fa-arrow-down"></i>
+            </a>
+            <a href="analyst1.zip" download
+               class="px-8 py-4 border-2 border-primary/40 text-primary font-black rounded-xl hover:border-primary hover:bg-primary/10 transition uppercase tracking-widest text-sm flex items-center gap-2">
+                <i class="fas fa-download"></i> Télécharger
+            </a>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="mt-20 flex flex-col items-center gap-2 opacity-30 reveal">
+            <span class="text-[9px] font-mono uppercase tracking-[0.4em]">Défiler</span>
+            <div class="w-px h-12 bg-gradient-to-b from-primary to-transparent"></div>
+        </div>
+    </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════════ -->
+<main class="max-w-7xl mx-auto px-6 space-y-40 pb-40">
+
+
+    <!-- ── 01 PROBLÈME ─────────────────────────── -->
+    <section id="probleme" class="scroll-mt-28">
+        <div class="flex flex-col items-center text-center mb-16 reveal">
+            <div class="section-num mb-4">01 / Analyse Métier</div>
+            <h2 class="text-3xl md:text-5xl font-black tracking-tight">Problème de l'entreprise</h2>
+            <div class="title-line mx-auto mt-3"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+            <!-- Quote card -->
+            <div class="glass-gold p-8 md:p-10 rounded-[32px] hover-card relative overflow-hidden reveal reveal-delay-1">
+                <div class="absolute top-4 right-6 text-[6rem] leading-none text-primary/10 font-serif select-none">"</div>
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center text-primary shrink-0">
+                        <i class="fas fa-building text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-1">Contexte client</p>
+                        <h3 class="text-white font-black text-lg">Variabilité & Marge</h3>
+                    </div>
+                </div>
+                <p class="text-slate-300 leading-relaxed text-sm font-mono italic border-l-2 border-primary/30 pl-5">
+                    "L'entreprise fait face à une variabilité de ses ventes et souhaite améliorer sa rentabilité globale. 
+                    Elle a besoin d'identifier précisément les produits qui génèrent de la valeur, ceux qui sont neutres 
+                    et ceux qui font perdre de l'argent."
+                </p>
+            </div>
+
+            <!-- Impact list -->
+            <div class="flex flex-col gap-4 reveal reveal-delay-2">
+                <div class="glass p-6 rounded-2xl hover-card flex items-start gap-4">
+                    <div class="w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 shrink-0">
+                        <i class="fas fa-exclamation text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="font-black text-white text-sm mb-1">Performances invisibles</p>
+                        <p class="text-slate-500 text-xs leading-relaxed">Aucun indicateur consolidé pour suivre la rentabilité produit en temps réel.</p>
+                    </div>
+                </div>
+                <div class="glass p-6 rounded-2xl hover-card flex items-start gap-4">
+                    <div class="w-9 h-9 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 shrink-0">
+                        <i class="fas fa-clock text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="font-black text-white text-sm mb-1">Détection tardive des pertes</p>
+                        <p class="text-slate-500 text-xs leading-relaxed">Les produits déficitaires sont identifiés avec trop de retard pour corriger le tir.</p>
+                    </div>
+                </div>
+                <div class="glass p-6 rounded-2xl hover-card flex items-start gap-4">
+                    <div class="w-9 h-9 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 shrink-0">
+                        <i class="fas fa-question text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="font-black text-white text-sm mb-1">Décisions sans visibilité</p>
+                        <p class="text-slate-500 text-xs leading-relaxed">Les choix stratégiques sont pris sans données fiables et centralisées.</p>
+                    </div>
+                </div>
+
+                <!-- Solution badge -->
+                <div class="glass-gold p-5 rounded-2xl flex items-center gap-4 mt-auto">
+                    <i class="fas fa-check-circle text-primary text-xl"></i>
+                    <p class="text-sm font-semibold text-white">
+                        <span class="text-primary font-black">Solution : </span>
+                        Un pipeline complet Python → PostgreSQL → Power BI.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ── 02 PIPELINE ─────────────────────────── -->
+    <section id="pipeline" class="scroll-mt-28">
+        <div class="flex flex-col items-center text-center mb-16 reveal">
+            <div class="section-num mb-4">02 / Architecture Technique</div>
+            <h2 class="text-3xl md:text-5xl font-black tracking-tight">Pipeline de Données</h2>
+            <div class="title-line mx-auto mt-3"></div>
+            <p class="text-slate-500 text-sm mt-4 max-w-xl">Architecture ETL & BI complète — extraction, modélisation, restitution.</p>
+        </div>
+
+        <!-- Flow diagram -->
+        <div class="flex items-center justify-center gap-3 mb-12 flex-wrap reveal">
+            <div class="flex items-center gap-2 px-4 py-2 glass-gold rounded-full text-xs font-black uppercase tracking-widest text-primary">
+                <i class="fab fa-python"></i> Python
+            </div>
+            <i class="fas fa-arrow-right text-white/20 text-xs"></i>
+            <div class="flex items-center gap-2 px-4 py-2 glass rounded-full text-xs font-black uppercase tracking-widest text-slate-400">
+                <i class="fas fa-database"></i> PostgreSQL
+            </div>
+            <i class="fas fa-arrow-right text-white/20 text-xs"></i>
+            <div class="flex items-center gap-2 px-4 py-2 glass rounded-full text-xs font-black uppercase tracking-widest text-slate-400">
+                <i class="fas fa-chart-pie"></i> Power BI
+            </div>
+            <i class="fas fa-arrow-right text-white/20 text-xs"></i>
+            <div class="flex items-center gap-2 px-4 py-2 glass-gold rounded-full text-xs font-black uppercase tracking-widest text-primary">
+                <i class="fas fa-lightbulb"></i> Décision
+            </div>
+        </div>
+
+        <!-- 3 Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- Card 1 : ETL Python -->
+            <div class="glass flex flex-col rounded-[32px] overflow-hidden hover-card reveal reveal-delay-1 border-t-2 border-primary/30">
+                <div class="h-52 relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary/8 to-black">
+                    <img src="analyst1python.png" class="absolute inset-0 w-full h-full object-cover opacity-15 scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="relative z-10 text-center">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-primary/15 border border-primary/30 flex items-center justify-center mb-3">
+                            <i class="fab fa-python text-3xl text-primary"></i>
+                        </div>
+                        <div class="step-badge mx-auto">01</div>
+                    </div>
+                </div>
+                <div class="p-8 flex-1 flex flex-col">
+                    <p class="text-[9px] font-black uppercase tracking-widest text-primary mb-2 font-mono">Extraction & Transformation</p>
+                    <h4 class="text-xl font-black text-white mb-5">Mini ETL Python</h4>
+                    <ul class="space-y-3 flex-1 mb-8">
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">Extract :</strong> Collecte et lecture des fichiers de ventes brutes.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">Transform :</strong> Nettoyage, typage strict, gestion des valeurs nulles.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">Load :</strong> Injection propre dans PostgreSQL via psycopg2.</span>
+                        </li>
+                    </ul>
+                    <a href="analyst1.zip" download class="w-full py-3 glass-gold text-primary text-[10px] font-black uppercase rounded-xl text-center hover:bg-primary hover:text-black transition flex items-center justify-center gap-2">
+                        <i class="fas fa-download"></i> Script Python
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2 : PostgreSQL Star Schema -->
+            <div class="glass flex flex-col rounded-[32px] overflow-hidden hover-card reveal reveal-delay-2 border-t-2 border-white/10">
+                <div class="h-52 relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900/20 to-black">
+                    <img src="analyst1sql.png" class="absolute inset-0 w-full h-full object-cover opacity-15 scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="relative z-10 text-center">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-primary/15 border border-primary/30 flex items-center justify-center mb-3">
+                            <i class="fas fa-circle-nodes text-3xl text-primary"></i>
+                        </div>
+                        <div class="step-badge mx-auto">02</div>
+                    </div>
+                </div>
+                <div class="p-8 flex-1 flex flex-col">
+                    <p class="text-[9px] font-black uppercase tracking-widest text-primary mb-2 font-mono">Modélisation & Stockage</p>
+                    <h4 class="text-xl font-black text-white mb-5">Schéma en Étoile</h4>
+                    <ul class="space-y-3 flex-1 mb-8">
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">EDA :</strong> Analyse exploratoire pour comprendre la distribution des données.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">Star Schema :</strong> Tables faits & dimensions normalisées.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">Vues SQL :</strong> Requêtes optimisées pour la couche BI.</span>
+                        </li>
+                    </ul>
+                    <a href="analyst1.zip" download class="w-full py-3 glass-gold text-primary text-[10px] font-black uppercase rounded-xl text-center hover:bg-primary hover:text-black transition flex items-center justify-center gap-2">
+                        <i class="fas fa-download"></i> Requêtes SQL
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3 : Power BI DAX -->
+            <div class="glass flex flex-col rounded-[32px] overflow-hidden hover-card reveal reveal-delay-3 border-t-2 border-white/10">
+                <div class="h-52 relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-yellow-900/20 to-black">
+                    <img src="analyst1powerbi.png" class="absolute inset-0 w-full h-full object-cover opacity-15 scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="relative z-10 text-center">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-primary/15 border border-primary/30 flex items-center justify-center mb-3">
+                            <i class="fas fa-chart-pie text-3xl text-primary"></i>
+                        </div>
+                        <div class="step-badge mx-auto">03</div>
+                    </div>
+                </div>
+                <div class="p-8 flex-1 flex flex-col">
+                    <p class="text-[9px] font-black uppercase tracking-widest text-primary mb-2 font-mono">Restitution & Décision</p>
+                    <h4 class="text-xl font-black text-white mb-5">Mesures DAX</h4>
+                    <ul class="space-y-3 flex-1 mb-8">
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">KPIs :</strong> CA, coût de revient, marge brute par produit.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">Classif. ABC :</strong> Segmentation stratégique du catalogue.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-xs text-slate-400">
+                            <i class="fas fa-circle text-primary mt-1 text-[5px] shrink-0"></i>
+                            <span><strong class="text-white">Métier :</strong> Analyse des goulets d'étranglement de la marge.</span>
+                        </li>
+                    </ul>
+                    <a href="analyst1.zip" download class="w-full py-3 glass-gold text-primary text-[10px] font-black uppercase rounded-xl text-center hover:bg-primary hover:text-black transition flex items-center justify-center gap-2">
+                        <i class="fas fa-download"></i> Rapports BI
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ── 03 RESTITUTION BI ────────────────────── -->
+    <section id="bi" class="scroll-mt-28">
+        <div class="flex flex-col items-center text-center mb-16 reveal">
+            <div class="section-num mb-4">03 / Business Intelligence</div>
+            <h2 class="text-3xl md:text-5xl font-black tracking-tight">Tableau de Bord Power BI</h2>
+            <div class="title-line mx-auto mt-3"></div>
+            <p class="text-slate-500 text-sm mt-4 max-w-xl">Cliquez sur un aperçu pour l'agrandir.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+            <!-- BI Card 1 -->
+            <div class="glass rounded-[28px] overflow-hidden hover-card reveal reveal-delay-1 flex flex-col">
+                <div class="bi-card h-52" onclick="openLightbox('analystpowerbi1.png')">
+                    <img src="analystpowerbi1.png" alt="Vue Globale Power BI">
+                    <div class="bi-card-overlay">
+                        <span class="text-white text-xs font-black flex items-center gap-2">
+                            <i class="fas fa-expand"></i> Agrandir
+                        </span>
+                    </div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="step-badge">01</div>
+                        <h5 class="text-white font-black text-sm uppercase tracking-wide">Vue Globale</h5>
+                    </div>
+                    <p class="text-slate-500 text-xs leading-relaxed">
+                        Synthèse des KPIs clés et visibilité directe sur la performance globale pour piloter la stratégie.
+                    </p>
+                </div>
+            </div>
+
+            <!-- BI Card 2 -->
+            <div class="glass rounded-[28px] overflow-hidden hover-card reveal reveal-delay-2 flex flex-col">
+                <div class="bi-card h-52" onclick="openLightbox('analystpowerbi2.png')">
+                    <img src="analystpowerbi2.png" alt="Haute Valeur Power BI">
+                    <div class="bi-card-overlay">
+                        <span class="text-white text-xs font-black flex items-center gap-2">
+                            <i class="fas fa-expand"></i> Agrandir
+                        </span>
+                    </div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="step-badge">02</div>
+                        <h5 class="text-white font-black text-sm uppercase tracking-wide">Haute Valeur</h5>
+                    </div>
+                    <p class="text-slate-500 text-xs leading-relaxed">
+                        Analyse ciblée des produits générateurs de valeur — ceux qui soutiennent réellement la croissance.
+                    </p>
+                </div>
+            </div>
+
+            <!-- BI Card 3 -->
+            <div class="glass rounded-[28px] overflow-hidden hover-card reveal reveal-delay-3 flex flex-col">
+                <div class="bi-card h-52" onclick="openLightbox('analystpowerbi3.png')">
+                    <img src="analystpowerbi3.png" alt="Audit des Pertes Power BI">
+                    <div class="bi-card-overlay">
+                        <span class="text-white text-xs font-black flex items-center gap-2">
+                            <i class="fas fa-expand"></i> Agrandir
+                        </span>
+                    </div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="step-badge">03</div>
+                        <h5 class="text-white font-black text-sm uppercase tracking-wide">Audit des Pertes</h5>
+                    </div>
+                    <p class="text-slate-500 text-xs leading-relaxed">
+                        Identification précise des articles non rentables pour ajuster le catalogue et réduire les coûts.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ── 04 SYNTHÈSE ─────────────────────────── -->
+    <section id="resume" class="scroll-mt-28">
+        <div class="glass p-8 md:p-14 rounded-[40px] relative overflow-hidden reveal border-t border-white/8">
+
+            <!-- Background code watermark -->
+            <div class="code-bg select-none" aria-hidden="true">
+                SELECT product_id, category, SUM(revenue) AS total_revenue, SUM(cost) AS total_cost, SUM(revenue - cost) AS gross_margin, ROUND(SUM(revenue - cost) / NULLIF(SUM(revenue),0) * 100, 2) AS margin_pct FROM sales_fact sf JOIN product_dim pd ON sf.product_id = pd.id JOIN date_dim dd ON sf.date_id = dd.id WHERE dd.year = 2024 GROUP BY 1, 2 ORDER BY gross_margin DESC; &nbsp;&nbsp; def extract_transform(filepath): df = pd.read_csv(filepath) df.columns = df.columns.str.strip().str.lower() df['sale_date'] = pd.to_datetime(df['sale_date']) df['margin'] = df['revenue'] - df['cost'] df.dropna(subset=['product_id','revenue'], inplace=True) return df &nbsp;&nbsp; Margin_% = DIVIDE([Total Margin],[Total Revenue]) ABC_Class = VAR pct = CALCULATE([Revenue_Running_%]) RETURN IF(pct <= 0.8, "A", IF(pct <= 0.95, "B", "C"))
+            </div>
+
+            <div class="relative z-10 flex flex-col lg:flex-row items-center gap-12">
+
+                <!-- Screenshot -->
+                <div class="w-full lg:w-1/2 reveal reveal-delay-1">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-primary/30 to-transparent rounded-[28px] blur opacity-30 group-hover:opacity-60 transition duration-700"></div>
+                        <div class="relative bg-white/5 rounded-[24px] p-4 border border-white/10 shadow-2xl bi-card cursor-zoom-in" onclick="openLightbox('evolutionsanalyst1.png')">
+                            <img src="evolutionsanalyst1.png" class="w-full h-auto rounded-2xl" alt="Évolution résultats">
+                            <div class="bi-card-overlay rounded-2xl">
+                                <span class="text-white text-xs font-black flex items-center gap-2 m-2">
+                                    <i class="fas fa-expand"></i> Agrandir
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text -->
+                <div class="flex-1 reveal reveal-delay-2">
+                    <div class="section-num mb-5">04 / Synthèse</div>
+                    <h3 class="text-3xl md:text-4xl font-black text-white mb-6 tracking-tight">Résumé de la solution</h3>
+
+                    <p class="text-slate-400 leading-relaxed mb-8 text-base">
+                        Ce projet couvre l'intégralité du cycle de la donnée. L'extraction et la transformation des ventes 
+                        brutes ont été automatisées avec <strong class="text-white">Python</strong>, un entrepôt relationnel 
+                        structuré sur <strong class="text-white">PostgreSQL Star Schema</strong>, et des mesures 
+                        <strong class="text-white">DAX</strong> précises pour restituer une vision claire de la rentabilité 
+                        réelle par produit.
+                    </p>
+
+                    <!-- Result metrics -->
+                    <div class="grid grid-cols-3 gap-4 mb-10">
+                        <div class="glass p-4 rounded-2xl text-center">
+                            <p class="text-primary text-xl font-black">3</p>
+                            <p class="text-slate-500 text-[10px] uppercase tracking-widest mt-1">Étapes<br>pipeline</p>
+                        </div>
+                        <div class="glass p-4 rounded-2xl text-center">
+                            <p class="text-primary text-xl font-black">ABC</p>
+                            <p class="text-slate-500 text-[10px] uppercase tracking-widest mt-1">Classif.<br>produits</p>
+                        </div>
+                        <div class="glass p-4 rounded-2xl text-center">
+                            <p class="text-primary text-xl font-black">3</p>
+                            <p class="text-slate-500 text-[10px] uppercase tracking-widest mt-1">Dashboards<br>BI</p>
+                        </div>
+                    </div>
+
+                    <a href="analyst1.zip" download
+                       class="inline-flex items-center gap-3 px-8 py-4 bg-primary text-black font-black text-[11px] uppercase tracking-[0.2em] rounded-xl hover:scale-105 transition shadow-[0_0_30px_rgba(var(--primary-rgb),0.3)]">
+                        <i class="fas fa-cloud-arrow-down"></i> Télécharger tous les fichiers
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ── GitHub ──────────────────────────────── -->
+    <section class="max-w-4xl mx-auto reveal">
+        <div class="group relative">
+            <div class="absolute -inset-1 bg-gradient-to-r from-primary/30 to-transparent rounded-[32px] blur opacity-20 group-hover:opacity-50 transition duration-700"></div>
+            <a href="https://github.com/MiguelHeuya/Optimisation-de-la-Rentabilit-Commerciale.git" target="_blank"
+               class="block relative glass p-8 rounded-[32px] hover-card overflow-hidden transition-all duration-500">
+
+                <!-- Code background -->
+                <div class="code-bg select-none" aria-hidden="true" style="font-size:9px; opacity: 0.04;">
+                    SELECT * FROM sales_data WHERE margin &lt; 0; &nbsp; df.groupby('product_category').agg({'profit': 'sum'}) &nbsp; CREATE VIEW strategic_inventory AS SELECT * FROM products p JOIN margins m ON p.id = m.product_id WHERE m.margin_pct &lt; 0; &nbsp; git commit -m "Optimize ETL pipeline performance" &nbsp; def clean_data(raw): return raw.dropna().reset_index(drop=True)
+                </div>
+
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="flex items-center gap-5">
+                        <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white text-3xl group-hover:text-primary transition-colors duration-300">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-black text-white mb-1">Repository Source</h4>
+                            <p class="text-slate-500 text-sm font-mono">Consulter le code source complet du projet</p>
+                        </div>
+                    </div>
+                    <div class="glass-gold px-6 py-3 rounded-xl border border-primary/20 group-hover:bg-primary group-hover:text-black transition-all duration-300 flex items-center gap-2">
+                        <span class="text-[10px] font-black uppercase tracking-widest text-primary group-hover:text-black">Explorer le Code</span>
+                        <i class="fas fa-arrow-right text-xs text-primary group-hover:text-black"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+
+    <!-- ── Citation finale ─────────────────────── -->
+    <section class="quote-section text-center pt-10 reveal">
+        <h2 class="text-4xl md:text-6xl font-black italic leading-tight tracking-tight">
+            "Ensemble, la donnée<br>
+            <span class="text-gradient">nous est donnée</span>"
+        </h2>
+        <div class="w-px h-16 bg-gradient-to-b from-primary to-transparent mx-auto mt-12 opacity-40"></div>
+    </section>
+
+
+</main>
+
+
+<!-- ─── Footer ───────────────────────────────── -->
+<footer class="py-16 border-t border-white/5 bg-black/20">
+    <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div style="font-family:'Allura',cursive; color:var(--primary); font-size:1.8rem; opacity:0.7;">
+                Miguel Heuya
+            </div>
+            <p class="text-[10px] text-slate-600 tracking-[0.4em] uppercase text-center">
+                &copy; 2026 · Miguel Heuya · Decision Support & Analytics
+            </p>
+            <a href="https://miguelheuya.netlify.app" class="text-[10px] font-black uppercase tracking-widest text-primary/60 hover:text-primary transition flex items-center gap-2">
+                <i class="fas fa-arrow-left text-[9px]"></i> Retour au portfolio
+            </a>
+        </div>
+    </div>
+</footer>
+
+
+<!-- ─── Scripts ───────────────────────────────── -->
+<script>
+    /* ── Theme controls ── */
+    const accentPicker = document.getElementById('accent-picker');
+    const bgPicker     = document.getElementById('bg-picker');
+
+    accentPicker.addEventListener('input', (e) => {
+        const c = e.target.value;
+        document.documentElement.style.setProperty('--primary', c);
+        const r = parseInt(c.slice(1,3),16), g = parseInt(c.slice(3,5),16), b = parseInt(c.slice(5,7),16);
+        document.documentElement.style.setProperty('--primary-rgb', `${r},${g},${b}`);
+    });
+
+    bgPicker.addEventListener('input', (e) => {
+        document.documentElement.style.setProperty('--bg-custom', e.target.value);
+        document.body.style.backgroundColor = e.target.value;
+    });
+
+    /* ── Theme sidebar toggle ── */
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const themeSidebar   = document.getElementById('theme-sidebar');
+
+    themeToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        themeSidebar.classList.toggle('active');
+        themeToggleBtn.classList.add('stop-animation');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (themeSidebar.classList.contains('active') &&
+            !themeSidebar.contains(e.target) &&
+            !themeToggleBtn.contains(e.target)) {
+            themeSidebar.classList.remove('active');
+        }
+    });
+
+    /* ── Mobile menu ── */
+    document.getElementById('menu-btn').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.add('active');
+    });
+    document.getElementById('close-btn').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.remove('active');
+    });
+    document.querySelectorAll('#mobile-menu a').forEach(a => {
+        a.addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('active'));
+    });
+
+    /* ── Lightbox ── */
+    function openLightbox(src) {
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+    /* ── Scroll reveal ── */
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+
+<script src="https://dashboard.causeriebot.com/widget.js" data-id="f939aebe-2452-4d2b-8fa3-a1251ec5fbc5" data-url="https://dashboard.causeriebot.com"></script>
+
+</body>
+</html>

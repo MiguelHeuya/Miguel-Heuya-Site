@@ -1,0 +1,5 @@
+
+/* Contrôle la vitesse et la fluidité de l'animation */
+.animated-bar {
+    transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
