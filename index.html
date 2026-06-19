@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -87,24 +88,60 @@
         <a href="#contact" class="contact-btn-custom font-black">Me contacter</a>
     </div>
 
-    <section id="home" class="min-h-screen flex items-center pt-28 pb-12 relative ps-8 sm:ps-0">
+<section id="home" class="min-h-screen flex items-center pt-28 pb-12 relative ps-8 sm:ps-0">
         <div class="container mx-auto px-6 pl-10 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="z-10 relative w-[150%] left-[65%] -translate-x-1/2 sm:w-full sm:left-0 sm:translate-x-0">
                 <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-4 ml-2 sm:ml-0 flex flex-row md:block whitespace-nowrap gap-3">
                     <span>Miguel</span>
                     <span class="text-gradient">Heuya</span>
                 </h1>
-                <div class="mb-8 ml-2 sm:ml-0 max-w-2xl">
-                    <h3 class="text-xl md:text-2xl font-black text-primary tracking-tight mb-3">Spécialiste en Business Intelligence | Analyste de données | Ingénieur de données</h3>
-                    <p class="text-lg md:text-xl text-slate-300 leading-snug">
-                        J’aide les entreprises à gagner en visibilité sur leurs performances,
-                        détecter plus rapidement les problèmes et opportunités, et prendre des
-                        décisions plus éclairées grâce à des
-                        <span class="text-primary font-bold">données fiables</span>,
-                        <span class="text-primary font-bold">centralisées</span>
-                        et mieux organisées.
-                    </p>
+<div class="mb-10 ml-2 sm:ml-0 max-w-2xl relative group hover:-translate-y-1 transition-all duration-500 z-10">
+    <!-- Effet de lueur en arrière-plan au survol -->
+    <div class="absolute -inset-1 bg-gradient-to-r from-primary/10 to-transparent rounded-[24px] blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+    
+    <!-- Conteneur Glassmorphic avec le motif de petits points en fond -->
+    <div class="relative glass p-6 md:p-8 rounded-[24px] border border-white/10 overflow-hidden">
+        <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 16px 16px;"></div>
+        
+        <!-- En-tête avec l'icône de vision/stratégie -->
+        <div class="flex items-center space-x-4 mb-6">
+            <div class="relative">
+                <div class="absolute inset-0 bg-primary/20 blur-lg rounded-full animate-pulse"></div>
+                <i class="fas fa-briefcase text-primary text-xl"></i>
+            </div>
+            <h3 class="text-primary font-black text-lg md:text-xl uppercase tracking-[0.12em] leading-tight flex flex-wrap items-center gap-x-3">
+                <span>Spécialiste Business Intelligence</span>
+                <span class="text-white text-2xl font-black select-none">•</span>
+                <span>Analyste de données</span>
+                <span class="text-white text-2xl font-black select-none">•</span>
+                <span>Ingénieur de données</span>
+            </h3>
+        </div>
+        
+        <div class="space-y-6 relative z-10">
+            <!-- L'accroche / Mission -->
+            <div class="relative pl-5 py-1">
+                <div class="absolute left-0 top-0 bottom-0 w-px border-l border-dashed border-white/20 opacity-40"></div>
+                <p class="text-slate-300 italic text-sm md:text-base leading-relaxed font-mono">
+                    "J’aide les entreprises à gagner en visibilité sur leurs performances, détecter plus rapidement les problèmes et opportunités..."
+                </p>
+            </div>
+            
+            <!-- Bloc d'impact avec traitement de variance de fond (Style Danger/Résultat) -->
+            <div class="bg-white/[0.02] border border-white/5 p-4 rounded-xl">
+                <div class="flex items-center space-x-2 mb-2">
+                    <i class="fas fa-bullseye text-primary/60 text-[10px]"></i>
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Objectif Stratégique</span>
                 </div>
+                <p class="text-slate-300 text-xs md:text-sm leading-relaxed font-mono">
+                    Prendre des décisions plus éclairées grâce à des 
+                    <span class="text-primary font-bold">données fiables</span>, 
+                    <span class="text-primary font-bold">centralisées</span> et mieux organisées.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
                 <div class="space-y-4 mb-8 ml-2 sm:ml-0">
                     <div class="flex items-center space-x-3 text-slate-400">
                         <i class="fas fa-map-marker-alt text-primary"></i>
@@ -172,26 +209,116 @@
                     <p class="mb-5 leading-relaxed text-slate-300 text-sm">Votre navigation internet sera simplifiée et accélerée grâce à ce tableau de bord, qui vous permettra d'accéder rapidement à vos ressources préférées tout en gardant un œil sur leur utilisation.<br>Mettez simplement cette application au bureau et commencez a naviguer en toute simplicité<br><span class="phrasemiguelheuya">Ensemble la donnée nous est donnée</span></p>
                 </div>
             </div>
+            
             <div class="space-y-8 w-full ml-4 sm:ml-0">
-                <div class="space-y-8 w-full ml-4 sm:ml-0">
-                    <div class="glass-vivid p-8 rounded-[32px] border-t border-white/20 relative group hover:-translate-y-2 transition-all duration-300 w-[150%] left-[55%] -translate-x-1/2 sm:w-full sm:left-0 sm:translate-x-0">
-                        <div class="flex items-center space-x-4 mb-6"><div class="text-primary text-3xl"><i class="fas fa-chart-bar"></i></div><h2 class="text-white font-black text-xl uppercase tracking-tight">Analyste de données</h2></div>
-                        <div class="space-y-6">
-                            <p class="text-slate-400 italic border-l-2 border-primary/30 pl-4 text-sm leading-relaxed font-mono">"Beaucoup d'entreprises disposent déjà des informations dont elles ont besoin pour progresser. Elles ne savent simplement pas où les trouver ni comment les exploiter."</p>
-                            <div class="space-y-3"><div class="flex items-center space-x-2"><span class="w-4 h-px bg-primary/50"></span><span class="text-slate-300 text-sm font-semibold">Résultat :</span></div><ul class="space-y-2 text-slate-400 text-xs leading-relaxed font-mono"><li>• des performances difficiles à suivre ;</li><li>• des problèmes détectés tardivement ;</li><li>• des décisions prises avec une visibilité limitée.</li></ul></div>
-                            <div class="pt-4 border-t border-white/10 space-y-3"><div class="flex items-center space-x-2"><span class="w-4 h-px bg-primary"></span></div><p class="text-slate-400 text-xs leading-relaxed font-mono">Je transforme les données de votre activité en indicateurs, tableaux de bord et analyses qui mettent en évidence les tendances, les problèmes et les opportunités.<br><br><span class="text-primary italic font-semibold">En termes simples : je vous aide à mieux comprendre ce qui se passe réellement dans votre entreprise afin de prendre de meilleures décisions.</span></p></div>
+                <!-- Bloc 1 : Spécialiste en Business Intelligence -->
+                <div class="relative group hover:-translate-y-2 transition-all duration-500 w-[150%] left-[55%] -translate-x-1/2 sm:w-full sm:left-0 sm:translate-x-0">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-[#3d3e61]/30 to-transparent rounded-[32px] blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                    <div class="relative bg-gradient-to-br from-[#3d3e61]/40 to-[#2c2d4a]/50 backdrop-blur-md p-8 rounded-[32px] border border-white/10 overflow-hidden shadow-lg">
+                        <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 20px 20px;"></div>
+                        
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="relative">
+                                <div class="absolute inset-0 bg-primary/20 blur-lg rounded-full animate-pulse"></div>
+                                <i class="fas fa-lightbulb text-primary text-xl"></i>
+                            </div>
+                            <h2 class="text-white font-black text-xl uppercase tracking-[0.15em]">Spécialiste en Business Intelligence</h2>
+                        </div>
+                        
+                        <div class="space-y-6 relative z-10">
+                            <div class="relative pl-6 py-2">
+                                <div class="absolute left-0 top-0 bottom-0 w-px border-l border-dashed border-white/20 opacity-30"></div>
+                                <p class="text-slate-300 italic text-sm leading-relaxed font-mono">
+                                    "Une entreprise performante ne se contente pas d’agir. Elle comprend, anticipe et décide avec précision."
+                                </p>
+                            </div>
+                            
+                            <!-- Variance de fond pour la section Résultats -->
+                            <div class="bg-white/[0.03] border border-white/5 p-4 rounded-xl">
+                                <div class="flex items-center space-x-2 mb-3">
+                                    <i class="fas fa-check-circle text-primary/60 text-[10px]"></i>
+                                    <span class="text-[10px] font-black text-slate-300 uppercase tracking-widest">Résultat</span>
+                                </div>
+                                <ul class="space-y-2 text-slate-300 text-xs leading-relaxed font-mono">
+                                    <li>• une vision claire de l’activité ;</li>
+                                    <li>• des décisions plus rapides et plus fiables ;</li>
+                                    <li>• une meilleure maîtrise des performances et des risques.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="pt-2">
+                                <div class="flex items-center space-x-2 mb-3">
+                                    <div class="h-px flex-1 bg-gradient-to-r from-primary/50 to-transparent"></div>
+                                    <span class="text-[10px] font-black text-white/70 uppercase tracking-widest">Mon impact</span>
+                                </div>
+                                <div class="flex space-x-3">
+                                    <span class="text-primary font-bold mt-0.5">&gt;_</span>
+                                    <p class="text-slate-300 text-xs leading-relaxed font-mono">
+                                        Je mets en place un système qui permet de piloter l’entreprise avec clarté, d’identifier les leviers de croissance et d’agir au bon moment.<br><br>
+                                        <span class="text-primary italic font-semibold">En termes simples : je transforme la complexité en clarté, et la clarté en performance.</span>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Bloc 2 : Analyste de données -->
+                <div class="glass-vivid p-8 rounded-[32px] border-t border-white/20 relative group hover:-translate-y-2 transition-all duration-300 w-[150%] left-[55%] -translate-x-1/2 sm:w-full sm:left-0 sm:translate-x-0">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="text-primary text-3xl"><i class="fas fa-chart-bar"></i></div>
+                        <h2 class="text-white font-black text-xl uppercase tracking-tight">Analyste de données</h2>
+                    </div>
+                    <div class="space-y-6">
+                        <p class="text-slate-400 italic border-l-2 border-primary/30 pl-4 text-sm leading-relaxed font-mono">"Beaucoup d'entreprises disposent déjà des informations dont elles ont besoin pour progresser. Elles ne savent simplement pas où les trouver ni comment les exploiter."</p>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-4 h-px bg-primary/50"></span>
+                                <span class="text-slate-300 text-sm font-semibold">Résultat :</span>
+                            </div>
+                            <ul class="space-y-2 text-slate-400 text-xs leading-relaxed font-mono">
+                                <li>• des performances difficiles à suivre ;</li>
+                                <li>• des problèmes détectés tardivement ;</li>
+                                <li>• des décisions prises avec une visibilité limitée.</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 space-y-3">
+                            <div class="flex items-center space-x-2"><span class="w-4 h-px bg-primary"></span></div>
+                            <p class="text-slate-400 text-xs leading-relaxed font-mono">Je transforme les données de votre activity en indicateurs, tableaux de bord et analyses qui mettent en évidence les tendances, les problèmes et les opportunités.<br><br><span class="text-primary italic font-semibold">En termes simples : je vous aide à mieux comprendre ce qui se passe réellement dans votre entreprise afin de prendre de meilleures décisions.</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloc 3 : Ingénieur de données -->
                 <div class="relative group hover:-translate-y-2 transition-all duration-500 w-[150%] left-[60%] -translate-x-1/2 sm:w-full sm:left-0 sm:translate-x-0">
                     <div class="absolute -inset-1 bg-gradient-to-r from-primary/20 to-transparent rounded-[32px] blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
                     <div class="relative glass p-8 rounded-[32px] border border-white/10 overflow-hidden">
                         <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 20px 20px;"></div>
-                        <div class="flex items-center justify-between mb-8"><div class="flex items-center space-x-4"><div class="relative"><div class="absolute inset-0 bg-primary/20 blur-lg rounded-full animate-pulse"></div><i class="fas fa-database text-primary"></i></div><h2 class="text-white/90 font-black text-xl uppercase tracking-[0.15em]">Ingénieur de données</h2></div></div>
+                        <div class="flex items-center justify-between mb-8">
+                            <div class="flex items-center space-x-4">
+                                <div class="relative">
+                                    <div class="absolute inset-0 bg-primary/20 blur-lg rounded-full animate-pulse"></div>
+                                    <i class="fas fa-database text-primary"></i>
+                                </div>
+                                <h2 class="text-white/90 font-black text-xl uppercase tracking-[0.15em]">Ingénieur de données</h2>
+                            </div>
+                        </div>
                         <div class="space-y-6 relative z-10">
-                            <div class="relative pl-6 py-2"><div class="absolute left-0 top-0 bottom-0 w-px border-l border-dashed border-white/20 opacity-30"></div><p class="text-slate-400 italic text-sm leading-relaxed">"Les informations existent déjà dans votre entreprise. Le problème est qu'elles sont dispersées, difficiles à retrouver et rarement disponibles au moment où vous en avez besoin."</p></div>
-                            <div class="bg-white/[0.02] border border-white/5 p-4 rounded-xl"><div class="flex items-center space-x-2 mb-3"><i class="fas fa-exclamation-triangle text-primary/60 text-[10px]"></i><span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Le danger</span></div><p class="text-slate-400 text-xs leading-relaxed">Lorsque chaque service possède ses propres fichiers, ses propres chiffres et sa propre version de la réalité, les erreurs se multiplient, les reportings ralentissent et les décisions deviennent moins fiables.<br><br>Avec le temps, ce manque d'organisation coûte bien plus cher que la plupart des entreprises ne l'imaginent.</p></div>
-                            <div class="pt-2"><div class="flex items-center space-x-2 mb-3"><div class="h-px flex-1 bg-gradient-to-r from-primary/50 to-transparent"></div><span class="text-[10px] font-black text-white/70 uppercase tracking-widest">Mon impact</span></div><div class="flex space-x-3"><span class="text-primary font-bold mt-0.5">&gt;_</span><p class="text-slate-400 text-xs leading-relaxed">Je centralise et organise vos données afin que les bonnes informations arrivent au bon endroit, au bon moment.<br><br>J'automatise les flux d'information et construis des systèmes fiables qui réduisent les tâches manuelles, améliorent la circulation des données et offrent une vision plus claire de votre activité.<br><br><span class="text-primary italic font-semibold">En termes simples : je transforme des informations dispersées en un système capable de soutenir la croissance et la prise de décision.</span></p></div></div>
+                            <div class="relative pl-6 py-2">
+                                <div class="absolute left-0 top-0 bottom-0 w-px border-l border-dashed border-white/20 opacity-30"></div>
+                                <p class="text-slate-400 italic text-sm leading-relaxed">"Les informations existent déjà dans votre entreprise. Le problème est qu'elles sont dispersées, difficiles à retrouver et rarement disponibles au moment où vous en avez besoin."</p>
+                            </div>
+                            <div class="bg-white/[0.02] border border-white/5 p-4 rounded-xl">
+                                <div class="flex items-center space-x-2 mb-3"><i class="fas fa-exclamation-triangle text-primary/60 text-[10px]"></i><span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Le danger</span></div>
+                                <p class="text-slate-400 text-xs leading-relaxed">Lorsque chaque service possède ses propres fichiers, ses propres chiffres et sa propre version de la réalité, les erreurs se multiplient, les reportings ralentissent et les décisions deviennent moins fiables.<br><br>Avec le temps, ce manque d'organisation coûte bien plus cher que la plupart des entreprises ne l'imaginent.</p>
+                            </div>
+                            <div class="pt-2">
+                                <div class="flex items-center space-x-2 mb-3"><div class="h-px flex-1 bg-gradient-to-r from-primary/50 to-transparent"></div><span class="text-[10px] font-black text-white/70 uppercase tracking-widest">Mon impact</span></div>
+                                <div class="flex space-x-3">
+                                    <span class="text-primary font-bold mt-0.5">&gt;_</span>
+                                    <p class="text-slate-400 text-xs leading-relaxed">Je centralise et organise vos données afin que les bonnes informations arrivent au bon endroit, au bon moment.<br><br>J'automatise les flux d'information et construis des systèmes fiables qui réduisent les tâches manuelles, améliorent la circulation des données et offrent une vision plus claire de votre activité.<br><br><span class="text-primary italic font-semibold">En termes simples : je transforme des informations dispersées en un système capable de soutenir la croissance et la prise de décision.</span></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -199,14 +326,26 @@
         </div>
     </section>
 
-    <script>
-        const bgPicker = document.getElementById('bg-picker');
-        bgPicker.addEventListener('input', (e) => {
-            const color = e.target.value;
-            document.documentElement.style.setProperty('--bg-custom', color);
-            document.body.style.backgroundColor = color;
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleBtn = document.getElementById('gift-toggle-btn');
+        const note = document.getElementById('gift-note');
+
+        toggleBtn.addEventListener('click', () => {
+            if (note.classList.contains('opacity-0')) {
+                // Ouverture
+                note.classList.remove('opacity-0', 'scale-90', 'pointer-events-none', 'h-0');
+                note.classList.add('opacity-100', 'scale-100');
+                note.style.height = 'auto';
+            } else {
+                // Fermeture
+                note.classList.remove('opacity-100', 'scale-100');
+                note.classList.add('opacity-0', 'scale-90', 'pointer-events-none', 'h-0');
+                note.style.height = '0px';
+            }
         });
-    </script>
+    });
+</script>
 
     <style>
         #typewriter { font-family: 'Inter', sans-serif; display: inline-block; min-height: 1.2em; }
@@ -294,7 +433,7 @@
 
     <section id="contact" class="py-24 overflow-visible">
         <div class="container mx-auto px-6 text-center"><h3 class="text-7xl font-black mb-20 italic uppercase">Me <span class="text-primary">Contacter</span></h3></div>
-        <div class="ps-8 sm:ps-0 overflow-visible"><div class="container mx-auto px-2 pl-14 pr-2 sm:px-6 w-full overflow-visible"><div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12 overflow-visible"><a href="https://wa.me/237679153015?text=Salut,%20Miguel%20Heuya,%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20prestations%20en%20data%20analysis%20pour%20voir%20comment%20vous%20pourriez%20nous%20accompagner." target="_blank" class="w-[92vw] md:w-full"><div class="glass-vivid p-14 md:p-16 rounded-[50px] flex flex-col items-center text-center hover:bg-green-500 hover:scale-105 transition-all duration-500 group shadow-2xl border-amber-500/20 h-full cursor-pointer" id="whatsapp"><div class="w-28 h-28 bg-[#25D366] rounded-full flex items-center justify-center text-5xl mb-8 group-hover:bg-black group-hover:text-[#25D366] transition shadow-2xl text-white"><i class="fab fa-whatsapp"></i></div><h4 class="text-3xl md:text-4xl font-black mb-2 group-hover:text-black uppercase tracking-tighter text-white">WhatsApp</h4><span class="text-xs font-bold uppercase tracking-widest mb-4 opacity-60 group-hover:text-black group-hover:opacity-100 text-white/60">Laisser un message WhatsApp d'ici</span><p class="text-green-400 group-hover:text-black font-bold text-lg md:text-xl break-all leading-relaxed">+237 679 15 30 15</p></div></a><a href="https://www.linkedin.com/in/miguel-heuya-data-analyst-engineer-solutions-business-paterns/?skipRedirect=true" target="_blank" class="w-[92vw] md:w-full"><div class="glass-vivid p-14 md:p-16 rounded-[50px] flex flex-col items-center text-center hover:bg-[#0077b5] hover:scale-105 transition-all duration-500 group shadow-2xl border-amber-500/20 h-full cursor-pointer" id="linkedin"><div class="w-28 h-28 bg-[#0077b5] rounded-full flex items-center justify-center text-5xl mb-8 group-hover:bg-white group-hover:text-[#0077b5] transition shadow-2xl text-white"><i class="fab fa-linkedin-in"></i></div><h4 class="text-3xl md:text-4xl font-black mb-2 group-hover:text-white uppercase tracking-tighter text-white">LinkedIn</h4><span class="text-xs font-bold uppercase tracking-widest mb-4 opacity-60 group-hover:text-white group-hover:opacity-100 text-white/60">Rechercher sur LinkedIn</span><p class="text-slate-400 group-hover:text-white font-black text-xl md:text-2xl tracking-[0.25em] mb-4">MIGUEL HEUYA</p><span class="text-sm font-medium italic opacity-50 group-hover:text-white group-hover:opacity-100 transition duration-300 text-white">Ou cliquer ici</span></div></a><div class="w-[92vw] md:w-full"><div class="glass-vivid p-14 md:p-16 rounded-[50px] flex flex-col items-center text-center hover:bg-amber-500 hover:scale-105 transition-all duration-500 group shadow-2xl border-amber-500/20 h-full cursor-default" id="email"><div class="w-28 h-28 bg-amber-500 rounded-full flex items-center justify-center text-5xl mb-8 group-hover:bg-black group-hover:text-amber-500 transition shadow-2xl text-black"><i class="fas fa-envelope"></i></div><h4 class="text-3xl md:text-4xl font-black mb-2 group-hover:text-black uppercase tracking-tighter text-white">Email Direct</h4><span class="text-xs font-bold uppercase tracking-widest mb-4 opacity-60 group-hover:text-black group-hover:opacity-100 text-white/60">Mon adresse email</span><p class="text-amber-400 group-hover:text-black font-bold text-lg md:text-xl break-all leading-relaxed">heuyamiguel@gmail.com</p></div></div></div></div></div>
+        <div class="ps-8 sm:ps-0 overflow-visible"><div class="container mx-auto px-2 pl-14 pr-2 sm:px-6 w-full overflow-visible"><div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12 overflow-visible"><a href="https://wa.me/237679153015?text=Salut%20Miguel%20Heuya%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services%20en%20business%20intelligence%20et%20la%20fa%C3%A7on%20dont%20vous%20accompagnez%20les%20entreprises" target="_blank" class="w-[92vw] md:w-full"><div class="glass-vivid p-14 md:p-16 rounded-[50px] flex flex-col items-center text-center hover:bg-green-500 hover:scale-105 transition-all duration-500 group shadow-2xl border-amber-500/20 h-full cursor-pointer" id="whatsapp"><div class="w-28 h-28 bg-[#25D366] rounded-full flex items-center justify-center text-5xl mb-8 group-hover:bg-black group-hover:text-[#25D366] transition shadow-2xl text-white"><i class="fab fa-whatsapp"></i></div><h4 class="text-3xl md:text-4xl font-black mb-2 group-hover:text-black uppercase tracking-tighter text-white">WhatsApp</h4><span class="text-xs font-bold uppercase tracking-widest mb-4 opacity-60 group-hover:text-black group-hover:opacity-100 text-white/60">Laisser un message WhatsApp d'ici</span><p class="text-green-400 group-hover:text-black font-bold text-lg md:text-xl break-all leading-relaxed">+237 679 15 30 15</p></div></a><a href="https://www.linkedin.com/in/miguel-heuya-data-analyst-engineer-solutions-business-paterns/?skipRedirect=true" target="_blank" class="w-[92vw] md:w-full"><div class="glass-vivid p-14 md:p-16 rounded-[50px] flex flex-col items-center text-center hover:bg-[#0077b5] hover:scale-105 transition-all duration-500 group shadow-2xl border-amber-500/20 h-full cursor-pointer" id="linkedin"><div class="w-28 h-28 bg-[#0077b5] rounded-full flex items-center justify-center text-5xl mb-8 group-hover:bg-white group-hover:text-[#0077b5] transition shadow-2xl text-white"><i class="fab fa-linkedin-in"></i></div><h4 class="text-3xl md:text-4xl font-black mb-2 group-hover:text-white uppercase tracking-tighter text-white">LinkedIn</h4><span class="text-xs font-bold uppercase tracking-widest mb-4 opacity-60 group-hover:text-white group-hover:opacity-100 text-white/60">Rechercher sur LinkedIn</span><p class="text-slate-400 group-hover:text-white font-black text-xl md:text-2xl tracking-[0.25em] mb-4">MIGUEL HEUYA</p><span class="text-sm font-medium italic opacity-50 group-hover:text-white group-hover:opacity-100 transition duration-300 text-white">Ou cliquer ici</span></div></a><div class="w-[92vw] md:w-full"><div class="glass-vivid p-14 md:p-16 rounded-[50px] flex flex-col items-center text-center hover:bg-amber-500 hover:scale-105 transition-all duration-500 group shadow-2xl border-amber-500/20 h-full cursor-default" id="email"><div class="w-28 h-28 bg-amber-500 rounded-full flex items-center justify-center text-5xl mb-8 group-hover:bg-black group-hover:text-amber-500 transition shadow-2xl text-black"><i class="fas fa-envelope"></i></div><h4 class="text-3xl md:text-4xl font-black mb-2 group-hover:text-black uppercase tracking-tighter text-white">Email Direct</h4><span class="text-xs font-bold uppercase tracking-widest mb-4 opacity-60 group-hover:text-black group-hover:opacity-100 text-white/60">Mon adresse email</span><p class="text-amber-400 group-hover:text-black font-bold text-lg md:text-xl break-all leading-relaxed">heuyamiguel@gmail.com</p></div></div></div></div></div>
     </section>
 
     <div class="ps-10 sm:ps-0 overflow-hidden"><div class="container mx-auto px-6 pl-14 sm:px-6 pb-20 mt-10 w-full"><div class="max-w-5xl mx-auto border-t border-white/10 pt-20 text-center w-full"><h2 class="text-4xl md:text-6xl font-black tracking-tighter leading-[1.1]"><span class="text-white/40 block mb-2">J’améliore en continu mes méthodes pour</span><span class="text-primary italic uppercase">apporter des solutions concrètes</span><span class="block mt-6 text-white/80 text-2xl md:text-3xl font-light italic leading-relaxed font-mono tracking-wide">aux entreprises, afin de les aider à prendre de meilleures décisions et améliorer leurs résultats.</span></h2><div class="title-accent-bar mx-auto mt-12 opacity-50 w-32 h-1.5"></div></div></div></div>
@@ -306,9 +445,128 @@
         </section>
     </div>
 
-    <footer class="mt-20 border-t border-white/5 bg-black/20 overflow-hidden relative" id="cfooter">
-        <div class="absolute bottom-[-20px] right-[-10px] text-[120px] md:text-[200px] font-black italic text-white/[0.03] pointer-events-none select-none z-0">Miguel Heuya</div>
-        <div class="ps-8 sm:ps-0 overflow-visible relative z-10"><div class="container mx-auto px-2 pl-10 pr-4 sm:px-6 py-20 w-full overflow-visible"><div class="grid grid-cols-1 md:grid-cols-3 gap-16 mb-16 overflow-visible"><div class="flex flex-col space-y-6 w-[92vw] md:w-full overflow-visible"><div class="relative group"><div class="logo-container shrink-0 z-10 relative h-12 w-12 mb-4 hover:scale-110 transition-all duration-300 cursor-pointer"><img src="Image/LogoNew Copie - Copie (2).png" alt="HSML Primary" class="absolute inset-0 w-full h-full object-contain animate-sophisticated-morph-1 z-10"><img src="Image/LogoNew2 - Copy.png" alt="HSML Secondary" class="absolute inset-0 w-full h-full object-contain animate-sophisticated-morph-2 z-10"></div><div class="text-5xl md:text-6xl font-black italic tracking-tighter text-gradient leading-none">Miguel Heuya</div><style>@keyframes slide {0%, 100% { transform: translateX(0); } 50% { transform: translateX(150%); }}.animate-slide { animation: slide 2s ease-in-out infinite; }</style><div class="p-10"><div class="w-16 h-1.5 bg-primary mt-2 rounded-full shadow-[0_0_20px_#fec400] animate-slide"></div></div><div class="mt-4 text-white font-black uppercase tracking-tighter italic text-xl">Miguel<span class="text-primary">Heuya</span></div></div><p class="text-slate-400 text-sm italic leading-relaxed max-w-xs">L'alliance de la data et de la stratégie. Créateur de contenu original alliant technologie, foi et business.</p><div class="flex flex-wrap gap-4 py-6 overflow-visible"><a href="#" class="group relative flex items-center justify-center h-14 w-14 rounded-xl border border-white/5 bg-white/[0.03] transition-all duration-500 hover:border-primary/50 hover:-translate-y-2 hover-liquid overflow-visible"><div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 blur-xl bg-primary/20 transition-opacity duration-500"></div><i class="fab fa-linkedin-in text-xl text-slate-400 group-hover:text-primary transition-colors duration-300 relative z-10"></i><div class="absolute bottom-2 w-0 h-0.5 bg-primary group-hover:w-1/2 transition-all duration-500 rounded-full"></div></a><a href="#" class="group relative flex items-center justify-center h-14 w-14 rounded-xl border border-white/5 bg-white/[0.03] transition-all duration-500 hover:border-primary/50 hover:-translate-y-2 hover-liquid overflow-visible"><div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 blur-xl bg-primary/20 transition-opacity duration-500"></div><i class="fab fa-youtube text-xl text-slate-400 group-hover:text-primary transition-colors duration-300 relative z-10"></i><div class="absolute bottom-2 w-0 h-0.5 bg-primary group-hover:w-1/2 transition-all duration-500 rounded-full"></div></a><a href="#" class="group relative flex items-center justify-center h-14 w-14 rounded-xl border border-white/5 bg-white/[0.03] transition-all duration-500 hover:border-primary/50 hover:-translate-y-2 hover-liquid overflow-visible"><div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 blur-xl bg-primary/20 transition-opacity duration-500"></div><i class="fab fa-tiktok text-xl text-slate-400 group-hover:text-primary transition-colors duration-300 relative z-10"></i><div class="absolute bottom-2 w-0 h-0.5 bg-primary group-hover:w-1/2 transition-all duration-500 rounded-full"></div></a><a href="#" class="group relative flex items-center justify-center h-14 w-14 rounded-xl border border-white/5 bg-white/[0.03] transition-all duration-500 hover:border-primary/50 hover:-translate-y-2 hover-liquid overflow-visible"><div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 blur-xl bg-primary/20 transition-opacity duration-500"></div><i class="fab fa-facebook-f text-xl text-slate-400 group-hover:text-primary transition-colors duration-300 relative z-10"></i><div class="absolute bottom-2 w-0 h-0.5 bg-primary group-hover:w-1/2 transition-all duration-500 rounded-full"></div></a><a href="#" class="group relative flex items-center justify-center h-14 w-14 rounded-xl border border-white/5 bg-white/[0.03] transition-all duration-500 hover:border-primary/50 hover:-translate-y-2 hover-liquid overflow-visible"><div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 blur-xl bg-primary/20 transition-opacity duration-500"></div><i class="fab fa-instagram text-xl text-slate-400 group-hover:text-primary transition-colors duration-300 relative z-10"></i><div class="absolute bottom-2 w-0 h-0.5 bg-primary group-hover:w-1/2 transition-all duration-500 rounded-full"></div></a></div><style>@keyframes liquid-pulse { 0% { box-shadow: 0 0 0 0 rgba(254, 196, 0, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(254, 196, 0, 0); } 100% { box-shadow: 0 0 0 0 rgba(254, 196, 0, 0); }}.hover-liquid:hover { animation: liquid-pulse 1.5s infinite; background: rgba(254, 196, 0, 0.1); }</style></div><div class="flex flex-col space-y-6 w-[92vw] md:w-full"><h4 class="text-primary font-black uppercase tracking-widest text-xs">Expertises</h4><ul class="space-y-4"><li><a href="#profiles" class="text-slate-400 hover:text-white transition-colors text-sm uppercase font-black italic">Data Engineering</a></li><li><a href="#profiles" class="text-slate-400 hover:text-white transition-colors text-sm uppercase font-black italic">Data Analysis</a></li><li><a href="#profiles" class="text-slate-400 hover:text-white transition-colors text-sm uppercase font-black italic">Développement d'App Web</a></li><li><a href="#profiles" class="text-slate-400 hover:text-white transition-colors text-sm uppercase font-black italic">Design</a></li></ul></div><div class="flex flex-col space-y-6 w-[92vw] md:w-full"><h4 class="text-primary font-black uppercase tracking-widest text-xs">Contact Direct</h4><div class="space-y-4 text-slate-300"><a href="mailto:heuyamiguel@gmail.com" class="group flex flex-col"><span class="text-[10px] text-slate-500 uppercase font-black mb-1">Email Personnel</span><span class="group-hover:text-primary transition-colors text-sm break-all font-medium italic">heuyamiguel@gmail.com</span></a><div class="flex flex-col"><span class="text-[10px] text-slate-500 uppercase font-black mb-1">Localisation</span><span class="text-sm font-medium italic">Douala, Cameroun</span></div></div></div></div><div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-end space-y-4 md:space-y-0 relative z-10"><div class="flex flex-col space-y-2"><div class="text-[10px] md:text-xs text-slate-600 uppercase tracking-[0.5em] font-black italic">&copy; 2026 Miguel HEUYA | Tous droits réservés | Ce site a été conçu et développé par MIGUEL HEUYA</div><div class="text-[9px] text-slate-500 font-mono uppercase italic">Designed for 2026 Era</div></div><a href="#cfooter"><div class="fixed bottom-6 right-6 z-[9999] h-14 w-14 md:h-16 md:w-16 hover:scale-110 transition-all duration-300 cursor-pointer filter drop-shadow-[0_0_15px_rgba(254,196,0,0.3)]"><img src="Image/LogoNew2 - Copy.png" alt="HSML Secondary" class="absolute inset-0 w-full h-full object-contain animate-sophisticated-morph-1"><img src="Image/LogoNew Copie - Copie (2).png" alt="HSML Primary" class="absolute inset-0 w-full h-full object-contain animate-sophisticated-morph-2"></div></a></div></div></div>
+<footer class="mt-20 border-t border-white/5 bg-gradient-to-b from-black/40 to-black/80 backdrop-blur-md overflow-hidden relative" id="cfooter">
+        <!-- Fond filigrane premium -->
+        <div class="absolute bottom-[-20px] right-[-10px] text-[120px] md:text-[200px] font-black italic text-white/[0.04] pointer-events-none select-none z-0">Miguel Heuya</div>
+        
+        <div class="ps-8 sm:ps-0 overflow-visible relative z-10">
+            <div class="container mx-auto px-2 pl-10 pr-4 sm:px-6 py-16 w-full overflow-visible">
+                
+                <!-- Grille principale à 3 colonnes de taille asymétrique pour un effet plus design -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-16 mb-16 overflow-visible">
+                    
+                    <!-- Colonne 1 : Identité & Proposition de valeur Data (Prend 5 colonnes sur 12) -->
+                    <div class="flex flex-col space-y-6 w-[92vw] md:w-full md:col-span-5 overflow-visible">
+                        <div class="relative group">
+                            <!-- Conteneur Logo d'origine conservé avec ses animations -->
+                            
+                            <div class="text-4xl md:text-5xl font-black italic tracking-tighter text-gradient leading-none">Miguel Heuya</div>
+                            
+                            <!-- Style CSS d'origine et barre d'animation préservés (Ajustement de la marge) -->
+                            <style>@keyframes slide {0%, 100% { transform: translateX(0); } 50% { transform: translateX(150%); }}.animate-slide { animation: slide 2s ease-in-out infinite; }</style>
+                            <div class="mt-3 mb-4">
+                                <div class="w-16 h-1 bg-primary rounded-full shadow-[0_0_20px_#fec400] animate-slide"></div>
+                            </div>
+                            
+                            <div class="mt-2 text-white font-black uppercase tracking-tighter italic text-lg opacity-100">Miguel<span class="text-primary">Heuya</span></div>
+                        </div>
+                        
+                        <!-- Texte nettoyé : Focus pur Data / Business Intelligence -->
+                        <p class="text-slate-400 text-sm italic leading-relaxed max-w-sm">
+                            Transformer la complexité de l’activité en une vision claire, exploitable et orientée performance.
+                        </p>
+                        
+                        <!-- Réseaux Sociaux avec l'effet hover-liquid d'origine préservé -->
+<div class="flex flex-wrap gap-3 pt-2 overflow-visible">
+    <!-- Bouton LinkedIn Pro -->
+    <a href="https://www.linkedin.com/in/miguel-heuya-data-analyst-engineer-solutions-business-paterns/" target="_blank" rel="noopener noreferrer" class="group relative flex items-center justify-center h-12 w-12 rounded-xl border border-white/5 bg-white/[0.02] transition-all duration-500 hover:border-primary/50 hover:-translate-y-1 hover-liquid overflow-visible">
+        <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 blur-xl bg-primary/20 transition-opacity duration-500"></div>
+        <i class="fab fa-linkedin-in text-lg text-slate-400 group-hover:text-primary transition-colors duration-300 relative z-10"></i>
+        <div class="absolute bottom-1 w-0 h-0.5 bg-primary group-hover:w-1/2 transition-all duration-500 rounded-full"></div>
+    </a>
+    
+    <!-- Bouton WhatsApp Business -->
+    <a href="https://wa.me/237679153015?text=Salut%20Miguel%20Heuya%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services%20en%20business%20intelligence%20et%20la%20fa%C3%A7on%20dont%20vous%20accompagnez%20les%20entreprises" target="_blank" rel="noopener noreferrer" class="group relative flex items-center justify-center h-12 w-12 rounded-xl border border-white/5 bg-white/[0.02] transition-all duration-500 hover:border-primary/50 hover:-translate-y-1 hover-liquid overflow-visible">
+        <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 blur-xl bg-primary/20 transition-opacity duration-500"></div>
+        <i class="fab fa-whatsapp text-lg text-slate-400 group-hover:text-primary transition-colors duration-300 relative z-10"></i>
+        <div class="absolute bottom-1 w-0 h-0.5 bg-primary group-hover:w-1/2 transition-all duration-500 rounded-full"></div>
+    </a>
+</div>
+                        
+                        <style>@keyframes liquid-pulse { 0% { box-shadow: 0 0 0 0 rgba(254, 196, 0, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(254, 196, 0, 0); } 100% { box-shadow: 0 0 0 0 rgba(254, 196, 0, 0); }}.hover-liquid:hover { animation: liquid-pulse 1.5s infinite; background: rgba(254, 196, 0, 0.1); }</style>
+                    </div>
+                    
+                    <!-- Colonne 2 : Architectures Decisionnelles (Prend 4 colonnes sur 12) -->
+                    <div class="flex flex-col space-y-6 w-[92vw] md:w-full md:col-span-4">
+                        <h4 class="text-primary font-black uppercase tracking-[0.2em] text-[11px] flex items-center">
+                            <span class="w-4 h-px bg-primary/50 mr-2"></span> Domaines d'Expertise
+                        </h4>
+                        <ul class="space-y-4">
+                            <li>
+                                <a href="#profiles" class="group flex flex-col space-y-0.5">
+                                    <span class="text-white/90 group-hover:text-primary transition-colors text-sm uppercase font-black italic tracking-wide">Business Intelligence</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#profiles" class="group flex flex-col space-y-0.5">
+                                    <span class="text-white/90 group-hover:text-primary transition-colors text-sm uppercase font-black italic tracking-wide">Analyse de Données</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#profiles" class="group flex flex-col space-y-0.5">
+                                    <span class="text-white/90 group-hover:text-primary transition-colors text-sm uppercase font-black italic tracking-wide">Ingénierie de Données</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Colonne 3 : Contact & Hub (Prend 3 colonnes sur 12) -->
+<div class="flex flex-col space-y-6 w-[92vw] md:w-full md:col-span-3">
+    <h4 class="text-primary font-black uppercase tracking-[0.2em] text-[11px] flex items-center">
+        <span class="w-4 h-px bg-primary/50 mr-2"></span> Contacts Directs
+    </h4>
+    <div class="space-y-5 text-slate-300">
+        <!-- Lien WhatsApp avec message d'accroche personnalisé -->
+        <a href="https://wa.me/237679153015?text=Salut%20Miguel%20Heuya%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services%20en%20business%20intelligence%20et%20la%20fa%C3%A7on%20dont%20vous%20accompagnez%20les%20entreprises" target="_blank" rel="noopener noreferrer" class="group flex flex-col p-3 rounded-xl border border-white/[0.03] bg-white/[0.01] hover:border-primary/20 hover:bg-white/[0.02] transition-all duration-300">
+            <span class="text-[10px] text-slate-500 uppercase font-black tracking-wider mb-1 flex items-center gap-1.5">
+                <i class="fab fa-whatsapp text-emerald-500 text-xs"></i> Contact WhatsApp
+            </span>
+            <span class="group-hover:text-primary transition-colors text-xs font-medium italic font-mono">+237 679 15 30 15</span>
+        </a>
+
+        <!-- Lien LinkedIn Pro Exécutif -->
+        <a href="https://www.linkedin.com/in/miguel-heuya-data-analyst-engineer-solutions-business-paterns/" target="_blank" rel="noopener noreferrer" class="group flex flex-col p-3 rounded-xl border border-white/[0.03] bg-white/[0.01] hover:border-primary/20 hover:bg-white/[0.02] transition-all duration-300">
+            <span class="text-[10px] text-slate-500 uppercase font-black tracking-wider mb-1 flex items-center gap-1.5">
+                <i class="fab fa-linkedin-in text-sky-500 text-xs"></i> Profil Professionnel
+            </span>
+            <span class="group-hover:text-primary transition-colors text-xs break-all font-medium italic font-mono">LinkedIn &bull; Miguel Heuya</span>
+        </a>
+    </div>
+</div>
+                </div>
+                
+                <!-- Section Basse : Droits d'auteur & Bouton d'Ancre Fixe d'origine -->
+                <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center md:items-end space-y-4 md:space-y-0 relative z-10">
+                    <div class="flex flex-col space-y-2 text-center md:text-left">
+                        <div class="text-[9px] md:text-[10px] text-slate-500 uppercase tracking-[0.35em] font-medium leading-relaxed">
+                            &copy; 2026 Miguel HEUYA <span class="text-slate-700">|</span> Tous droits réservés <span class="text-slate-700">|</span> Conçu et développé par MIGUEL HEUYA
+                        </div>
+                        <div class="text-[9px] text-slate-600 font-mono uppercase tracking-widest italic">
+                            Data Architecture Era &bull; 2026 Portfolio
+                        </div>
+                    </div>
+                    
+                    <!-- Bouton fixe d'origine vers le footer (Images et animations préservées sans altérer le JS) -->
+                    <a href="#cfooter">
+                        <div class="fixed bottom-6 right-6 z-[9999] h-14 w-14 md:h-16 md:w-16 hover:scale-110 transition-all duration-300 cursor-pointer filter drop-shadow-[0_0_15px_rgba(254,196,0,0.3)]">
+                            <img src="Image/LogoNew2 - Copy.png" alt="HSML Secondary" class="absolute inset-0 w-full h-full object-contain animate-sophisticated-morph-1">
+                            <img src="Image/LogoNew Copie - Copie (2).png" alt="HSML Primary" class="absolute inset-0 w-full h-full object-contain animate-sophisticated-morph-2">
+                        </div>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
     </footer>
 
     <script src="Image/theme.js"></script>
