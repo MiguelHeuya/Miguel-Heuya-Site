@@ -44,51 +44,96 @@
         </div>
     </div>
 
-    <nav class="fixed w-full z-50 glass bg-opacity-10 backdrop-blur-md py-3">
-        <div class="container mx-auto px-6 flex justify-between items-center relative min-h-[60px]">
-            <a href="#home" class="text-white no-underline">
-                <div style="font-family: 'Allura', cursive; color: #ffc70d; opacity: 0.9; transform: rotate(-5deg); white-space: nowrap; cursor: default; font-size: clamp(1.5rem, 4vw, 2.2rem); min-width: clamp(140px, 20vw, 220px);">
-                    Miguel Heuya
-                </div>
-            </a>
-
-            <div class="hidden md:flex md:absolute md:left-1/2 md:-translate-x-1/2 z-0">
-                <div class="flex space-x-3 lg:space-x-6 text-[9px] lg:text-[10px] font-bold uppercase tracking-widest items-center">
-                    <a href="#profiles" class="nav-link whitespace-nowrap">Profiles</a>
-                    <a href="#skills" class="nav-link whitespace-nowrap">Compétences</a>
-                    <a href="#career" class="nav-link whitespace-nowrap">Parcours</a>
-                    <a href="#training" class="nav-link whitespace-nowrap">Training</a>
-                    <a href="#portfolio" class="nav-link whitespace-nowrap">Portfolio</a>
-                    <a href="#contact" class="contact-btn-custom font-black ml-2">Contact</a>
-                </div>
+<nav class="fixed w-full z-50 glass bg-opacity-10 backdrop-blur-md py-3">
+    <div class="container mx-auto px-6 flex justify-between items-center relative min-h-[60px]">
+        <a href="#home" class="text-white no-underline">
+            <div style="font-family: 'Allura', cursive; color: #ffc70d; opacity: 0.9; transform: rotate(-5deg); white-space: nowrap; cursor: default; font-size: clamp(1.5rem, 4vw, 2.2rem); min-width: clamp(140px, 20vw, 220px);">
+                Miguel Heuya
             </div>
+        </a>
 
-            <div class="absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0 flex items-center group" id="attractor-container">
-                <div class="hidden lg:block mr-4 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <span class="relative px-4 py-2 bg-black border border-primary/50 text-primary text-[11px] font-black uppercase tracking-widest rounded-full shadow-[0_0_20px_rgba(var(--primary-rgb),0.4)]">
-                        Personnaliser le Thème
-                    </span>
-                </div>
-                <button id="theme-toggle-btn" class="bg-primary text-black w-10 h-10 md:w-12 md:h-12 rounded-full shadow-[0_0_25px_rgba(var(--primary-rgb),0.5)] flex items-center justify-center text-lg md:text-xl hover:scale-110 transition-all duration-300 z-[110]">
-                    <i class="fas fa-palette"></i>
-                </button>
+        <div class="hidden md:flex md:absolute md:left-1/2 md:-translate-x-1/2 z-0">
+            <div class="flex space-x-3 lg:space-x-6 text-[9px] lg:text-[10px] font-bold uppercase tracking-widest items-center">
+                <a href="#profiles" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profiles</span>
+                </a>
+                <a href="#skills" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
+                    <i class="fas fa-code"></i>
+                    <span>Compétences</span>
+                </a>
+                <a href="#career" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Parcours</span>
+                </a>
+                <a href="#training" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Training</span>
+                </a>
+                <a href="#portfolio" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
+                    <i class="fas fa-folder-open"></i>
+                    <span>Portfolio</span>
+                </a>
+                <a href="https://github.com/MiguelHeuya" target="_blank" rel="noopener noreferrer" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="#contact" class="contact-btn-custom font-black ml-2 inline-flex items-center gap-1.5">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
             </div>
+        </div>
 
-            <button id="menu-btn" class="md:hidden text-primary text-2xl z-[110] ml-auto">
-                <i class="fas fa-bars"></i>
+        <div class="absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0 flex items-center group" id="attractor-container">
+            <div class="hidden lg:block mr-4 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                <span class="relative px-4 py-2 bg-black border border-primary/50 text-primary text-[11px] font-black uppercase tracking-widest rounded-full shadow-[0_0_20px_rgba(var(--primary-rgb),0.4)]">
+                    Personnaliser le Thème
+                </span>
+            </div>
+            <button id="theme-toggle-btn" class="bg-primary text-black w-10 h-10 md:w-12 md:h-12 rounded-full shadow-[0_0_25px_rgba(var(--primary-rgb),0.5)] flex items-center justify-center text-lg md:text-xl hover:scale-110 transition-all duration-300 z-[110]">
+                <i class="fas fa-palette"></i>
             </button>
         </div>
-    </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 z-[120] bg-black/95 flex flex-col items-center justify-center space-y-8 text-xl font-bold uppercase md:hidden translate-x-full transition-transform duration-500">
-        <button id="close-btn" class="absolute top-6 right-6 text-primary text-3xl"><i class="fas fa-times"></i></button>
-        <a href="#profiles" class="nav-link">Profiles Professionnels</a>
-        <a href="#skills" class="nav-link">Évaluation des compétences</a>
-        <a href="#career" class="nav-link">Career & Education</a>
-        <a href="#training" class="nav-link">Training & News</a>
-        <a href="#portfolio" class="nav-link">Portfolio</a>
-        <a href="#contact" class="contact-btn-custom font-black">Me contacter</a>
+        <button id="menu-btn" class="md:hidden text-primary text-2xl z-[110] ml-auto">
+            <i class="fas fa-bars"></i>
+        </button>
     </div>
+</nav>
+
+<div id="mobile-menu" class="fixed inset-0 z-[120] bg-black/95 flex flex-col items-center justify-center space-y-8 text-xl font-bold uppercase md:hidden translate-x-full transition-transform duration-500">
+    <button id="close-btn" class="absolute top-6 right-6 text-primary text-3xl"><i class="fas fa-times"></i></button>
+    
+    <a href="#profiles" class="nav-link inline-flex items-center gap-3">
+        <i class="fas fa-user-circle"></i>
+        <span>Profiles Professionnels</span>
+    </a>
+    <a href="#skills" class="nav-link inline-flex items-center gap-3">
+        <i class="fas fa-code"></i>
+        <span>Évaluation des compétences</span>
+    </a>
+    <a href="#career" class="nav-link inline-flex items-center gap-3">
+        <i class="fas fa-briefcase"></i>
+        <span>Career & Education</span>
+    </a>
+    <a href="#training" class="nav-link inline-flex items-center gap-3">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Training & News</span>
+    </a>
+    <a href="#portfolio" class="nav-link inline-flex items-center gap-3">
+        <i class="fas fa-folder-open"></i>
+        <span>Portfolio</span>
+    </a>
+    <a href="https://github.com/MiguelHeuya" target="_blank" rel="noopener noreferrer" class="nav-link inline-flex items-center gap-3">
+        <i class="fab fa-github"></i>
+        <span>GitHub</span>
+    </a>
+    <a href="#contact" class="contact-btn-custom font-black inline-flex items-center gap-3">
+        <i class="fas fa-envelope"></i>
+        <span>Me contacter</span>
+    </a>
+</div>
 
 <section id="home" class="min-h-screen flex items-center pt-28 pb-12 relative ps-8 sm:ps-0">
         <div class="container mx-auto px-6 pl-10 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -458,7 +503,7 @@
                         </div>
                         <div class="flex-1 min-w-0">
                             <div class="flex items-center justify-between gap-3 mb-2.5">
-                                <span class="text-sm md:text-base font-black uppercase text-white tracking-wide">Power BI</span>
+                                <span class="text-sm md:text-base font-black uppercase text-white tracking-wide">Power BI Desktop</span>
                                 <div class="flex items-center gap-1.5 shrink-0">
                                     <span class="relative flex h-1.5 w-1.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span><span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span></span>
                                     <span class="font-mono text-xs font-black text-primary tracking-wide">90<span class="text-primary/40">/100</span></span>
