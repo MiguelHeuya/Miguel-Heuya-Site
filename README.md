@@ -1,4 +1,13 @@
-### Ceci est le code source de mon site web personnel ou j'expose de mes compétences, mes projets réalisés et mes pensées dans le monde 
-### de la Business Intelligence et de la data
+# 🚀 Mon Site Web Personnel
 
-Pour y accéder, se diriger vers ce lien miguelheuya.netlify.app
+Bienvenue sur le dépôt du code source de mon site web personnel ! C'est ici que j'expose mes compétences, mes projets réalisés et mes réflexions autour de la **Business Intelligence** et de l'univers de la **Data**.
+
+👉 **[Accéder au site web : miguelheuya.netlify.app](https://miguelheuya.netlify.app)**
+
+---
+
+## 📌 À propos
+Ce site a pour objectif de présenter :
+* 💡 **Mes compétences** techniques et fonctionnelles.
+* 📊 **Mes projets** en Business Intelligence et analyse de données.
+* ✍️ **Mes réflexions** et articles sur le monde de la data.
