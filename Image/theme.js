@@ -1,3 +1,18 @@
+    // Calcule la luminosité perçue d'une couleur hex et retourne true si elle est claire
+    function isLightColor(hex) {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        // Formule de luminance perçue (YIQ)
+        const luminance = (r * 299 + g * 587 + b * 114) / 1000;
+        return luminance > 150; // seuil : au-delà, le fond est considéré "clair"
+    }
+
+    // Ajoute/retire la classe qui adapte la couleur du texte selon le fond
+    function applyTextContrast(hex) {
+        document.documentElement.classList.toggle('light-bg', isLightColor(hex));
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         // Elements
         const menuBtn = document.getElementById('menu-btn');
@@ -54,7 +69,10 @@
         if (bgPicker) {
             bgPicker.addEventListener('input', (e) => {
                 document.documentElement.style.setProperty('--bg-custom', e.target.value);
+                applyTextContrast(e.target.value);
             });
+            // Applique l'état correct dès le chargement (utile si la valeur par défaut change un jour)
+            applyTextContrast(bgPicker.value);
         }
     });
     

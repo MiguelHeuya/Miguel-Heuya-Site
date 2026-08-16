@@ -625,3 +625,39 @@ transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1); /* Animation fluide */
   animation: liquid-pulse 1.5s infinite;
   background: rgba(255, 202, 28, 0.1);
 }
+/* ===================================================================== */
+/* Adaptation automatique du texte quand la couleur de fond choisie est  */
+/* claire (classe ajoutée/retirée par theme.js selon la luminosité)      */
+/* ===================================================================== */
+html.light-bg body {
+    color: #1a1a1a;
+}
+
+html.light-bg [class*="text-white"] {
+    color: #1a1a1a !important;
+}
+
+html.light-bg .text-slate-100,
+html.light-bg .text-slate-200,
+html.light-bg .text-slate-300 {
+    color: #2b2b2b !important;
+}
+
+html.light-bg .text-slate-400,
+html.light-bg .text-slate-500 {
+    color: #4a4a4a !important;
+}
+
+html.light-bg .nav-link,
+html.light-bg .monument-card span {
+    color: #1a1a1a !important;
+}
+
+html.light-bg .contact-btn-custom {
+    color: #1a1a1a !important;
+    border-color: #1a1a1a;
+}
+
+html.light-bg .text-gradient {
+    background-image: linear-gradient(to right, var(--primary), #1a1a1a);
+}

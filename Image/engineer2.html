@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="LogoNew2 - Copy.png">
+    <title>Data Warehouse E-commerce — Olist | Miguel Heuya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link href="style1.css" rel="stylesheet">
+    <style>
+        /* Confort de lecture : taille de base et interlignage un peu réduits */
+        body {
+            font-size: 22px;
+            line-height: 1.65;
+        }
+
+        /* Style pour le lien actif dans la navigation */
+        .nav-link.active {
+            color: #ffc70d !important;
+            text-shadow: 0 0 8px rgba(255, 202, 28, 0.5);
+            font-weight: 900;
+        }
+
+        /* Cadre réservé pour une image à venir */
+        .img-frame {
+            border: 2px dashed rgba(var(--primary-rgb), 0.35);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            color: var(--primary);
+            opacity: 0.55;
+            margin: 2.5rem 0;
+            transition: opacity 0.4s ease, border-color 0.4s ease;
+        }
+        .img-frame:hover { opacity: 0.9; border-color: var(--primary); }
+        .img-frame i { font-size: 2.75rem; }
+        .img-frame span { font-size: 1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; }
+
+        .flow-step {
+            border: 1px solid rgba(var(--primary-rgb), 0.25);
+            background: rgba(var(--primary-rgb), 0.05);
+            border-radius: 16px;
+            padding: 0.9rem 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 1.15rem;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+            text-align: center;
+        }
+        .flow-arrow { color: var(--primary); opacity: 0.5; font-size: 1.3rem; }
+
+        .concept-chip {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            margin: 0.3rem;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            background: rgba(var(--primary-rgb), 0.08);
+            border: 1px solid rgba(var(--primary-rgb), 0.25);
+        }
+
+        /* Les libellés hérités de style.css, ajustés seulement sur cette page */
+        .tech-tag-mini { font-size: 1.1rem !important; }
+        .monument-card span { font-size: 1.5rem !important; }
+        .monument-card p { font-size: 1.15rem !important; }
+        table.w-full { font-size: 1.25rem; }
+
+        /* Tailles du contenu (hors navigation), légèrement réduites */
+        .text-xs { font-size: 1rem !important; }
+        .text-sm { font-size: 1.125rem !important; }
+        .text-base { font-size: 1.25rem !important; }
+        .text-lg { font-size: 1.375rem !important; }
+        .text-xl { font-size: 1.5rem !important; }
+        .text-2xl { font-size: 1.875rem !important; }
+        .text-3xl { font-size: 2.25rem !important; }
+        .text-\[13px\] { font-size: 16px !important; }
+        .text-\[14px\] { font-size: 17px !important; }
+        .text-\[15px\] { font-size: 18px !important; }
+
+        @media (min-width: 640px) {
+            .sm\:text-base { font-size: 1.25rem !important; }
+        }
+        @media (min-width: 768px) {
+            .md\:text-base { font-size: 1.25rem !important; }
+            .md\:text-xl { font-size: 1.5rem !important; }
+            .md\:text-2xl { font-size: 1.875rem !important; }
+            .md\:text-3xl { font-size: 2.25rem !important; }
+            .md\:text-5xl { font-size: 3.75rem !important; }
+        }
+        @media (min-width: 1024px) {
+            .lg\:text-\[14px\] { font-size: 17px !important; }
+        }
+
+        /* La navigation (barre du haut, menu mobile, tiroir de thème) garde ses tailles d'origine, */
+        /* même si ses éléments partagent des classes Tailwind agrandies ci-dessus. */
+        #mobile-menu { font-size: 1.25rem !important; }
+        #menu-btn { font-size: 1.5rem !important; }
+        #close-btn { font-size: 1.875rem !important; }
+        #theme-toggle-btn { font-size: 1.125rem !important; }
+        @media (min-width: 768px) {
+            #theme-toggle-btn { font-size: 1.25rem !important; }
+        }
+    </style>
+</head>
+<body>
+    <div id="theme-sidebar" class="fixed right-6 top-1/2 z-[100] glass p-6 rounded-[30px] flex flex-col items-center border-white/10 shadow-2xl space-y-6">
+        <div class="text-center w-full">
+            <p class="text-[10px] font-black uppercase mb-3 opacity-60 tracking-widest text-white">Couleur d'Accent</p>
+            <div class="color-picker-wrapper"><input type="color" id="accent-picker" value="#ffc70d"></div>
+        </div>
+        <div class="w-full h-px bg-white/10"></div>
+        <div class="text-center w-full">
+            <p class="text-[10px] font-black uppercase mb-3 opacity-60 tracking-widest text-white">Couleur de Fond</p>
+            <div class="color-picker-wrapper"><input type="color" id="bg-picker" value="#050505"></div>
+        </div>
+    </div>
+
+<nav class="fixed w-full z-50 glass bg-opacity-10 backdrop-blur-md py-3">
+    <div class="container mx-auto px-6 flex justify-between items-center relative min-h-[60px]">
+        <a href="https://miguelheuya.netlify.app/#portfolio" class="text-white no-underline">
+            <div style="font-family: 'Allura', cursive; color: #ffc70d; opacity: 0.9; transform: rotate(-5deg); white-space: nowrap; cursor: default; font-size: clamp(1.5rem, 4vw, 2.2rem); min-width: clamp(140px, 20vw, 220px);">
+                Miguel Heuya
+            </div>
+        </a>
+
+        <div class="hidden md:flex md:absolute md:left-1/2 md:-translate-x-1/2 z-0">
+            <div class="flex space-x-3 lg:space-x-6 text-[9px] lg:text-[10px] font-bold uppercase tracking-widest items-center">
+                <a href="#probleme" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <span>Problème</span>
+                </a>
+                <a href="#projet" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
+                    <i class="fas fa-diagram-project"></i>
+                    <span>Projet</span>
+                </a>
+                <a href="#impact" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Impact</span>
+                </a>
+                <a href="#synthese" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
+                    <i class="fas fa-flag-checkered"></i>
+                    <span>Synthèse</span>
+                </a>
+                <a href="https://github.com/MiguelHeuya/second_datawarehouse_automatise_et_orchestre_avec_github_actions" target="_blank" rel="noopener noreferrer" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
+                    <i class="fab fa-github"></i>
+                    <span>Voir le repo GitHub</span>
+                </a>
+                <a href="https://miguelheuya.netlify.app/#portfolio" class="contact-btn-custom font-black ml-2 inline-flex items-center gap-1.5">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Retour</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0 flex items-center group" id="attractor-container">
+            <div class="hidden lg:block mr-4 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                <span class="relative px-4 py-2 bg-black border border-primary/50 text-primary text-[11px] font-black uppercase tracking-widest rounded-full shadow-[0_0_20px_rgba(var(--primary-rgb),0.4)]">
+                    Personnaliser le Thème
+                </span>
+            </div>
+            <button id="theme-toggle-btn" class="bg-primary text-black w-10 h-10 md:w-12 md:h-12 rounded-full shadow-[0_0_25px_rgba(var(--primary-rgb),0.5)] flex items-center justify-center text-lg md:text-xl hover:scale-110 transition-all duration-300 z-[110]">
+                <i class="fas fa-palette"></i>
+            </button>
+        </div>
+
+        <button id="menu-btn" class="md:hidden text-primary text-2xl z-[110] ml-auto">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+<div id="mobile-menu" class="fixed inset-0 z-[120] bg-black/95 flex flex-col items-center justify-center space-y-8 text-xl font-bold uppercase md:hidden translate-x-full transition-transform duration-500">
+    <button id="close-btn" class="absolute top-6 right-6 text-primary text-3xl"><i class="fas fa-times"></i></button>
+
+    <a href="#probleme" class="nav-link inline-flex items-center gap-3">
+        <i class="fas fa-circle-exclamation"></i>
+        <span>Problème</span>
+    </a>
+    <a href="#projet" class="nav-link inline-flex items-center gap-3">
+        <i class="fas fa-diagram-project"></i>
+        <span>Projet</span>
+    </a>
+    <a href="#impact" class="nav-link inline-flex items-center gap-3">
+        <i class="fas fa-chart-line"></i>
+        <span>Impact</span>
+    </a>
+    <a href="#synthese" class="nav-link inline-flex items-center gap-3">
+        <i class="fas fa-flag-checkered"></i>
+        <span>Synthèse</span>
+    </a>
+    <a href="https://github.com/MiguelHeuya/second_datawarehouse_automatise_et_orchestre_avec_github_actions" target="_blank" rel="noopener noreferrer" class="nav-link inline-flex items-center gap-3">
+        <i class="fab fa-github"></i>
+        <span>Voir le repo GitHub</span>
+    </a>
+    <a href="https://miguelheuya.netlify.app/#portfolio" class="contact-btn-custom font-black inline-flex items-center gap-3">
+        <i class="fas fa-arrow-left"></i>
+        <span>Retour au portfolio</span>
+    </a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="min-h-[80vh] flex items-center pt-32 pb-16 relative">
+    <div class="container mx-auto px-6 max-w-5xl text-center">
+        <div class="section-header-box mx-auto">
+            <span class="text-primary text-[15px] font-black uppercase tracking-[0.3em]">Projet — Ingénierie de Données</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-black uppercase italic leading-tight mb-6">
+            🏢 Data Warehouse E-commerce — Olist
+        </h1>
+        <p class="text-slate-300 text-xl md:text-xl font-medium italic leading-relaxed max-w-3xl mx-auto">
+            Transformer des données opérationnelles dispersées en une donnée structurée, fiable et exploitable pour l'analyse et la prise de décision.
+        </p>
+
+        <div class="mt-10 flex flex-wrap justify-center gap-4">
+            <a href="https://github.com/MiguelHeuya/second_datawarehouse_automatise_et_orchestre_avec_github_actions" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-primary text-black font-black rounded-xl hover:scale-105 transition shadow-2xl uppercase tracking-widest text-base flex items-center gap-2">
+                <i class="fab fa-github"></i> Voir le repo GitHub
+            </a>
+            <a href="https://miguelheuya.netlify.app/#portfolio" class="px-8 py-3 border-2 border-primary text-primary font-black rounded-xl hover:scale-105 hover:bg-primary hover:text-black transition uppercase tracking-widest text-base flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Retour au portfolio
+            </a>
+        </div>
+
+        <div class="glass rounded-[40px] overflow-hidden mt-14 border border-white/5">
+            <img src="engineer2.png" alt="Aperçu du projet Data Warehouse E-commerce Olist" class="w-full h-full object-cover">
+        </div>
+    </div>
+</section>
+
+<!-- ============ PROBLEME ============ -->
+<section id="probleme" class="py-20 md:py-28 relative">
+    <div class="container mx-auto px-6 max-w-5xl">
+        <div class="section-title-wrapper mb-16">
+            <div class="section-title-glow"></div>
+            <h4 class="project-category-title text-2xl md:text-3xl font-black uppercase italic">🔴 Le Problème</h4>
+            <div class="title-accent-bar"></div>
+        </div>
+
+        <div class="glass rounded-[40px] p-8 md:p-12 border border-white/5">
+            <p class="text-slate-200 leading-relaxed mb-6">
+                Une entreprise e-commerce peut disposer de nombreuses données sur ses clients, commandes, produits, vendeurs, paiements et avis sans pour autant pouvoir les exploiter facilement. Ces informations sont réparties entre différentes sources et structures.
+            </p>
+            <p class="text-slate-200 leading-relaxed mb-4">
+                Ainsi, une question apparemment simple comme <span class="text-primary font-bold italic">« Quels produits génèrent le plus d'activité ? »</span> peut nécessiter de retrouver et de croiser plusieurs ensembles de données.
+            </p>
+            <p class="text-slate-200 leading-relaxed mb-4">La même difficulté apparaît lorsqu'il faut analyser :</p>
+            <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-slate-300 text-lg mb-6">
+                <li><i class="fas fa-check text-primary mr-2"></i>la performance des vendeurs</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>les commandes</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>les paiements</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>la satisfaction client</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>les produits</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>la géographie</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>l'évolution de l'activité dans le temps</li>
+            </ul>
+            <p class="text-slate-200 leading-relaxed">
+                Le problème n'est donc pas simplement d'avoir des données. Le véritable enjeu est de disposer de données suffisamment <span class="text-primary font-bold">structurées, fiables et accessibles</span> pour pouvoir les exploiter efficacement.
+            </p>
+        </div>
+<h4 class="text-xl md:text-2xl font-black uppercase italic text-primary mb-6 mt-16">💼 La conséquence Business</h4>
+        <div class="glass rounded-[40px] p-8 md:p-12 border border-white/5">
+            <p class="text-slate-200 leading-relaxed mb-4">Lorsque les données ne sont pas correctement préparées, les équipes peuvent passer une part importante de leur temps à :</p>
+            <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-slate-300 text-lg">
+                <li><i class="fas fa-check text-primary mr-2"></i>rechercher les bonnes données</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>effectuer des jointures</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>nettoyer les informations</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>recalculer les indicateurs</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>vérifier les résultats</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>reconstruire les mêmes transformations</li>
+            </ul>
+        </div>
+<p class="text-slate-300 text-lg italic mb-6">Cela peut entraîner :</p>
+        <div class="content-monument !grid-cols-2 md:!grid-cols-4 gap-4">
+            <div class="monument-card"><i class="fas fa-hourglass-half"></i><span>⏱️ Perte de temps</span><p class="text-slate-300 text-base font-medium mt-2">Moins de temps consacré à l'analyse et à la compréhension du métier.</p></div>
+            <div class="monument-card"><i class="fas fa-triangle-exclamation"></i><span>⚠️ Incohérence</span><p class="text-slate-300 text-base font-medium mt-2">Des analyses différentes peuvent produire des résultats différents selon les règles appliquées.</p></div>
+            <div class="monument-card"><i class="fas fa-snail"></i><span>🐌 Manque de réactivité</span><p class="text-slate-300 text-base font-medium mt-2">Répondre rapidement à une nouvelle question métier devient plus difficile.</p></div>
+            <div class="monument-card"><i class="fas fa-chart-line-down"></i><span>📉 Difficulté à industrialiser</span><p class="text-slate-300 text-base font-medium mt-2">Une analyse ponctuelle peut fonctionner, mais devient fragile lorsqu'elle doit être répétée régulièrement.</p></div>
+        </div>
+<div class="ia-productivity-card mt-10">
+            <span class="tech-tag-mini">❓ La question</span>
+            <p class="text-slate-100 text-xl md:text-xl font-medium italic leading-relaxed">
+                Comment transformer plusieurs sources de données opérationnelles en une base analytique centralisée, cohérente et directement exploitable par les équipes Business Intelligence ?
+            </p>
+            <p class="text-slate-400 text-base mt-3">C'est la problématique à laquelle répond ce projet.</p>
+        </div>
+
+        <div class="img-frame">
+            <i class="fas fa-image"></i>
+            <span>Image à insérer — Vue d'ensemble du problème</span>
+        </div>
+</div>
+</section>
+
+<!-- ============ PROJET ============ -->
+<section id="projet" class="py-20 md:py-28 relative">
+    <div class="container mx-auto px-6 max-w-5xl">
+        <div class="section-title-wrapper mb-16">
+            <div class="section-title-glow"></div>
+            <h4 class="project-category-title text-2xl md:text-3xl font-black uppercase italic">💡 La Solution</h4>
+            <div class="title-accent-bar"></div>
+        </div>
+
+        <div class="glass rounded-[40px] p-8 md:p-12 border border-white/5">
+            <p class="text-slate-200 leading-relaxed">
+                La solution consiste à construire un <span class="text-primary font-bold">Data Warehouse PostgreSQL</span> capable de centraliser, préparer et modéliser les données avant leur utilisation analytique. Le pipeline suit une architecture en trois couches.
+            </p>
+        </div>
+<div class="flex flex-col items-center gap-3 my-10">
+            <div class="flow-step w-full sm:w-64 text-center">Sources</div>
+            <i class="fas fa-arrow-down flow-arrow"></i>
+            <div class="flow-step w-full sm:w-64 text-center">🥉 Bronze</div>
+            <i class="fas fa-arrow-down flow-arrow"></i>
+            <div class="flow-step w-full sm:w-64 text-center">🥈 Silver</div>
+            <i class="fas fa-arrow-down flow-arrow"></i>
+            <div class="flow-step w-full sm:w-64 text-center">🥇 Gold</div>
+            <i class="fas fa-arrow-down flow-arrow"></i>
+            <div class="flow-step w-full sm:w-64 text-center">Analytics / BI</div>
+        </div>
+        <p class="text-slate-400 text-lg italic text-center mb-4">Chaque couche possède une responsabilité précise.</p>
+
+        <div class="grid md:grid-cols-3 gap-6 mt-10">
+            <div class="ia-productivity-card !max-w-none">
+                <span class="tech-tag-mini">🥉 Bronze — Centraliser</span>
+                <p class="text-slate-300 text-lg leading-relaxed">Les données provenant des différentes sources sont récupérées et centralisées.</p>
+            </div>
+            <div class="ia-productivity-card !max-w-none">
+                <span class="tech-tag-mini">🥈 Silver — Préparer</span>
+                <p class="text-slate-300 text-lg leading-relaxed">Les données sont nettoyées, typées, standardisées, agrégées et préparées pour les besoins analytiques.</p>
+            </div>
+            <div class="ia-productivity-card !max-w-none">
+                <span class="tech-tag-mini">🥇 Gold — Modéliser</span>
+                <p class="text-slate-300 text-lg leading-relaxed">Les données sont transformées selon une logique métier et organisées dans un modèle adapté à l'analyse.</p>
+            </div>
+        </div>
+<h4 class="text-xl md:text-2xl font-black uppercase italic text-primary mb-6 mt-16">🏗️ L'architecture</h4>
+        <div class="glass rounded-[40px] p-8 md:p-12 border border-white/5">
+            <p class="text-slate-200 leading-relaxed">
+                Cette séparation permet de distinguer clairement : <span class="text-primary font-bold">Données opérationnelles → Données analytiques</span>.
+            </p>
+        </div>
+
+        <div class="img-frame">
+            <i class="fas fa-image"></i>
+            <span>Image à insérer — Architecture du pipeline Bronze / Silver / Gold</span>
+        </div>
+<h4 class="text-xl md:text-2xl font-black uppercase italic text-primary mb-6 mt-16">🥉 Bronze — Centraliser les données</h4>
+        <div class="glass rounded-[40px] p-8 md:p-12 border border-white/5">
+            <p class="text-slate-200 leading-relaxed mb-4">
+                La première étape consiste à rassembler les données provenant de plusieurs sources PostgreSQL. Le pipeline détecte automatiquement les tables disponibles et les charge dans la couche Bronze. Cette couche conserve une représentation proche des données originales.
+            </p>
+            <p class="text-slate-300 italic text-lg">
+                L'objectif est simple : centraliser les données avant de commencer à les transformer. Cela crée une séparation entre les données telles qu'elles existent dans les systèmes sources et les données préparées pour l'analyse.
+            </p>
+        </div>
+<h4 class="text-xl md:text-2xl font-black uppercase italic text-primary mb-6 mt-16">🥈 Silver — Transformer les données</h4>
+        <div class="glass rounded-[40px] p-8 md:p-12 border border-white/5">
+            <p class="text-slate-200 leading-relaxed mb-4">Les données centralisées ne sont pas encore prêtes à être utilisées directement. La couche Silver réalise donc différentes transformations :</p>
+            <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-slate-300 text-lg mb-6">
+                <li><i class="fas fa-check text-primary mr-2"></i>nettoyage</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>typage</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>standardisation</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>gestion des valeurs manquantes</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>agrégation</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>préparation des données pour la modélisation</li>
+            </ul>
+            <p class="text-slate-300 text-lg italic">
+                Par exemple, les codes géographiques sont standardisés et certaines informations produits sont préparées pour faciliter leur utilisation analytique. Les données de paiement sont également regroupées afin de faciliter leur exploitation dans le modèle final.
+            </p>
+        </div>
+<h4 class="text-xl md:text-2xl font-black uppercase italic text-primary mb-6 mt-16">🥇 Gold — Construire une donnée pensée pour l'analyse</h4>
+        <div class="glass rounded-[40px] p-8 md:p-12 border border-white/5">
+            <p class="text-slate-200 leading-relaxed mb-4">
+                La couche Gold représente l'interface analytique du Data Warehouse. Elle ne cherche plus à reproduire les systèmes opérationnels. Elle cherche à organiser les données autour des questions métier. Le modèle final repose notamment sur :
+            </p>
+            <div class="flex flex-wrap gap-3">
+                <span class="concept-chip">dim_customers</span>
+                <span class="concept-chip">dim_sellers</span>
+                <span class="concept-chip">dim_products</span>
+                <span class="concept-chip">fact_orders</span>
+            </div>
+        </div>
+<h4 class="text-xl md:text-2xl font-black uppercase italic text-primary mb-6 mt-16">⭐ Le modèle en étoile</h4>
+        <div class="glass rounded-[40px] p-8 md:p-12 border border-white/5">
+            <p class="text-slate-200 leading-relaxed mb-6">La table de faits est entourée de dimensions qui permettent de contextualiser l'activité.</p>
+            <div class="flex flex-col items-center gap-4">
+                <div class="flow-step">dim_customers</div>
+                <div class="flex items-center gap-4">
+                    <div class="flow-step">dim_sellers</div>
+                    <i class="fas fa-arrow-right flow-arrow"></i>
+                    <div class="flow-step bg-primary/20">fact_orders</div>
+                    <i class="fas fa-arrow-left flow-arrow"></i>
+                    <div class="flow-step">dim_products</div>
+                </div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-6 mt-8 text-lg text-slate-300">
+                <p><span class="text-primary font-bold">Les dimensions</span> permettent notamment de répondre à : Qui ? Quoi ? Où ?</p>
+                <p><span class="text-primary font-bold">La table de faits</span> permet davantage d'analyser : Qu'est-ce qui s'est passé ? Quand ? Combien ?</p>
+            </div>
+            <p class="text-slate-400 text-base italic mt-6">Cette organisation facilite ensuite la création de KPI, rapports et dashboards.</p>
+        </div>
+<h4 class="text-xl md:text-2xl font-black uppercase italic text-primary mb-6 mt-16">🧮 Ajouter de la logique métier</h4>
+        <div class="glass rounded-[40px] p-8 md:p-12 border border-white/5">
+            <p class="text-slate-200 leading-relaxed mb-6">Le Data Warehouse ne se contente pas de déplacer les données. Certaines informations sont également calculées. Par exemple :</p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="ia-productivity-card !max-w-none">
+                    <span class="tech-tag-mini">⭐ Satisfaction</span>
+                    <p class="text-slate-300 text-lg leading-relaxed">Un score moyen des avis est calculé au niveau des commandes afin de faciliter l'analyse de la satisfaction.</p>
+                </div>
+                <div class="ia-productivity-card !max-w-none">
+                    <span class="tech-tag-mini">💰 Données financières</span>
+                    <p class="text-slate-300 text-lg leading-relaxed">Des informations dérivées sont calculées à partir des montants de paiement, du prix des articles et du fret.</p>
+                </div>
+                <div class="ia-productivity-card !max-w-none">
+                    <span class="tech-tag-mini">📦 Données produits</span>
+                    <p class="text-slate-300 text-lg leading-relaxed">Les caractéristiques physiques des produits sont préparées et enrichies, notamment avec le calcul de leur volume.</p>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-3 mt-10 text-[14px] md:text-base">
+                <div class="flow-step">Données sources</div>
+                <i class="fas fa-arrow-right flow-arrow"></i>
+                <div class="flow-step">Transformation</div>
+                <i class="fas fa-arrow-right flow-arrow"></i>
+                <div class="flow-step">Règle métier</div>
+                <i class="fas fa-arrow-right flow-arrow"></i>
+                <div class="flow-step">Information analytique</div>
+            </div>
+        </div>
+<h4 class="text-xl md:text-2xl font-black uppercase italic text-primary mb-6 mt-16">🔄 Un pipeline automatisé</h4>
+        <div class="glass rounded-[40px] p-8 md:p-12 border border-white/5">
+            <p class="text-slate-200 leading-relaxed mb-6">Les différentes étapes sont orchestrées depuis un point d'entrée unique. L'objectif est de transformer plusieurs opérations indépendantes en un processus cohérent et reproductible. Le pipeline intègre également :</p>
+            <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-slate-300 text-lg">
+                <li><i class="fas fa-check text-primary mr-2"></i>gestion des erreurs</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>logging</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>configuration par environnement</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>mécanisme de rollback en cas d'échec</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>indexation PostgreSQL sur la couche analytique</li>
+            </ul>
+        </div>
+<h4 class="text-xl md:text-2xl font-black uppercase italic text-primary mb-6 mt-16">⚙️ Stack technique</h4>
+        <div class="glass rounded-[40px] p-8 md:p-12 border border-white/5 overflow-x-auto">
+            <table class="w-full text-lg text-left text-slate-300">
+                <thead>
+                    <tr class="border-b border-white/10 text-primary uppercase text-[14px] tracking-widest">
+                        <th class="py-3 pr-4">Technologie</th>
+                        <th class="py-3">Utilisation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-white/5"><td class="py-3 pr-4 font-bold text-white">Python</td><td class="py-3">ETL et orchestration</td></tr>
+                    <tr class="border-b border-white/5"><td class="py-3 pr-4 font-bold text-white">PostgreSQL</td><td class="py-3">Sources et Data Warehouse</td></tr>
+                    <tr class="border-b border-white/5"><td class="py-3 pr-4 font-bold text-white">Polars</td><td class="py-3">Transformation des données</td></tr>
+                    <tr class="border-b border-white/5"><td class="py-3 pr-4 font-bold text-white">ADBC</td><td class="py-3">Accès PostgreSQL</td></tr>
+                    <tr class="border-b border-white/5"><td class="py-3 pr-4 font-bold text-white">SQL</td><td class="py-3">Transformation et modélisation</td></tr>
+                    <tr><td class="py-3 pr-4 font-bold text-white">python-dotenv</td><td class="py-3">Gestion de la configuration</td></tr>
+                </tbody>
+            </table>
+
+            <p class="text-primary text-[14px] font-black uppercase tracking-widest mt-8 mb-3">Concepts mis en pratique</p>
+            <div>
+                <span class="concept-chip">Data Warehousing</span>
+                <span class="concept-chip">ETL</span>
+                <span class="concept-chip">Bronze/Silver/Gold</span>
+                <span class="concept-chip">Data Integration</span>
+                <span class="concept-chip">Data Transformation</span>
+                <span class="concept-chip">Dimensional Modeling</span>
+                <span class="concept-chip">Star Schema</span>
+                <span class="concept-chip">Business Logic</span>
+                <span class="concept-chip">Indexation</span>
+                <span class="concept-chip">Logging</span>
+                <span class="concept-chip">Error Handling</span>
+                <span class="concept-chip">Pipeline Orchestration</span>
+            </div>
+        </div>
+
+        <div class="img-frame">
+            <i class="fas fa-image"></i>
+            <span>Image à insérer — Modèle en étoile & stack technique</span>
+        </div>
+</div>
+</section>
+
+<!-- ============ IMPACT ============ -->
+<section id="impact" class="py-20 md:py-28 relative">
+    <div class="container mx-auto px-6 max-w-5xl">
+        <div class="section-title-wrapper mb-16">
+            <div class="section-title-glow"></div>
+            <h4 class="project-category-title text-2xl md:text-3xl font-black uppercase italic">💼 L'Impact Business</h4>
+            <div class="title-accent-bar"></div>
+        </div>
+
+        <div class="glass rounded-[40px] p-8 md:p-12 border border-white/5">
+            <p class="text-slate-200 leading-relaxed">
+                L'objectif du projet n'est pas simplement d'obtenir <span class="italic text-slate-400">« quatre tables dans une base de données »</span>. La valeur se situe dans la transformation du processus analytique.
+            </p>
+        </div>
+<div class="grid md:grid-cols-2 gap-8 mt-10">
+            <div class="glass rounded-[40px] p-8 border border-white/5">
+                <p class="tech-tag-mini mb-4">Avant</p>
+                <div class="flex flex-col items-center gap-2 text-[14px] md:text-base">
+                    <div class="flow-step w-full text-center">Question métier</div>
+                    <i class="fas fa-arrow-down flow-arrow"></i>
+                    <div class="flow-step w-full text-center">Recherche des sources</div>
+                    <i class="fas fa-arrow-down flow-arrow"></i>
+                    <div class="flow-step w-full text-center">Jointures</div>
+                    <i class="fas fa-arrow-down flow-arrow"></i>
+                    <div class="flow-step w-full text-center">Nettoyage</div>
+                    <i class="fas fa-arrow-down flow-arrow"></i>
+                    <div class="flow-step w-full text-center">Transformation</div>
+                    <i class="fas fa-arrow-down flow-arrow"></i>
+                    <div class="flow-step w-full text-center">Calcul</div>
+                    <i class="fas fa-arrow-down flow-arrow"></i>
+                    <div class="flow-step w-full text-center">Vérification</div>
+                    <i class="fas fa-arrow-down flow-arrow"></i>
+                    <div class="flow-step w-full text-center">Analyse</div>
+                </div>
+            </div>
+            <div class="glass rounded-[40px] p-8 border border-white/5">
+                <p class="tech-tag-mini mb-4">Après</p>
+                <div class="flex flex-col items-center gap-2 text-[14px] md:text-base">
+                    <div class="flow-step w-full text-center">Sources</div>
+                    <i class="fas fa-arrow-down flow-arrow"></i>
+                    <div class="flow-step w-full text-center">Pipeline ETL</div>
+                    <i class="fas fa-arrow-down flow-arrow"></i>
+                    <div class="flow-step w-full text-center">Data Warehouse</div>
+                    <i class="fas fa-arrow-down flow-arrow"></i>
+                    <div class="flow-step w-full text-center">Couche Gold</div>
+                    <i class="fas fa-arrow-down flow-arrow"></i>
+                    <div class="flow-step w-full text-center bg-primary/20">Analyse</div>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-slate-300 text-lg italic text-center mt-8">
+            Une partie importante du travail de préparation est ainsi réalisée en amont. L'analyste peut davantage se concentrer sur :
+            <span class="text-primary font-bold not-italic">Comprendre → Analyser → Interpréter → Recommander</span>
+            plutôt que de reconstruire continuellement la donnée.
+        </p>
+<h4 class="text-xl md:text-2xl font-black uppercase italic text-primary mb-6 mt-16 text-center">👥 Pour qui cette architecture crée-t-elle de la valeur ?</h4>
+        <div class="content-monument !grid-cols-2 md:!grid-cols-4 gap-4">
+            <div class="monument-card"><i class="fas fa-user-tie"></i><span>👨🏾‍💼 Direction</span><p class="text-slate-300 text-base font-medium mt-2">Disposer d'une base structurée pour suivre l'activité et alimenter les décisions.</p></div>
+            <div class="monument-card"><i class="fas fa-chart-bar"></i><span>📊 BI Analyst</span><p class="text-slate-300 text-base font-medium mt-2">Accéder à une couche Gold préparée pour construire des analyses, KPI et dashboards.</p></div>
+            <div class="monument-card"><i class="fas fa-server"></i><span>👨🏾‍💻 Data Engineer</span><p class="text-slate-300 text-base font-medium mt-2">Disposer d'une architecture organisée autour de l'ingestion, la transformation, la modélisation et l'orchestration.</p></div>
+            <div class="monument-card"><i class="fas fa-building"></i><span>🏢 Organisation</span><p class="text-slate-300 text-base font-medium mt-2">Centraliser certaines règles de transformation afin de réduire leur reproduction dans différents rapports.</p></div>
+        </div>
+<h4 class="text-xl md:text-2xl font-black uppercase italic text-primary mb-6 mt-16 text-center">📈 Ce que le projet rend possible</h4>
+        <div class="glass rounded-[40px] p-8 md:p-12 border border-white/5">
+            <p class="text-slate-300 text-lg italic mb-8 text-center">Une fois la couche analytique connectée à un outil BI, elle peut servir de base à des analyses autour de :</p>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-lg text-slate-300">
+                <div><p class="text-primary font-black uppercase text-base tracking-widest mb-2">Performance commerciale</p><p>évolution des commandes · activité par période · produits représentés dans les commandes</p></div>
+                <div><p class="text-primary font-black uppercase text-base tracking-widest mb-2">Clients</p><p>répartition géographique · activité par zone</p></div>
+                <div><p class="text-primary font-black uppercase text-base tracking-widest mb-2">Vendeurs</p><p>activité des vendeurs · répartition géographique</p></div>
+                <div><p class="text-primary font-black uppercase text-base tracking-widest mb-2">Produits</p><p>catégories · caractéristiques · dimensions physiques</p></div>
+                <div><p class="text-primary font-black uppercase text-base tracking-widest mb-2">Paiements</p><p>montants · moyens de paiement · échéances</p></div>
+                <div><p class="text-primary font-black uppercase text-base tracking-widest mb-2">Satisfaction</p><p>scores moyens · évolution de la satisfaction</p></div>
+                <div><p class="text-primary font-black uppercase text-base tracking-widest mb-2">Logistique</p><p>frais de transport · cycle de livraison · caractéristiques physiques des produits</p></div>
+            </div>
+        </div>
+
+        <div class="img-frame">
+            <i class="fas fa-image"></i>
+            <span>Image à insérer — Avant / Après : l'impact business</span>
+        </div>
+</div>
+</section>
+
+<!-- ============ SYNTHESE ============ -->
+<section id="synthese" class="py-20 md:py-28 relative">
+    <div class="container mx-auto px-6 max-w-5xl">
+        <div class="section-title-wrapper mb-16">
+            <div class="section-title-glow"></div>
+            <h4 class="project-category-title text-2xl md:text-3xl font-black uppercase italic">🏁 Synthèse</h4>
+            <div class="title-accent-bar"></div>
+        </div>
+
+        <h4 class="text-xl md:text-2xl font-black uppercase italic text-primary mb-6">⚠️ Limites et prochaines évolutions</h4>
+        <p class="text-slate-300 text-lg italic mb-8">
+            Ce projet constitue une implémentation Data Warehouse fonctionnelle, mais plusieurs évolutions sont envisageables pour se rapprocher d'un environnement de production.
+        </p>
+        <div class="content-monument !grid-cols-2 md:!grid-cols-3 gap-4">
+            <div class="monument-card"><i class="fas fa-arrows-rotate"></i><span>Chargements incrémentaux</span><p class="text-slate-300 text-base font-medium mt-2">Passer de Full Load à Incremental Load afin d'éviter de retraiter systématiquement toutes les données.</p></div>
+            <div class="monument-card"><i class="fas fa-shield-halved"></i><span>Data Quality</span><p class="text-slate-300 text-base font-medium mt-2">Ajouter des contrôles automatisés sur doublons, valeurs nulles, clés, montants et cohérence des données.</p></div>
+            <div class="monument-card"><i class="fas fa-vial"></i><span>Tests automatisés</span><p class="text-slate-300 text-base font-medium mt-2">Tester les transformations et les différentes étapes du pipeline.</p></div>
+            <div class="monument-card"><i class="fas fa-sitemap"></i><span>Orchestration avancée</span><p class="text-slate-300 text-base font-medium mt-2">Faire évoluer l'orchestration vers Airflow, Dagster ou Prefect lorsque la complexité augmente.</p></div>
+            <div class="monument-card"><i class="fas fa-bell"></i><span>Monitoring & alerting</span><p class="text-slate-300 text-base font-medium mt-2">Ajouter une supervision plus complète des exécutions, des erreurs et des performances.</p></div>
+            <div class="monument-card"><i class="fas fa-infinity"></i><span>CI/CD</span><p class="text-slate-300 text-base font-medium mt-2">Intégrer davantage les tests et contrôles dans le cycle de développement et de déploiement.</p></div>
+        </div>
+<h4 class="text-xl md:text-2xl font-black uppercase italic text-primary mb-6 mt-16">🧠 Ce que ce projet démontre</h4>
+        <div class="glass rounded-[40px] p-8 md:p-12 border border-white/5">
+            <p class="text-slate-200 leading-relaxed mb-8">Ce projet montre qu'un Data Warehouse ne consiste pas uniquement à stocker des données. Il s'agit de construire une chaîne de valorisation de la donnée :</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 text-[14px] md:text-base">
+                <div class="flow-step">Data</div>
+                <i class="fas fa-arrow-right flow-arrow hidden sm:block"></i>
+                <i class="fas fa-arrow-down flow-arrow sm:hidden"></i>
+                <div class="flow-step">Information</div>
+                <i class="fas fa-arrow-right flow-arrow hidden sm:block"></i>
+                <i class="fas fa-arrow-down flow-arrow sm:hidden"></i>
+                <div class="flow-step">Analysis</div>
+                <i class="fas fa-arrow-right flow-arrow hidden sm:block"></i>
+                <i class="fas fa-arrow-down flow-arrow sm:hidden"></i>
+                <div class="flow-step">Insight</div>
+                <i class="fas fa-arrow-right flow-arrow hidden sm:block"></i>
+                <i class="fas fa-arrow-down flow-arrow sm:hidden"></i>
+                <div class="flow-step bg-primary/20">Decision</div>
+            </div>
+            <p class="text-slate-300 text-lg italic mt-8">
+                La partie technique permet de rendre cette chaîne fiable, structurée et reproductible. La partie Business lui donne sa finalité : permettre à l'organisation de transformer plus facilement ses données en informations utiles à la décision.
+            </p>
+        </div>
+<h4 class="text-xl md:text-2xl font-black uppercase italic text-primary mb-6 mt-16">🏁 Conclusion</h4>
+        <div class="glass rounded-[40px] p-8 md:p-12 border border-white/5">
+            <p class="text-slate-200 leading-relaxed mb-4">
+                Ce projet part d'un problème très concret : une entreprise peut posséder beaucoup de données sans disposer d'une donnée réellement exploitable.
+            </p>
+            <p class="text-slate-200 leading-relaxed mb-6">
+                La réponse consiste à construire une architecture qui sépare clairement : <span class="text-primary font-bold">données opérationnelles ≠ données analytiques</span>.
+            </p>
+            <p class="text-slate-300 text-lg italic mb-6">
+                Les données sont centralisées en Bronze → préparées en Silver → modélisées en Gold → exploitées pour l'Analytics et la BI.
+            </p>
+            <p class="text-slate-200 leading-relaxed">
+                Le résultat est une base analytique structurée autour d'un modèle en étoile, avec des règles métier, des données préparées et un pipeline automatisé. La valeur d'un Data Warehouse n'est donc pas simplement de stocker les données. Elle est de rendre ces données plus faciles à comprendre, analyser et utiliser pour prendre de meilleures décisions.
+            </p>
+        </div>
+
+        <div class="img-frame">
+            <i class="fas fa-image"></i>
+            <span>Image à insérer — Conclusion & valeur du projet</span>
+        </div>
+</div>
+</section>
+
+<!-- ============ VOIR LE PROJET ============ -->
+<section id="repo" class="py-20 relative">
+    <div class="container mx-auto px-6 max-w-4xl text-center">
+        <div class="section-title-wrapper mb-16">
+            <div class="section-title-glow"></div>
+            <h4 class="project-category-title text-2xl md:text-3xl font-black uppercase italic">🔗 Voir le Projet</h4>
+            <div class="title-accent-bar"></div>
+        </div>
+        <div class="flex flex-col sm:flex-row justify-center gap-6">
+            <a href="https://github.com/MiguelHeuya/second_datawarehouse_automatise_et_orchestre_avec_github_actions" target="_blank" rel="noopener noreferrer" class="glass-vivid p-8 rounded-[30px] flex-1 hover:scale-105 transition-all duration-300 group">
+                <i class="fab fa-github text-3xl text-primary mb-3"></i>
+                <p class="font-black uppercase text-lg">Projet Data Warehouse Olist</p>
+            </a>
+            <a href="https://github.com/MiguelHeuya/" target="_blank" rel="noopener noreferrer" class="glass-vivid p-8 rounded-[30px] flex-1 hover:scale-105 transition-all duration-300 group">
+                <i class="fas fa-folder-open text-3xl text-primary mb-3"></i>
+                <p class="font-black uppercase text-lg">Tous mes projets Data</p>
+            </a>
+            <a href="https://miguelheuya.netlify.app" target="_blank" rel="noopener noreferrer" class="glass-vivid p-8 rounded-[30px] flex-1 hover:scale-105 transition-all duration-300 group">
+                <i class="fas fa-globe text-3xl text-primary mb-3"></i>
+                <p class="font-black uppercase text-lg">Portfolio personnel</p>
+            </a>
+        </div>
+
+        <div class="mt-16">
+            <a href="https://miguelheuya.netlify.app/#portfolio" class="inline-flex items-center gap-3 px-10 py-4 border-2 border-primary text-primary font-black rounded-xl hover:scale-105 hover:bg-primary hover:text-black transition uppercase tracking-widest text-base">
+                <i class="fas fa-arrow-left"></i> Retour au portfolio
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer class="py-10 text-center border-t border-white/5">
+    <p class="text-slate-500 text-[15px] font-mono uppercase tracking-widest">&copy; 2026 Miguel Heuya — Data Warehouse Era &bull; 2026 Portfolio</p>
+</footer>
+
+<script src="theme.js"></script>
+<script src="animationunefois.js"></script>
+<script>
+    (function() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function updateActiveLink() {
+            let current = '';
+            const scrollPos = window.scrollY + 150;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href');
+                if (href === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+        window.addEventListener('load', updateActiveLink);
+    })();
+</script>
+</body>
+</html>
