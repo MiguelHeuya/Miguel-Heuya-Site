@@ -1,39 +1,29 @@
-
-
-
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="Image/LogoNew2 - Copy.png">
-    <title>Miguel Heuya | Data Analyst & Business Intelligence Specialist</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
-    <link href="Image/style.CSS" rel="stylesheet">
-    <link href="Image/style1.CSS" rel="stylesheet">
-    <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Miguel Heuya | Data Analyst &amp; Business Intelligence Specialist</title>
 
-  <meta name="description" content="Portfolio officiel de Miguel Heuya, Data Analyst & Business Intelligence Specialist basé à Douala, Cameroun. Découvrez mes projets en analyse de données, ingénierie de données et Business Intelligence.">
+  <meta name="description" content="Spécialiste Business Intelligence à Douala (Cameroun). Je centralise vos données et je les transforme en tableaux de bord clairs pour piloter votre activité : ce qui rapporte, ce qui coûte, quoi décider.">
   <meta name="author" content="Miguel Heuya">
   <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="keywords" content="Miguel Heuya, Data Analyst, Business Intelligence, Business Intelligence Specialist, Data Engineer, Power BI, SQL, Python, Douala, Cameroun, Analyse de données, Ingénierie de données">
+  <meta name="keywords" content="Miguel Heuya, Data Analyst, Business Intelligence, Business Intelligence Specialist, Data Engineer, Power BI, SQL, Python, Douala, Cameroun, Analyse de données, Ingénierie de données, tableau de bord">
   <meta name="language" content="French">
   <meta name="geo.region" content="CM">
   <meta name="geo.placename" content="Douala">
-  <meta name="theme-color" content="#050505">
+  <meta name="theme-color" content="#F6F3EC">
 
-  <!-- URL Canonique -->
   <link rel="canonical" href="https://miguelheuya.netlify.app/">
+  <link rel="icon" type="image/svg+xml" href="Image/favicon.svg">
+  <link rel="icon" href="Image/LogoNew2 - Copy.png">
 
-  <!-- Open Graph / Réseaux Sociaux -->
+  <!-- Open Graph / Réseaux sociaux -->
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://miguelheuya.netlify.app/">
   <meta property="og:site_name" content="Miguel Heuya">
-  <meta property="og:title" content="Miguel Heuya | Data Analyst & Business Intelligence Specialist">
-  <meta property="og:description" content="Portfolio officiel de Miguel Heuya, Data Analyst & Business Intelligence Specialist basé à Douala, Cameroun.">
+  <meta property="og:title" content="Miguel Heuya | Data Analyst &amp; Business Intelligence Specialist">
+  <meta property="og:description" content="Spécialiste Business Intelligence à Douala (Cameroun). Je centralise vos données et je les transforme en tableaux de bord clairs pour piloter votre activité : ce qui rapporte, ce qui coûte, quoi décider.">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:image" content="https://miguelheuya.netlify.app/Image/LogoNew2%20-%20Copy.png">
   <meta property="profile:first_name" content="Miguel">
@@ -41,1056 +31,669 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Miguel Heuya | Data Analyst & Business Intelligence Specialist">
-  <meta name="twitter:description" content="Portfolio officiel de Miguel Heuya, Data Analyst & Business Intelligence Specialist basé à Douala, Cameroun.">
+  <meta name="twitter:title" content="Miguel Heuya | Data Analyst &amp; Business Intelligence Specialist">
+  <meta name="twitter:description" content="Spécialiste Business Intelligence à Douala (Cameroun). Je centralise vos données et je les transforme en tableaux de bord clairs pour piloter votre activité : ce qui rapporte, ce qui coûte, quoi décider.">
   <meta name="twitter:image" content="https://miguelheuya.netlify.app/Image/LogoNew2%20-%20Copy.png">
-    <style>
-        /* Style pour le lien actif dans la navigation */
-        .nav-link.active {
-            color: #ffc70d !important;
-            text-shadow: 0 0 8px rgba(255, 202, 28, 0.5);
-            font-weight: 900;
-        }
-        /* Animation pour le fallback du chatbot */
-        @keyframes gentlePulse {
-            0%, 100% { opacity: 0.6; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.02); }
-        }
-        .chatbot-fallback {
-            animation: gentlePulse 3s ease-in-out infinite;
-            transition: all 0.3s ease;
-        }
-    </style>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&amp;family=Instrument+Sans:wght@400..700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="Image/style.css">
+  <!-- Appliqué dans <head> pour éviter tout flash lors du chargement du thème choisi -->
+  <script src="Image/theme.js"></script>
 </head>
-<body>
-    <div id="theme-sidebar" class="fixed right-6 top-1/2 z-[100] glass p-6 rounded-[30px] flex flex-col items-center border-white/10 shadow-2xl space-y-6">
-        <div class="text-center w-full">
-            <p class="text-[10px] font-black uppercase mb-3 opacity-60 tracking-widest text-white">Couleur d'Accent</p>
-            <div class="color-picker-wrapper"><input type="color" id="accent-picker" value="#ffc70d"></div>
-        </div>
-        <div class="w-full h-px bg-white/10"></div>
-        <div class="text-center w-full">
-            <p class="text-[10px] font-black uppercase mb-3 opacity-60 tracking-widest text-white">Couleur de Fond</p>
-            <div class="color-picker-wrapper"><input type="color" id="bg-picker" value="#050505"></div>
-        </div>
+<body id="top">
+  <a class="skip" href="#probleme">Aller au contenu</a>
+
+  <!-- ============ En-tête ============ -->
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="Miguel Heuya, retour en haut">
+        <span class="mark" aria-hidden="true">MH</span>
+        <span><span class="brand-name">Miguel Heuya</span><span class="brand-role">Business Intelligence</span></span>
+      </a>
+      <nav class="nav" aria-label="Navigation principale">
+        <a class="nav-link" href="#probleme">Problème</a>
+        <a class="nav-link" href="#offre">Offre</a>
+        <a class="nav-link" href="#portfolio">Réalisations</a>
+        <a class="nav-link" href="#experience">Expérience</a>
+        <a class="nav-link" href="#competences">Compétences</a>
+        <a class="nav-link" href="#ressources">Ressources</a>
+      </nav>
+      <div class="header-actions">
+        <button id="theme-toggle-btn" class="icon-btn" type="button" aria-label="Personnaliser le thème" aria-expanded="false" aria-controls="theme-panel"><i class="fas fa-palette"></i></button>
+        <a class="btn btn-primary btn-sm header-btn-contact" href="#contact">Contact</a>
+        <button id="menu-btn" class="icon-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu"><i class="fas fa-bars"></i></button>
+      </div>
     </div>
+  </header>
 
-<nav class="fixed w-full z-50 glass bg-opacity-10 backdrop-blur-md py-3">
-    <div class="container mx-auto px-6 flex justify-between items-center relative min-h-[60px]">
-        <a href="#home" class="text-white no-underline">
-            <div style="font-family: 'Allura', cursive; color: #ffc70d; opacity: 0.9; transform: rotate(-5deg); white-space: nowrap; cursor: default; font-size: clamp(1.5rem, 4vw, 2.2rem); min-width: clamp(140px, 20vw, 220px);">
-                Miguel Heuya
-            </div>
-        </a>
+  <!-- Panneau de thème -->
+  <div id="theme-panel" class="theme-panel" role="dialog" aria-label="Apparence du site" aria-hidden="true">
+    <div class="tp-head"><span class="tp-title">Apparence</span><span id="theme-custom-tag" class="tp-custom" hidden>Personnalisé</span></div>
+    <div id="theme-presets" class="presets" role="group" aria-label="Palettes de couleurs"></div>
+    <div class="tp-sep"></div>
+    <div class="tp-row"><label for="accent-picker">Couleur d'accent</label><input type="color" id="accent-picker" value="#1e5b4c"></div>
+    <div class="tp-row"><label for="bg-picker">Couleur de fond</label><input type="color" id="bg-picker" value="#f6f3ec"></div>
+    <p class="tp-note">Textes et surfaces s'adaptent automatiquement pour rester lisibles.</p>
+    <button id="theme-reset" class="tp-reset" type="button" hidden>Revenir au thème d'origine</button>
+  </div>
 
-        <div class="hidden md:flex md:absolute md:left-1/2 md:-translate-x-1/2 z-0">
-            <div class="flex space-x-3 lg:space-x-6 text-[9px] lg:text-[10px] font-bold uppercase tracking-widest items-center">
-                <a href="#profiles" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
-                    <i class="fas fa-user-circle"></i>
-                    <span>Profiles</span>
-                </a>
-                <a href="#skills" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
-                    <i class="fas fa-code"></i>
-                    <span>Compétences</span>
-                </a>
-                <a href="#career" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
-                    <i class="fas fa-briefcase"></i>
-                    <span>Parcours</span>
-                </a>
-                <a href="#training" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
-                    <i class="fas fa-thumbs-up"></i>
-                    <span>Mes recommandations</span>
-                </a>
-                <a href="#portfolio" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
-                    <i class="fas fa-folder-open"></i>
-                    <span>Réalisations</span>
-                </a>
-                <a href="https://github.com/MiguelHeuya" target="_blank" rel="noopener noreferrer" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub</span>
-                </a>
-                <a href="#contact" class="contact-btn-custom font-black ml-2 inline-flex items-center gap-1.5">
-                    <i class="fas fa-envelope"></i>
-                    <span>Contact</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0 flex items-center group" id="attractor-container">
-            <div class="hidden lg:block mr-4 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                <span class="relative px-4 py-2 bg-black border border-primary/50 text-primary text-[11px] font-black uppercase tracking-widest rounded-full shadow-[0_0_20px_rgba(var(--primary-rgb),0.4)]">
-                    Personnaliser le Thème
-                </span>
-            </div>
-            <button id="theme-toggle-btn" class="bg-primary text-black w-10 h-10 md:w-12 md:h-12 rounded-full shadow-[0_0_25px_rgba(var(--primary-rgb),0.5)] flex items-center justify-center text-lg md:text-xl hover:scale-110 transition-all duration-300 z-[110]">
-                <i class="fas fa-palette"></i>
-            </button>
-        </div>
-
-        <button id="menu-btn" class="md:hidden text-primary text-2xl z-[110] ml-auto">
-            <i class="fas fa-bars"></i>
-        </button>
+  <!-- Menu mobile -->
+  <div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Menu" aria-hidden="true">
+    <div class="mm-top">
+      <span class="brand"><span class="mark" aria-hidden="true">MH</span><span class="brand-name">Miguel Heuya</span></span>
+      <button id="close-btn" class="icon-btn" type="button" aria-label="Fermer le menu"><i class="fas fa-xmark"></i></button>
     </div>
-</nav>
+    <nav class="mm-links" aria-label="Navigation mobile">
+      <a href="#probleme">Problème <span class="mono">01</span></a>
+      <a href="#offre">Offre <span class="mono">02</span></a>
+      <a href="#portfolio">Réalisations <span class="mono">03</span></a>
+      <a href="#experience">Expérience <span class="mono">04</span></a>
+      <a href="#competences">Compétences <span class="mono">05</span></a>
+      <a href="#ressources">Ressources <span class="mono">07</span></a>
+    </nav>
+    <a class="btn btn-primary" href="#contact">Me contacter</a>
+  </div>
 
-<div id="mobile-menu" class="fixed inset-0 z-[120] bg-black/95 flex flex-col items-center justify-center space-y-8 text-xl font-bold uppercase md:hidden translate-x-full transition-transform duration-500">
-    <button id="close-btn" class="absolute top-6 right-6 text-primary text-3xl"><i class="fas fa-times"></i></button>
-    
-    <a href="#profiles" class="nav-link inline-flex items-center gap-3">
-        <i class="fas fa-user-circle"></i>
-        <span>Profiles Professionnels</span>
-    </a>
-    <a href="#skills" class="nav-link inline-flex items-center gap-3">
-        <i class="fas fa-code"></i>
-        <span>Évaluation des compétences</span>
-    </a>
-    <a href="#career" class="nav-link inline-flex items-center gap-3">
-        <i class="fas fa-briefcase"></i>
-        <span>Parcours</span>
-    </a>
-    <a href="#training" class="nav-link inline-flex items-center gap-3">
-        <i class="fas fa-thumbs-up"></i>
-        <span>Mes recommandations</span>
-    </a>
-    <a href="#portfolio" class="nav-link inline-flex items-center gap-3">
-        <i class="fas fa-folder-open"></i>
-        <span>Réalisations</span>
-    </a>
-    <a href="https://github.com/MiguelHeuya" target="_blank" rel="noopener noreferrer" class="nav-link inline-flex items-center gap-3">
-        <i class="fab fa-github"></i>
-        <span>GitHub</span>
-    </a>
-    <a href="#contact" class="contact-btn-custom font-black inline-flex items-center gap-3">
-        <i class="fas fa-envelope"></i>
-        <span>Me contacter</span>
-    </a>
-</div>
+  <main>
+    <!-- ============ Accueil ============ -->
+    <section id="home" class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow reveal"><span>Business Intelligence</span><span>Analyse de données</span><span>Ingénierie de données</span></p>
+          <h1 class="reveal" style="--d:.05s">Voyez enfin ce qui se passe <em>vraiment</em> dans votre entreprise.</h1>
+          <p class="lead reveal" style="--d:.1s">Je transforme vos données dispersées en une source fiable et en tableaux de bord clairs : ce qui rapporte, ce qui coûte, quoi décider.</p>
+          <div class="hero-actions reveal" style="--d:.15s">
+            <a class="btn btn-primary" href="https://wa.me/237679153015?text=Salut%20Miguel%20Heuya%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services%20en%20business%20intelligence%20et%20la%20fa%C3%A7on%20dont%20vous%20accompagnez%20les%20entreprises" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Écrire sur WhatsApp</a>
+            <a class="btn btn-ghost" href="#portfolio">Voir mes réalisations <i class="fas fa-arrow-down"></i></a>
+          </div>
+          <div class="hero-meta reveal" style="--d:.2s">
+            <p><strong>Miguel Heuya</strong> · Spécialiste en Business Intelligence</p>
+            <p>Analyste &amp; ingénieur de données · Douala, Cameroun</p>
+          </div>
+        </div>
 
-<section id="home" class="min-h-screen flex items-center pt-28 pb-12 relative ps-8 sm:ps-0">
-        <div class="container mx-auto px-6 pl-10 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="z-10 relative w-[150%] left-[65%] -translate-x-1/2 sm:w-full sm:left-0 sm:translate-x-0">
-                <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-4 ml-2 sm:ml-0 flex flex-row md:block whitespace-nowrap gap-3">
-                    <span>Miguel</span>
-                    <span class="text-gradient">Heuya</span>
-                </h1>
-<div class="mb-10 ml-2 sm:ml-0 max-w-2xl relative group hover:-translate-y-1 transition-all duration-500 z-10">
-    <!-- Effet de lueur en arrière-plan au survol -->
-    <div class="absolute -inset-1 bg-gradient-to-r from-primary/10 to-transparent rounded-[24px] blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-    
-    <!-- Conteneur Glassmorphic avec le motif de petits points en fond -->
-    <div class="relative glass p-6 md:p-8 rounded-[24px] border border-white/10 overflow-hidden">
-        <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 16px 16px;"></div>
-        
-        <!-- En-tête mis à jour -->
-        <div class="flex items-center space-x-4 mb-6">
-            <div class="relative">
-                <div class="absolute inset-0 bg-primary/20 blur-lg rounded-full animate-pulse"></div>
-                <i class="fas fa-briefcase text-primary text-xl"></i>
-            </div>
-            <h3 class="text-primary font-black text-lg md:text-xl uppercase tracking-[0.12em] leading-tight">
-                Spécialiste en Business Intelligence |<br> Analyste & Ingénieur de Données
-            </h3>
+        <aside class="flow reveal" style="--d:.15s" aria-label="De la donnée à la décision">
+          <div class="flow-title"><span class="tag">De la donnée à la décision</span></div>
+          <ol>
+            <li class="step">
+              <span class="step-dot">1</span>
+              <div>
+                <p class="step-title">Dispersé</p>
+                <p class="step-desc">Vos informations sont partout.</p>
+                <div class="chips"><span class="chip">Fichiers</span><span class="chip">Logiciels</span><span class="chip">Outils</span><span class="chip">Chiffres</span></div>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step-dot">2</span>
+              <div>
+                <p class="step-title">Centralisé</p>
+                <p class="step-desc">Une seule version fiable des chiffres.</p>
+                <div class="chips"><span class="chip solid">Source unique</span></div>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step-dot">3</span>
+              <div>
+                <p class="step-title">Visible</p>
+                <p class="step-desc">Des indicateurs à jour, sans effort.</p>
+                <div class="minibars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step-dot"><i class="fas fa-check" aria-hidden="true"></i></span>
+              <div>
+                <p class="step-title">Décidé</p>
+                <p class="step-desc">Des choix appuyés sur des faits.</p>
+              </div>
+            </li>
+          </ol>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ 01 — Le problème ============ -->
+    <section id="probleme" class="section">
+      <span id="profiles"></span>
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="kicker"><span class="num">01</span><span class="rule"></span><span>Le problème</span></p>
+          <h2>Le problème n'est pas le manque de données. C'est le désordre.</h2>
+          <p class="lead">Des fichiers, des logiciels, des outils, des chiffres… mais aucun système pour comprendre et piloter l'activité.</p>
         </div>
-        
-        <div class="space-y-6 relative z-10">
-            <!-- L'accroche / Mission mis à jour -->
-            <div class="relative pl-5 py-1">
-                <div class="absolute left-0 top-0 bottom-0 w-px border-l border-dashed border-white/20 opacity-40"></div>
-                <p class="text-slate-300 italic text-sm md:text-base leading-relaxed font-mono">
-                    "J’aide les entreprises à gagner en visibilité sur leurs performances, détecter les problèmes et identifier les opportunités de croissance."
-                </p>
-            </div>
-            
-            <!-- Bloc d'impact / Objectif Stratégique mis à jour -->
-            <div class="bg-white/[0.02] border border-white/5 p-4 rounded-xl">
-                <div class="flex items-center space-x-2 mb-2">
-                    <i class="fas fa-bullseye text-primary/60 text-[10px]"></i>
-                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Objectif stratégique</span>
-                </div>
-                <p class="text-slate-300 text-xs md:text-sm leading-relaxed font-mono">
-                    Permettre aux dirigeants de <span class="text-primary font-bold">comprendre réellement</span> leur activité et de prendre des décisions <span class="text-primary font-bold">fiables, rapides et éclairées</span> grâce à un système clair, structuré et exploitable.
-                </p>
-            </div>
+        <div class="ledger reveal">
+          <div class="ledger-head"><span class="tag">Aujourd'hui</span><span></span><span class="tag">Avec un système décisionnel</span></div>
+        <div class="ledger-row">
+          <p class="from">Des informations dispersées entre fichiers, personnes et outils.</p>
+          <p class="arrow-col"><span>→</span></p>
+          <p class="to">Tout est centralisé au même endroit.</p>
         </div>
+        <div class="ledger-row">
+          <p class="from">Les chiffres changent selon qui les présente.</p>
+          <p class="arrow-col"><span>→</span></p>
+          <p class="to">Une seule version fiable des chiffres.</p>
+        </div>
+        <div class="ledger-row">
+          <p class="from">Du temps perdu à chercher des réponses simples.</p>
+          <p class="arrow-col"><span>→</span></p>
+          <p class="to">L'information accessible à tout moment.</p>
+        </div>
+        <div class="ledger-row">
+          <p class="from">Des rapports qui arrivent trop tard.</p>
+          <p class="arrow-col"><span>→</span></p>
+          <p class="to">Des indicateurs mis à jour sans effort.</p>
+        </div>
+        <div class="ledger-row">
+          <p class="from">Des décisions prises « au feeling ».</p>
+          <p class="arrow-col"><span>→</span></p>
+          <p class="to">Des décisions appuyées sur des faits.</p>
+        </div>
+        </div>
+        <p class="ledger-foot reveal"><strong>Résultat :</strong> sans système, vous avancez sans réelle visibilité ni contrôle.</p>
+      </div>
+    </section>
+
+    <!-- ============ 02 — L'offre ============ -->
+    <section id="offre" class="section">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="kicker"><span class="num">02</span><span class="rule"></span><span>Mon offre</span></p>
+          <h2>Trois services, un objectif : des chiffres fiables pour décider.</h2>
+          <p class="lead">Chaque service répond à un problème précis et débouche sur un résultat concret.</p>
+        </div>
+
+        <div class="services">
+          <article class="service reveal">
+            <span class="tag">01 · Ingénierie de données</span>
+            <h3>Une source unique de vérité</h3>
+            <div class="s-row"><span class="label">Le problème</span><p>Données éparpillées, chiffres contradictoires.</p></div>
+            <div class="s-row"><span class="label">Mon travail</span><p>Je centralise, nettoie et fiabilise vos données, puis j'automatise leur circulation.</p></div>
+            <div class="s-row result"><span class="label">Votre résultat</span><p>Des chiffres fiables, à jour, accessibles à tout moment.</p></div>
+            <div class="chips"><span class="chip">Python</span><span class="chip">PostgreSQL</span><span class="chip">Data Warehouse</span></div>
+          </article>
+
+          <article class="service reveal" style="--d:.08s">
+            <span class="tag">02 · Analyse de données</span>
+            <h3>Savoir ce qui rapporte, ce qui coûte</h3>
+            <div class="s-row"><span class="label">Le problème</span><p>Vous ne savez pas ce qui vous rapporte vraiment, ni ce qui vous fait perdre de l'argent.</p></div>
+            <div class="s-row"><span class="label">Mon travail</span><p>J'analyse vos performances pour repérer les pertes, les freins et les opportunités de croissance.</p></div>
+            <div class="s-row result"><span class="label">Votre résultat</span><p>Des décisions fondées sur des faits, pas sur le feeling.</p></div>
+            <div class="chips"><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">Statistiques</span></div>
+          </article>
+
+          <article class="service reveal" style="--d:.16s">
+            <span class="tag">03 · Business Intelligence</span>
+            <h3>Un tableau de bord qui se lit d'un coup d'œil</h3>
+            <div class="s-row"><span class="label">Le problème</span><p>Des rapports en retard et des indicateurs introuvables.</p></div>
+            <div class="s-row"><span class="label">Mon travail</span><p>Je conçois des tableaux de bord Power BI clairs, alimentés par une source fiable.</p></div>
+            <div class="s-row result"><span class="label">Votre résultat</span><p>Une vision claire de votre activité pour piloter votre croissance.</p></div>
+            <div class="chips"><span class="chip">Power BI</span><span class="chip">DAX</span><span class="chip">Modélisation en étoile</span></div>
+          </article>
+        </div>
+
+        <div class="outcome reveal">
+          <div><h3>Vous <em>voyez</em></h3><p>Une vue claire de vos performances, à tout moment.</p></div>
+          <div><h3>Vous <em>comprenez</em></h3><p>Ce qui rapporte, ce qui coûte, ce qui freine.</p></div>
+          <div><h3>Vous <em>décidez</em></h3><p>Vite, avec des chiffres fiables.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 03 — Réalisations (textes strictement conservés) ============ -->
+    <section id="portfolio" class="section">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="kicker"><span class="num">03</span><span class="rule"></span></p>
+          <h2>Mes réalisations dans le domaine</h2>
+        </div>
+
+        <div class="proj-groups">
+          <div class="proj-group two">
+            <h3 class="proj-group-title">Projets en Ingénierie de données</h3>
+            <div class="proj-grid">
+            <a class="proj reveal" href="Image/engineer1.html">
+              <div class="proj-media">
+                <img src="Image/thumbs/engineer1.jpg" alt="Aperçu du projet Data Engineer" width="960" height="527" loading="lazy">
+                <span class="proj-badge">Infrastructure</span>
+              </div>
+              <div class="proj-body">
+                <h4 class="proj-title">Transformer des données dispersées en décisions rentables : un Data Warehouse décisionnel pour une vision client et produit unifiée, fiable et immédiatement exploitable et accessible</h4>
+                <p class="proj-tech">• <strong>Technique :</strong> Ingestion et orchestration centralisées (Python), transformation et Data Quality avec protection Fail-Fast (PostgreSQL), modélisation en étoile (Kimball) et historisation avancée (SCD Type 2 via Window Functions).</p>
+                <span class="proj-go" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </a>
+            <a class="proj reveal" href="Image/engineer2.html">
+              <div class="proj-media">
+                <img src="Image/thumbs/engineer2.jpg" alt="Aperçu du projet Data Engineer" width="960" height="640" loading="lazy">
+                <span class="proj-badge">Infrastructure</span>
+              </div>
+              <div class="proj-body">
+                <h4 class="proj-title">Et si vos données pouvaient enfin vous donner une vision claire de votre activité ? Découvrez comment ce Data Warehouse transforme des données dispersées en informations fiables pour mieux comprendre, analyser et décider.</h4>
+                <p class="proj-tech">• <strong>Technique :</strong>Découvrez comment j’ai conçu un Data Warehouse de bout en bout avec PostgreSQL, Python, Polars et une architecture Bronze → Silver → Gold, jusqu’à la modélisation en étoile et l’orchestration du pipeline.</p>
+                <span class="proj-go" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </a>
+            </div>
+          </div>
+          <div class="proj-group">
+            <h3 class="proj-group-title">Projets en Analyse de Données</h3>
+            <div class="proj-grid">
+            <a class="proj reveal" href="Image/analyst1.html">
+              <div class="proj-media">
+                <img src="Image/thumbs/analyst1.jpg" alt="Aperçu du projet Data Analyst" width="960" height="524" loading="lazy">
+                <span class="proj-badge">Projet</span>
+              </div>
+              <div class="proj-body">
+                <h4 class="proj-title">L'entreprise vendait beaucoup mais ignorait quels produits détruisaient sa marge. Ce projet identifies ces pertes cachées pour concentrer les efforts sur les articles rentables.</h4>
+                <p class="proj-tech">• <strong>Technique :</strong> Pipeline de données complet (ETL Python), modélisation robuste (PostgreSQL Star Schema) et calculs stratégiques (Power BI DAX).</p>
+                <span class="proj-go" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-cta reveal">
+          <a class="btn btn-ghost" href="Image/cadeau_miguel_heuya.zip" download><i class="fas fa-download"></i> Télécharger mon cadeau gratuit</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 04 — Expérience professionnelle ============ -->
+    <section id="experience" class="section">
+      <span id="career"></span>
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="kicker"><span class="num">04</span><span class="rule"></span><span>Parcours</span></p>
+          <h2>Expérience professionnelle</h2>
+        </div>
+
+        <article class="xp reveal">
+          <div class="xp-top">
+            <div>
+              <h3 class="xp-org">Faculté des Sciences — Université de Douala</h3>
+              <p class="xp-role">Analyste de données &amp; ingénieur en Business Intelligence</p>
+            </div>
+            <div class="xp-meta">
+              <span class="tag">Stage professionnel</span>
+              <strong>5 mois</strong>
+              <span class="tag">Avril – août 2026</span>
+            </div>
+          </div>
+          <div class="xp-cols">
+            <div class="xp-col">
+              <span class="label">Le problème</span>
+              <p>Les responsables de la faculté n'avaient pas de vue d'ensemble de la situation de leurs étudiants.</p>
+            </div>
+            <div class="xp-col">
+              <span class="label">Ce que j'ai construit</span>
+              <p>Une solution décisionnelle, conçue en partant de zéro, avec l'équipe et le personnel déjà en place.</p>
+            </div>
+            <div class="xp-col">
+              <span class="label">Le résultat</span>
+              <p>Les responsables comprennent et suivent la situation des étudiants, avec une vue d'ensemble pour décider.</p>
+            </div>
+          </div>
+          <div class="xp-view">
+            <span class="label">Trois angles de suivi pour la direction</span>
+            <div class="xp-axes">
+              <div class="axis"><span class="mono">01</span>Performances académiques</div>
+              <div class="axis"><span class="mono">02</span>Situation financière</div>
+              <div class="axis"><span class="mono">03</span>Situation administrative</div>
+            </div>
+          </div>
+        </article>
+
+        <div class="edu">
+          <div class="edu-card reveal">
+            <span class="label">Formation</span>
+            <h3>Génie Informatique et Décisionnel (GID)</h3>
+            <p>Formation professionnelle de 2 ans, spécialisée en analyse de données et Business Intelligence.</p>
+          </div>
+          <div class="edu-card reveal" style="--d:.08s">
+            <span class="label">En continu</span>
+            <h3>Autodidacte et communauté data</h3>
+            <p>Montée en compétences permanente sur Power BI, SQL et Python. Actif dans les collaborations, meetups et rencontres data.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05 — Compétences ============ -->
+    <section id="competences" class="section">
+      <span id="skills"></span>
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="kicker"><span class="num">05</span><span class="rule"></span><span>Compétences</span></p>
+          <h2>Les outils derrière les résultats</h2>
+        </div>
+
+        <div class="skills">
+          <div>
+            <div class="skill-group reveal">
+              <span class="tag sg-title">Visualisation &amp; BI</span>
+              <div class="skill">
+                <div class="skill-row"><span class="skill-name">Power BI Desktop</span><span class="skill-lv">90/100</span></div>
+                <div class="bar" style="--lv:90%"><i></i></div>
+              </div>
+            </div>
+            <div class="skill-group reveal">
+              <span class="tag sg-title">Langages &amp; données</span>
+              <div class="skill">
+                <div class="skill-row"><span class="skill-name">Python</span><span class="skill-lv">60/100</span></div>
+                <p class="skill-note">Analyse et ingénierie de données</p>
+                <div class="bar" style="--lv:60%"><i></i></div>
+              </div>
+              <div class="skill">
+                <div class="skill-row"><span class="skill-name">SQL &amp; PostgreSQL</span><span class="skill-lv">85/100</span></div>
+                <div class="bar" style="--lv:85%"><i></i></div>
+              </div>
+              <div class="skill">
+                <div class="skill-row"><span class="skill-name">Git &amp; GitHub</span><span class="skill-lv">65/100</span></div>
+                <div class="bar" style="--lv:65%"><i></i></div>
+              </div>
+            </div>
+            <div class="skill-group reveal">
+              <span class="tag sg-title">Automatisation &amp; CI/CD des pipelines ETL</span>
+              <div class="skill">
+                <div class="skill-row"><span class="skill-name">GitHub Actions</span><span class="skill-lv">30&nbsp;%</span></div>
+                <p class="skill-note">Planification et déclenchement automatiques de scripts Python : automatisation de base de workflows ETL.</p>
+                <div class="bar" style="--lv:30%"><i></i></div>
+              </div>
+            </div>
+            <div class="skill-group reveal">
+              <span class="tag sg-title">Fondamentaux data</span>
+              <div class="skill">
+                <div class="skill-row"><span class="skill-name">Comprendre comment la donnée opère</span><span class="skill-lv">Élevé</span></div>
+                <div class="bar" style="--lv:90%"><i></i></div>
+              </div>
+              <div class="skill">
+                <div class="skill-row"><span class="skill-name">Statistiques</span><span class="skill-lv">Niveau moyen</span></div>
+                <div class="bar" style="--lv:66.66%"><i></i></div>
+              </div>
+              <div class="skill">
+                <div class="skill-row"><span class="skill-name">Machine Learning &amp; IA</span><span class="skill-lv">Niveau moyen</span></div>
+                <div class="bar" style="--lv:55%"><i></i></div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="skill-group reveal">
+              <span class="tag sg-title">Domaines</span>
+              <div class="skill">
+                <div class="skill-row"><span class="skill-name">Analyse de données</span><span class="skill-lv">92&nbsp;%</span></div>
+                <p class="skill-note">J'exploite la donnée pour en tirer des informations utiles à la décision.</p>
+                <div class="bar" style="--lv:92%"><i></i></div>
+              </div>
+              <div class="skill">
+                <div class="skill-row"><span class="skill-name">Ingénierie de données</span><span class="skill-lv">50&nbsp;%</span></div>
+                <p class="skill-note">Je construis les fondations : une source d'information fiable.</p>
+                <div class="bar" style="--lv:50%"><i></i></div>
+              </div>
+            </div>
+            <div class="skill-group reveal">
+              <span class="tag sg-title">Façon de travailler</span>
+              <div class="skill">
+                <div class="skill-row"><span class="skill-name">Souci du détail</span><span class="skill-lv">85/100</span></div>
+                <div class="bar" style="--lv:85%"><i></i></div>
+              </div>
+              <div class="skill">
+                <div class="skill-row"><span class="skill-name">Communication</span><span class="skill-lv">70/100</span></div>
+                <div class="bar" style="--lv:70%"><i></i></div>
+              </div>
+              <div class="skill">
+                <div class="skill-row"><span class="skill-name">Pensée analytique &amp; résolution</span><span class="skill-lv">72/100</span></div>
+                <div class="bar" style="--lv:72%"><i></i></div>
+              </div>
+            </div>
+            <div class="skill-group reveal">
+              <span class="tag sg-title">Langues</span>
+              <div class="skill">
+                <div class="skill-row"><span class="skill-name">Français</span><span class="skill-lv">90&nbsp;% · langue natale</span></div>
+                <div class="bar" style="--lv:90%"><i></i></div>
+              </div>
+              <div class="skill">
+                <div class="skill-row"><span class="skill-name">Anglais</span><span class="skill-lv">65&nbsp;% · technique &amp; professionnel</span></div>
+                <p class="skill-note">Collaborer et traiter des données en environnement anglophone.</p>
+                <div class="bar" style="--lv:65%"><i></i></div>
+              </div>
+            </div>
+            <div class="ai-note reveal">
+              <span class="label">IA &amp; productivité</span>
+              <p>Je sais tirer profit de l'IA pour gagner en productivité.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 06 — Contact ============ -->
+    <section id="contact" class="section">
+      <div class="wrap">
+        <div class="contact reveal">
+          <div>
+            <p class="kicker"><span class="num">06</span><span class="rule"></span><span>Contact</span></p>
+            <h2>Parlons de votre situation.</h2>
+            <p class="lead">Décrivez-moi votre besoin en une phrase. Je vous réponds et nous voyons comment avancer.</p>
+          </div>
+          <div class="channels">
+            <a class="channel" href="https://wa.me/237679153015?text=Salut%20Miguel%20Heuya%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services%20en%20business%20intelligence%20et%20la%20fa%C3%A7on%20dont%20vous%20accompagnez%20les%20entreprises" target="_blank" rel="noopener noreferrer">
+              <span class="ci"><i class="fab fa-whatsapp"></i></span>
+              <span><span class="cl">WhatsApp</span><span class="cv">+237 679 15 30 15</span></span>
+              <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </a>
+            <a class="channel" href="https://www.linkedin.com/in/miguel-heuya-analytics-engineering-analyse-de-donn%C3%A9es-business-intelligence-specialiste-performances/" target="_blank" rel="noopener noreferrer">
+              <span class="ci"><i class="fab fa-linkedin-in"></i></span>
+              <span><span class="cl">LinkedIn</span><span class="cv">Miguel Heuya</span></span>
+              <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </a>
+            <a class="channel" href="https://github.com/MiguelHeuya" target="_blank" rel="noopener noreferrer">
+              <span class="ci"><i class="fab fa-github"></i></span>
+              <span><span class="cl">GitHub</span><span class="cv">MiguelHeuya</span></span>
+              <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="gift reveal">
+          <div>
+            <span class="tag">Cadeau gratuit</span>
+            <h3>Un tableau de bord de bureau pour vos liens</h3>
+            <p>Organisez vos liens et ressources par catégorie, et voyez lesquels vous utilisez le plus.</p>
+          </div>
+          <div class="gift-actions">
+            <a class="btn btn-primary" href="Image/cadeau_miguel_heuya.zip" download><i class="fas fa-download"></i> Télécharger mon cadeau gratuit</a>
+            <button id="gift-toggle-btn" class="btn btn-ghost" type="button" aria-expanded="false" aria-controls="gift-note">À propos du cadeau <i class="fas fa-chevron-down"></i></button>
+          </div>
+          <div id="gift-note" class="gift-note" hidden>
+            <p>Cette application de bureau est un tableau de bord personnel pour organiser, gérer et suivre l'utilisation de vos liens ou ressources.</p>
+            <ul>
+              <li><i class="fas fa-link"></i><span><strong>Gestion des liens :</strong> ajout, classement et suppression de liens et ressources par catégorie.</span></li>
+              <li><i class="fas fa-chart-line"></i><span><strong>Suivi des statistiques :</strong> clics sur chaque lien, éléments les plus populaires et graphique récapitulatif (Analytics).</span></li>
+              <li><i class="fas fa-palette"></i><span><strong>Personnalisation :</strong> couleurs du thème, citations affichées et nom d'utilisateur, sauvegardés localement dans le navigateur.</span></li>
+            </ul>
+            <p>Placez simplement l'application sur votre bureau et commencez à naviguer en toute simplicité.</p>
+          </div>
+        </div>
+
+        <p class="signature reveal">Ensemble <span>la donnée nous est donnée</span></p>
+      </div>
+    </section>
+
+    <!-- ============ 07 — Ressources ============ -->
+    <section id="ressources" class="section">
+      <span id="training"></span>
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="kicker"><span class="num">07</span><span class="rule"></span><span>Ressources</span></p>
+          <h2>Pour se lancer dans la data</h2>
+          <p class="lead">Les ressources qui m'ont servi de repère au début de ma formation.</p>
+        </div>
+
+        <div class="reco reveal">
+          <div>
+            <span class="tag">Ma recommandation n°1</span>
+            <h3>Data With Baraa</h3>
+            <p>Chaîne YouTube d'un professionnel du domaine avec plus de 17 ans d'expérience. Idéale pour compléter une formation ou apprendre en autodidacte, et devenir opérationnel sur le marché de la donnée : analyse, ingénierie, Business Intelligence.</p>
+          </div>
+          <div class="reco-links">
+            <a href="https://www.youtube.com/@DataWithBaraa" target="_blank" rel="noopener noreferrer"><span><i class="fab fa-youtube"></i>&nbsp; Voir sa chaîne YouTube</span><i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+            <a href="https://candle-gosling-511.notion.site/Data-Engineering-Roadmap-2026-Data-With-Baraa-2e534b251f128086b4cef556b8712103" target="_blank" rel="noopener noreferrer"><span>Roadmap : ingénierie de données</span><i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            <a href="https://candle-gosling-511.notion.site/Data-Analyst-Roadmap-2026-By-Data-With-Baraa-2f034b251f1280fdbf24d23dfe32a15e" target="_blank" rel="noopener noreferrer"><span>Roadmap : analyse de données</span><i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <div class="vid-block">
+          <h3>Pour apprendre</h3>
+          <div class="vids">
+          <a class="vid" href="https://www.youtube.com/watch?v=fyri49fD2yk" target="_blank" rel="noopener noreferrer">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/fyri49fD2yk/hqdefault.jpg" alt="Miniature de la vidéo : SQL" width="480" height="360" loading="lazy">
+              <span class="vid-play"><i class="fas fa-play"></i></span>
+            </div>
+            <div class="vid-title"><span>SQL</span></div>
+            <p class="vid-sub">PostgreSQL Initiation</p>
+          </a>
+          <a class="vid" href="https://www.youtube.com/watch?v=air7T8wCYkU" target="_blank" rel="noopener noreferrer">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/air7T8wCYkU/hqdefault.jpg" alt="Miniature de la vidéo : Power BI" width="480" height="360" loading="lazy">
+              <span class="vid-play"><i class="fas fa-play"></i></span>
+            </div>
+            <div class="vid-title"><span>Power BI</span></div>
+            <p class="vid-sub">Data Modeling</p>
+          </a>
+          <a class="vid" href="https://www.youtube.com/watch?v=1nVGaNbvuXg" target="_blank" rel="noopener noreferrer">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/1nVGaNbvuXg/hqdefault.jpg" alt="Miniature de la vidéo : Engineering" width="480" height="360" loading="lazy">
+              <span class="vid-play"><i class="fas fa-play"></i></span>
+            </div>
+            <div class="vid-title"><span>Engineering</span></div>
+            <p class="vid-sub">Roadmap 2026</p>
+          </a>
+          <a class="vid" href="https://www.youtube.com/watch?v=6MbN0MVaQ5Y" target="_blank" rel="noopener noreferrer">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/6MbN0MVaQ5Y/hqdefault.jpg" alt="Miniature de la vidéo : Analytics" width="480" height="360" loading="lazy">
+              <span class="vid-play"><i class="fas fa-play"></i></span>
+            </div>
+            <div class="vid-title"><span>Analytics</span></div>
+            <p class="vid-sub">Roadmap 2026</p>
+          </a>
+          <a class="vid" href="https://www.youtube.com/watch?v=J2rQTJby8XM" target="_blank" rel="noopener noreferrer">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/J2rQTJby8XM/hqdefault.jpg" alt="Miniature de la vidéo : Literacy" width="480" height="360" loading="lazy">
+              <span class="vid-play"><i class="fas fa-play"></i></span>
+            </div>
+            <div class="vid-title"><span>Literacy</span></div>
+            <p class="vid-sub">Visual Guide</p>
+          </a>
+          <a class="vid" href="https://www.youtube.com/watch?v=6cJ5Ji8zSDg" target="_blank" rel="noopener noreferrer">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/6cJ5Ji8zSDg/hqdefault.jpg" alt="Miniature de la vidéo : Portfolio" width="480" height="360" loading="lazy">
+              <span class="vid-play"><i class="fas fa-play"></i></span>
+            </div>
+            <div class="vid-title"><span>Portfolio</span></div>
+            <p class="vid-sub">SQL EDA Project</p>
+          </a>
+          </div>
+        </div>
+
+        <div class="vid-block">
+          <h3>L'actualité de la data</h3>
+          <div class="vids">
+          <a class="vid" href="https://www.youtube.com/watch?v=uCTVYf9FBQY" target="_blank" rel="noopener noreferrer">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/uCTVYf9FBQY/hqdefault.jpg" alt="Miniature de la vidéo : Data Engineering" width="480" height="360" loading="lazy">
+              <span class="vid-play"><i class="fas fa-play"></i></span>
+            </div>
+            <div class="vid-title"><span>Data Engineering</span><span class="tag">Actu 2026</span></div>
+            <p class="vid-sub">La feuille de route 2026 de l’ingénieur data : ère augmentée par l’IA.</p>
+          </a>
+          <a class="vid" href="https://www.youtube.com/watch?v=bjQIq2h4KxM" target="_blank" rel="noopener noreferrer">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/bjQIq2h4KxM/hqdefault.jpg" alt="Miniature de la vidéo : Skills 2026" width="480" height="360" loading="lazy">
+              <span class="vid-play"><i class="fas fa-play"></i></span>
+            </div>
+            <div class="vid-title"><span>Skills 2026</span><span class="tag">Stratégie</span></div>
+            <p class="vid-sub">Vos compétences en data sont-elles bientôt obsolètes face à l'IA ?</p>
+          </a>
+          <a class="vid" href="https://www.youtube.com/watch?v=zhQXO3_48SA" target="_blank" rel="noopener noreferrer">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/zhQXO3_48SA/hqdefault.jpg" alt="Miniature de la vidéo : Data Analyst" width="480" height="360" loading="lazy">
+              <span class="vid-play"><i class="fas fa-play"></i></span>
+            </div>
+            <div class="vid-title"><span>Data Analyst</span><span class="tag">Job Market</span></div>
+            <p class="vid-sub">La vérité sur le marché des Data Analysts en 2026 : Pourquoi les analystes deviennent indispensables.</p>
+          </a>
+          </div>
+        </div>
+
+        <p class="res-note">En entrée de ma formation, ces vidéos m'ont donné un repère, le vocabulaire de la data et mes premiers pas avec les outils. Je les recommande à ceux qui veulent se lancer.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ Pied de page ============ -->
+  <footer class="site-footer" id="cfooter">
+    <div class="wrap">
+      <div class="f-grid">
+        <div>
+          <a class="brand" href="#top" aria-label="Retour en haut"><span class="mark" aria-hidden="true">MH</span><span class="brand-name">Miguel Heuya</span></a>
+          <p class="tagline">Transformer la complexité de l'activité en une vision claire, exploitable et orientée performance.</p>
+        </div>
+        <div class="f-col">
+          <h4>Expertises</h4>
+          <a href="#offre">Business Intelligence</a>
+          <a href="#offre">Analyse de données</a>
+          <a href="#offre">Ingénierie de données</a>
+        </div>
+        <div class="f-col">
+          <h4>Contact</h4>
+          <a href="https://wa.me/237679153015?text=Salut%20Miguel%20Heuya%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services%20en%20business%20intelligence%20et%20la%20fa%C3%A7on%20dont%20vous%20accompagnez%20les%20entreprises" target="_blank" rel="noopener noreferrer">WhatsApp · +237 679 15 30 15</a>
+          <a href="https://www.linkedin.com/in/miguel-heuya-analytics-engineering-analyse-de-donn%C3%A9es-business-intelligence-specialiste-performances/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/MiguelHeuya" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+      <div class="f-bottom">
+        <span>&copy; 2026 Miguel HEUYA · Tous droits réservés</span>
+        <span>Conçu et développé par Miguel HEUYA</span>
+      </div>
     </div>
-</div>
-                <div class="space-y-4 mb-8 ml-2 sm:ml-0">
-                    <div class="flex items-center space-x-3 text-slate-400">
-                        <i class="fas fa-map-marker-alt text-primary"></i>
-                        <span class="text-sm font-black uppercase tracking-widest">Cameroun - Douala</span>
-                    </div>
-                    <div class="space-y-4 max-w-md">
-                        <div class="grid gap-4">
-                            <div class="glass-vivid p-4 rounded-2xl border-l-4 border-primary">
-                                <div class="flex justify-between items-center mb-2">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary"><i class="fas fa-comment-dots text-sm"></i></div>
-                                        <span class="font-bold text-white tracking-wide">Français</span>
-                                    </div>
-                                    <div class="flex flex-col items-end">
-                                        <span class="text-[10px] font-black text-primary uppercase">Langue Natale</span>
-                                        <span class="text-[10px] font-black text-primary">90%</span>
-                                    </div>
-                                </div>
-                                <div class="w-full bg-white/10 h-2 rounded-full overflow-hidden p-0.5">
-                                    <div class="animated-bar bg-primary h-full rounded-full shadow-[0_0_10px_rgba(255, 198, 9,0.4)]" data-progress="90%" style="width: 0%"></div>
-                                </div>
-                            </div>
-                            <div class="glass p-4 rounded-2xl border-l-4 border-white/10 group hover:border-primary transition-all duration-300">
-                                <div class="flex justify-between items-center mb-2">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-slate-400 group-hover:text-primary transition-colors"><i class="fas fa-globe text-sm"></i></div>
-                                        <span class="font-bold text-white tracking-wide">Anglais</span>
-                                    </div>
-                                    <div class="flex flex-col items-end">
-                                        <span class="text-[10px] font-black text-slate-500 uppercase">Technique & Professionnel</span>
-                                        <span class="text-[10px] font-black text-primary">65%</span>
-                                    </div>
-                                </div>
-                                <div class="w-full bg-white/10 h-2 rounded-full overflow-hidden p-0.5">
-                                    <div class="animated-bar bg-primary h-full transition-all duration-700" data-progress="65%" style="width: 0%"></div>
-                                </div>
-                                <p class="text-[10px] text-slate-500 mt-2 italic">Aptitude à collaborer et traiter des données en environnement anglophone.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-wrap items-center gap-6 ml-2 sm:ml-0 relative z-10">
-                    <a href="#contact" class="px-10 py-4 bg-primary text-black font-black rounded-xl hover:scale-105 transition shadow-2xl uppercase tracking-widest text-center">Me Contacter</a>
-                    <a href="Image/cadeau_miguel_heuya.zip" download class="px-10 py-4 border-2 border-primary text-primary font-black rounded-xl hover:scale-105 hover:bg-primary hover:text-black transition shadow-2xl uppercase tracking-widest text-center flex items-center justify-center gap-3"><i class="fas fa-download"></i> Télécharger mon cadeau gratuit</a>
-                    <button id="gift-toggle-btn" class="px-10 py-4 bg-gradient-to-r from-slate-900 to-slate-950 border-2 border-primary/60 text-slate-100 font-extrabold rounded-xl hover:scale-105 hover:border-primary transition-all duration-300 shadow-[0_0_15px_rgba(255, 198, 9,0.2)] hover:shadow-[0_0_25px_rgba(255, 198, 9,0.4)] uppercase tracking-widest text-center flex items-center justify-center gap-3 relative group">
-                        <span class="relative z-10">À propos du cadeau 🎁</span>
-                        <span class="absolute -top-1.5 -right-1.5 flex h-4 w-4">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-4 w-4 bg-primary"></span>
-                        </span>
-                        <div class="absolute inset-0 rounded-xl bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </button>
-                </div>
-                <div id="gift-note" class="mt-8 ml-2 sm:ml-0 text-xs text-slate-400 max-w-2xl bg-gradient-to-br from-slate-900/80 to-black p-6 rounded-xl border border-primary/30 backdrop-blur-md transform scale-90 opacity-0 pointer-events-none transition-all duration-500 ease-out h-0 overflow-hidden shadow-[0_0_30px_rgba(255, 198, 9,0.08)]">
-                    <p class="font-bold text-primary text-sm mb-4 uppercase tracking-wider flex items-center gap-2"><span>🎁</span> À propos de votre cadeau gratuit :</p>
-                    <p class="mb-5 leading-relaxed text-slate-300 text-sm">Cette application de bureau est un tableau de bord personnel qui permet d'organiser, de gérer et de suivre l'utilisation de vos liens ou ressources par catégorie, tout en offrant des statistiques d'accès et des options de personnalisation de l'affichage.</p>
-                    <ul class="space-y-3 list-none">
-                        <li class="flex items-start gap-3"><i class="fas fa-link text-primary mt-0.5 text-base"></i><div><strong class="text-slate-200">Gestion des liens :</strong> Ajout, classement et suppression de liens et ressources dans différentes catégories.</div></li>
-                        <li class="flex items-start gap-3"><i class="fas fa-chart-line text-primary mt-0.5 text-base"></i><div><strong class="text-slate-200">Suivi des statistiques :</strong> Comptage des clics sur chaque lien, avec affichage des éléments les plus populaires et un graphique récapitulatif (Analytics).</div></li>
-                        <li class="flex items-start gap-3"><i class="fas fa-palette text-primary mt-0.5 text-base"></i><div><strong class="text-slate-200">Personnalisation :</strong> Modification des couleurs du thème, des citations affichées et du nom de l'utilisateur dans l'en-tête, le tout sauvegardé localement dans le navigateur.</div></li>
-                    </ul><br>
-                    <p class="mb-5 leading-relaxed text-slate-300 text-sm">Votre navigation internet sera simplifiée et accélerée grâce à ce tableau de bord, qui vous permettra d'accéder rapidement à vos ressources préférées tout en gardant un œil sur leur utilisation.<br>Mettez simplement cette application au bureau et commencez a naviguer en toute simplicité<br><span class="phrasemiguelheuya">Ensemble la donnée nous est donnée</span></p>
-                </div>
-            </div>
-            
-        <div class="space-y-8 w-full ml-4 sm:ml-0">
-                <div class="relative group hover:-translate-y-2 transition-all duration-500 w-[150%] left-[60%] -translate-x-1/2 sm:w-full sm:left-0 sm:translate-x-0">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-primary/10 to-transparent rounded-[32px] blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-                    
-                    <div class="relative bg-gradient-to-br from-slate-950/40 to-slate-900/50 backdrop-blur-md p-8 rounded-[32px] border border-white/5 overflow-hidden shadow-2xl">
-                        <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 20px 20px;"></div>
-                        
-                        <div class="flex items-center space-x-4 mb-6">
-                            <div class="relative">
-                                <div class="absolute inset-0 bg-primary/20 blur-lg rounded-full animate-pulse"></div>
-                                <i class="fas fa-chart-line text-primary text-xl"></i>
-                            </div>
-                            <h2 class="text-white font-black text-xl uppercase tracking-[0.15em]">Votre Vision &amp; Votre Réalité</h2>
-                        </div>
-                        
-                        <div class="space-y-6 relative z-10">
-                            <div class="relative pl-6 py-2">
-                                <div class="absolute left-0 top-0 bottom-0 w-px border-l border-dashed border-primary/40 opacity-40"></div>
-                                <h4 class="text-xs font-black text-primary uppercase tracking-[0.2em] mb-3">Aujourd’hui, ce que vous voulez est simple :</h4>
-                                <ul class="space-y-2 text-slate-300 text-xs leading-relaxed font-mono">
-                                    <li><span class="text-primary font-bold mr-2">&gt;</span> savoir exactement ce qui se passe dans votre entreprise ;</li>
-                                    <li><span class="text-primary font-bold mr-2">&gt;</span> avoir une vue claire sur vos performances ;</li>
-                                    <li><span class="text-primary font-bold mr-2">&gt;</span> comprendre ce qui vous rapporte vraiment… et ce qui vous fait perdre de l’argent ;</li>
-                                    <li><span class="text-primary font-bold mr-2">&gt;</span> déterminer des opportunités de croissances et éliminer les freins ;</li>
-                                    <li><span class="text-primary font-bold mr-2">&gt;</span> prendre des decisions rapidement, avec certitude ;</li>
-                                    <li><span class="text-primary font-bold mr-2">&gt;</span> prendre des décisions sûres qui vous feront avancer au lieu de vous mener vers le désastre.</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="bg-white/[0.02] border border-white/5 p-5 rounded-xl">
-                                <div class="flex items-center space-x-2 mb-3">
-                                    <i class="fas fa-exclamation-triangle text-primary/60 text-[10px]"></i>
-                                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Mais dans la réalité</span>
-                                </div>
-                                <ul class="space-y-2 text-slate-400 text-xs leading-relaxed font-mono mb-4">
-                                    <li>• vos informations sont dispersées entre plusieurs fichiers, personnes et outils ;</li>
-                                    <li>• les chiffres changent selon qui les présente ;</li>
-                                    <li>• vous devez vérifier avant de décider ;</li>
-                                    <li>• vous perdez du temps à chercher des réponses simples ;</li>
-                                    <li>• vos rapports arrivent trop tard ;</li>
-                                    <li>• certaines décisions sont prises “au feeling” ;</li>
-                                    <li>• parfois vous prenez des décisions qui vous font regretter.</li>
-                                </ul>
-                                <p class="text-slate-300 text-xs font-mono border-t border-white/5 pt-3">
-                                    <span class="text-primary font-bold mr-2">&gt;&gt;</span> <span class="font-bold">Résultat :</span> vous avancez, mais sans réelle visibilité ni contrôle.
-                                </p>
-                            </div>
+  </footer>
 
-                            <div class="relative pl-6 py-2">
-                                <div class="absolute left-0 top-0 bottom-0 w-px border-l border-dashed border-white/20 opacity-30"></div>
-                                <p class="text-slate-300 text-xs leading-relaxed font-mono mb-3">
-                                    Et le vrai problème n’est pas un manque d’informations.
-                                </p>
-                                <p class="text-primary font-bold text-xs font-mono uppercase tracking-wide mb-4">
-                                    <span class="mr-2">&gt;</span> C’est que tout est désorganisé.
-                                </p>
-                                <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-400 font-mono mb-4 bg-black/20 p-3 rounded-lg border border-white/[0.02]">
-                                    <div>• des logiciels</div>
-                                    <div>• des fichiers</div>
-                                    <div>• des outils</div>
-                                    <div>• des chiffres</div>
-                                </div>
-                                <p class="text-slate-300 text-xs leading-relaxed font-mono">
-                                    Mais pas : <span class="text-primary font-bold">un système qui vous permet de comprendre et piloter votre activité.</span>
-                                </p>
-                            </div>
+  <button id="to-top" class="to-top" type="button" aria-label="Retour en haut de page"><i class="fas fa-arrow-up"></i></button>
 
-                            <div class="pt-4 border-t border-white/10">
-                                <div class="flex items-center space-x-2 mb-4">
-                                    <div class="h-px flex-1 bg-gradient-to-r from-primary/50 to-transparent"></div>
-                                    <span class="text-[10px] font-black text-white/60 uppercase tracking-widest">C’est là que j’interviens</span>
-                                </div>
-                                
-                                <p class="text-slate-300 text-xs font-mono mb-3">Je mets en place un système qui :</p>
-                                <ul class="space-y-2 text-slate-400 text-xs leading-relaxed font-mono mb-6 pl-4">
-                                    <li>• centralise toutes vos informations au même endroit ;</li>
-                                    <li>• garantit une seule version fiable des chiffres ;</li>
-                                    <li>• automatise la circulation des informations ;</li>
-                                    <li>• met à jour vos indicateurs sans effort ;</li>
-                                    <li>• vous donne une vision claire et exploitable à tout moment.</li>
-                                </ul>
+  <!-- Assistant (chatbot) existant -->
+  <script src="https://dashboard.causeriebot.com/widget.js" data-id="42a2c702-c477-4abf-b67c-433742160da4" data-url="https://dashboard.causeriebot.com"></script>
 
-                                <div class="bg-black/40 border border-primary/20 p-4 rounded-xl space-y-3 font-mono text-xs">
-                                    <span class="text-primary font-bold">&gt;_ Concrètement :</span>
-                                    <ul class="space-y-1 text-slate-300 pl-2">
-                                        <li><span class="text-primary font-semibold mr-1">&gt;</span> vous ne cherchez plus l’information ;</li>
-                                        <li><span class="text-primary font-semibold mr-1">&gt;</span> vous ne doutez plus des chiffres ;</li>
-                                        <li><span class="text-primary font-semibold mr-1">&gt;</span> vous ne subissez plus les problèmes.</li>
-                                    </ul>
-                                    <p class="text-primary font-bold uppercase tracking-wider pt-2 border-t border-white/5">
-                                        vous voyez, vous comprenez… et vous décidez.
-                                    </p>
-                                </div>
-
-                                <p class="text-slate-400 text-xs italic font-mono mt-5 text-center pt-2">
-                                    C’est ça la différence entre une entreprise qui avance au hasard et une entreprise qui <span class="text-primary font-semibold not-italic">pilote réellement sa croissance</span>.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-</section>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const toggleBtn = document.getElementById('gift-toggle-btn');
-        const note = document.getElementById('gift-note');
-
-        toggleBtn.addEventListener('click', () => {
-            if (note.classList.contains('opacity-0')) {
-                // Ouverture
-                note.classList.remove('opacity-0', 'scale-90', 'pointer-events-none', 'h-0');
-                note.classList.add('opacity-100', 'scale-100');
-                note.style.height = 'auto';
-            } else {
-                // Fermeture
-                note.classList.remove('opacity-100', 'scale-100');
-                note.classList.add('opacity-0', 'scale-90', 'pointer-events-none', 'h-0');
-                note.style.height = '0px';
-            }
-        });
-    });
-</script>
-
-    <style>
-        #typewriter { font-family: 'Inter', sans-serif; display: inline-block; min-height: 1.2em; }
-        @keyframes permanentBreath { 0%, 100% { transform: scale(1.05); } 50% { transform: scale(1.2); } }
-    </style>
-
-<section id="profiles" class="pt-12 pb-24 border-y border-white/5 bg-black/20 transition-all duration-500">
-        <!-- En-tête des Profils -->
-        <div class="py-6 bg-white/[0.02] transform translate-x-14 md:translate-x-0 -mr-20 md:mr-0">
-            <div class="container mx-auto px-6 pr-24 md:pr-6 text-center">
-                <div class="section-header-box">
-                    <h3 class="text-lg sm:text-2xl md:text-4xl font-black italic text-gradient uppercase tracking-[0.2em] mb-0 leading-tight">
-                        Profils Professionnels
-                    </h3>
-                </div>
-            </div>
-        </div>
-
-        <!-- Accroche Manifeste Neutre -->
-        <div class="container mx-auto px-6 my-4 text-center sm:text-center md:text-center relative z-10 max-sm:translate-x-12 sm:translate-x-0">
-            <div class="max-w-4xl mx-auto px-4">
-                <p class="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white leading-snug font-serif max-sm:text-center max-sm:mr-0">
-                    Comment j'interviens pour vous permettre de <span class="underline decoration-white/20 underline-offset-4">mieux piloter votre activité</span> et de <span class="text-slate-300 italic">garantir la croissance</span>
-                </p>
-                <!-- Séparateur minimaliste et neutre -->
-                <div class="w-16 h-[1px] bg-white/20 mx-auto mt-4"></div>
-            </div>
-        </div>
-
-        <!-- Détails des Profils -->
-<div class="container mx-auto px-6 pl-12 ml-4 md:pl-0 md:ml-0">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 w-full">
-                <!-- Profil 1 : Ingénieur de données -->
-                <div class="glass py-10 pl-6 pr-12 rounded-3xl border-l-4 border-primary hover-card transition-all duration-300 hover:-translate-y-2 flex items-center relative w-full max-md:w-[130%] max-md:ml-[0%] lg:translate-x-8">
-                    <div class="absolute top-6 right-6 flex flex-col items-end gap-1">
-                        <span class="font-['Playfair_Display'] italic text-[11px] text-white/80 tracking-wide">Niveau d'intérêt</span>
-                        <div class="text-primary text-xs">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="w-full">
-                        <h4 class="text-2xl font-black uppercase leading-tight text-primary">Ingénieur de données</h4>
-                        
-                        <!-- Phrase ajoutée en haut des compétences -->
-                        <p class="text-slate-400 text-[11px] font-mono mt-2 tracking-wide leading-relaxed">
-                            C'est ici que je construis les fondations et crée une source d'information fiable
-                        </p>
-
-                        <div class="mt-4 w-full">
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="text-xs font-black uppercase tracking-wider text-white/70">Compétences</span>
-                                <span class="text-xs font-black text-primary">50%</span>
-                            </div>
-                            <div class="w-full bg-white/5 h-2.5 rounded-full overflow-hidden border border-white/5">
-                                <div class="animated-bar bg-primary h-full" data-progress="50%" style="width: 0%"></div>
-                            </div>
-                        </div>
-                        <div class="mt-6 pl-4 border-l-2 border-primary/30 relative">
-                            <p class="font-mono text-[12px] leading-relaxed text-primary/80 pb-5 tracking-tight">
-                                <span class="opacity-40 mr-1">#</span> Je transforme le désordre informationnel en une source unique de vérité, centralisée, fiable, toujours à jour et facilement accessible afin que l'entreprise cesse de perdre du temps à chercher l'information et puisse agir avec rapidité et avec confiance.
-                            </p>
-                            <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-primary/40 to-transparent"></div>
-                        </div>
-
-                        <a href="https://candle-gosling-511.notion.site/Data-Engineering-Roadmap-2026-Data-With-Baraa-2e534b251f128086b4cef556b8712103" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center gap-2 text-primary hover:text-white text-xs font-black uppercase tracking-widest transition-colors duration-300 group/roadmap">
-                            <span>Voir la roadmap que je suis</span>
-                            <i class="fas fa-arrow-right text-[10px] group-hover/roadmap:translate-x-1 transition-transform duration-300"></i>
-                        </a>
-                        <p class="mt-6 text-slate-300 text-sm md:text-base italic font-semibold">Fait par un professionnel du domaine avec plus de 17 ans d'expérience</p>
-                        <a href="https://www.youtube.com/@DataWithBaraa" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-2 text-slate-400 hover:text-primary text-[10px] font-black uppercase tracking-widest transition-colors duration-300">
-                            <i class="fab fa-youtube"></i>
-                            <span>Voir sa chaîne YouTube</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Profil 2 : Analyste de données -->
-                <div class="glass py-10 pl-6 pr-12 rounded-3xl border-l-4 border-primary hover-card transition-all duration-300 hover:-translate-y-2 flex items-center relative w-full max-md:w-[130%] max-md:ml-[0%] lg:translate-x-8">
-                    <div class="absolute top-6 right-6 flex flex-col items-end gap-1">
-                        <span class="font-['Playfair_Display'] italic text-[11px] text-white/80 tracking-wide">Niveau d'intérêt</span>
-                        <div class="text-primary text-xs">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="w-full">
-                        <h4 class="text-2xl font-black uppercase leading-tight text-primary">Analyste de données</h4>
-                        
-                        <!-- Phrase ajoutée en haut des compétences -->
-                        <p class="text-slate-400 text-[11px] font-mono mt-2 tracking-wide leading-relaxed">
-                            J'exploite ce produit pour en tirer des informations utiles à la prise de décision
-                        </p>
-
-                        <div class="mt-4 w-full">
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="text-xs font-black uppercase tracking-wider text-white/70">Compétences</span>
-                                <span class="text-xs font-black text-primary">92%</span>
-                            </div>
-                            <div class="w-full bg-white/5 h-2.5 rounded-full overflow-hidden border border-white/5">
-                                <div class="animated-bar bg-primary h-full" data-progress="92%" style="width: 0%"></div>
-                            </div>
-                        </div>
-                        <div class="mt-6 pl-4 border-l-2 border-primary/30 relative">
-                            <p class="font-mono text-[12px] leading-relaxed text-primary/80 pb-5 tracking-tight">
-                                <span class="opacity-40 mr-1">#</span> J'aide les entreprises à mieux comprendre leur activité en transformant leurs données en décisions concrètes pour identifier ce qui fonctionne, corriger ce qui freine leur performance et améliorer leurs résultats.
-                            </p>
-                            <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-primary/40 to-transparent"></div>
-                        </div>
-
-                        <a href="https://candle-gosling-511.notion.site/Data-Analyst-Roadmap-2026-By-Data-With-Baraa-2f034b251f1280fdbf24d23dfe32a15e" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center gap-2 text-primary hover:text-white text-xs font-black uppercase tracking-widest transition-colors duration-300 group/roadmap">
-                            <span>Voir la roadmap que je suis</span>
-                            <i class="fas fa-arrow-right text-[10px] group-hover/roadmap:translate-x-1 transition-transform duration-300"></i>
-                        </a>
-                        <p class="mt-6 text-slate-300 text-sm md:text-base italic font-semibold">Fait par un professionnel du domaine avec plus de 17 ans d'expérience</p>
-                        <a href="https://www.youtube.com/@DataWithBaraa" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-2 text-slate-400 hover:text-primary text-[10px] font-black uppercase tracking-widest transition-colors duration-300">
-                            <i class="fab fa-youtube"></i>
-                            <span>Voir sa chaîne YouTube</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills" class="pt-24 pb-6 bg-white/[0.02] transform translate-x-14 md:translate-x-0 -mr-20 md:mr-0 transition-all duration-500">
-        <div class="container mx-auto px-6 pr-24 md:pr-6 text-center"><div class="section-header-box"><h3 class="text-lg sm:text-2xl md:text-4xl font-black italic text-gradient uppercase tracking-[0.2em] mb-0 leading-tight">Évaluation des compétences</h3></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10"></div></div>
-    </section>
-
-    <!-- ===== SECTION À COPIER DANS TON index.html (remplace le bloc Technical/Soft Skills) ===== -->
-<div class="container mx-auto px-6 pl-12 ml-4 md:pl-0 md:ml-0 w-full pt-4 pb-12 lg:mx-auto">
-    <div class="grid lg:grid-cols-2 gap-16 w-full items-start max-md:w-[130%] max-md:ml-[0%]">
-
-        <div class="space-y-8 w-full max-w-md md:max-w-none mx-auto lg:mx-0">
-
-            <div class="flex items-center justify-between gap-3 flex-wrap">
-                <h4 class="text-xl md:text-2xl font-black text-primary italic uppercase tracking-widest">Technical Skills</h4>
-                <span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest border border-white/10 rounded-full px-3 py-1.5">08 Compétences</span>
-            </div>
-
-            <div class="relative glass rounded-[28px] border border-white/5 overflow-hidden">
-                <div class="absolute inset-0 opacity-[0.025] pointer-events-none" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 18px 18px;"></div>
-                <div class="relative z-10 px-6 md:px-8 pt-6">
-                    <span class="inline-flex items-center bg-primary/10 border border-primary/30 px-4 py-1.5 rounded-full text-primary font-black uppercase text-[10px] tracking-[0.2em]">Visualisation & BI</span>
-                </div>
-                <div class="relative z-10 divide-y divide-white/5 mt-2">
-                    <div class="flex items-center gap-5 px-6 md:px-8 py-6 hover:bg-white/[0.02] transition-colors duration-300">
-                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-primary/5 border border-primary/20 flex items-center justify-center p-2.5">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/960px-New_Power_BI_Logo.svg.png" alt="Power BI" class="w-full h-full object-contain">
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between gap-3 mb-2.5">
-                                <span class="text-sm md:text-base font-black uppercase text-white tracking-wide">Power BI Desktop</span>
-                                <div class="flex items-center gap-1.5 shrink-0">
-                                    <span class="relative flex h-1.5 w-1.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span><span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span></span>
-                                    <span class="font-mono text-xs font-black text-primary tracking-wide">90<span class="text-primary/40">/100</span></span>
-                                </div>
-                            </div>
-                            <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden border border-white/5">
-                                <div class="skill-bar rounded-full h-full" data-progress="90%" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="relative glass rounded-[28px] border border-white/5 overflow-hidden">
-                <div class="absolute inset-0 opacity-[0.025] pointer-events-none" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 18px 18px;"></div>
-                <div class="relative z-10 px-6 md:px-8 pt-6">
-                    <span class="inline-flex items-center bg-primary/10 border border-primary/30 px-4 py-1.5 rounded-full text-primary font-black uppercase text-[10px] tracking-[0.2em]">Langages & Données</span>
-                </div>
-                <div class="relative z-10 divide-y divide-white/5 mt-2">
-
-                    <div class="flex items-center gap-5 px-6 md:px-8 py-6 hover:bg-white/[0.02] transition-colors duration-300">
-                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-primary/5 border border-primary/20 flex items-center justify-center p-2.5">
-                            <img src="https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png" alt="Python" class="w-full h-full object-contain">
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between gap-3 mb-1">
-                                <span class="text-sm md:text-base font-black uppercase text-white tracking-wide">Python</span>
-                                <span class="font-mono text-xs font-black text-primary tracking-wide shrink-0">60<span class="text-primary/40">/100</span></span>
-                            </div>
-                            <p class="text-slate-500 text-[11px] italic mb-2.5">pour l'analyse de données et l'ingénierie de données</p>
-                            <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden border border-white/5">
-                                <div class="skill-bar rounded-full h-full" data-progress="60%" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-5 px-6 md:px-8 py-6 hover:bg-white/[0.02] transition-colors duration-300">
-                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-primary/5 border border-primary/20 flex items-center justify-center p-2.5">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Logo_PostgreSQL.png" alt="PostgreSQL" class="w-full h-full object-contain">
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between gap-3 mb-2.5">
-                                <span class="text-sm md:text-base font-black uppercase text-white tracking-wide">SQL & PostgreSQL</span>
-                                <div class="flex items-center gap-1.5 shrink-0">
-                                    <span class="relative flex h-1.5 w-1.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span><span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span></span>
-                                    <span class="font-mono text-xs font-black text-primary tracking-wide">85<span class="text-primary/40">/100</span></span>
-                                </div>
-                            </div>
-                            <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden border border-white/5">
-                                <div class="skill-bar rounded-full h-full" data-progress="85%" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-5 px-6 md:px-8 py-6 hover:bg-white/[0.02] transition-colors duration-300">
-                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-primary/5 border border-primary/20 flex items-center justify-center p-2.5">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git & GitHub" class="w-full h-full object-contain">
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between gap-3 mb-2.5">
-                                <span class="text-sm md:text-base font-black uppercase text-white tracking-wide">Git & GitHub</span>
-                                <span class="font-mono text-xs font-black text-primary tracking-wide shrink-0">65<span class="text-primary/40">/100</span></span>
-                            </div>
-                            <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden border border-white/5">
-                                <div class="skill-bar rounded-full h-full" data-progress="65%" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="relative glass rounded-[28px] border border-white/5 overflow-hidden">
-                <div class="absolute inset-0 opacity-[0.025] pointer-events-none" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 18px 18px;"></div>
-                <div class="relative z-10 px-6 md:px-8 pt-6">
-                    <span class="inline-flex items-center bg-primary/10 border border-primary/30 px-4 py-1.5 rounded-full text-primary font-black uppercase text-[10px] tracking-[0.2em]">Automation & CI/CD de Pipelines ETL</span>
-                </div>
-                <div class="relative z-10 divide-y divide-white/5 mt-2">
-                    <div class="flex items-center gap-5 px-6 md:px-8 py-6 hover:bg-white/[0.02] transition-colors duration-300">
-                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-primary/5 border border-primary/20 flex items-center justify-center p-2.5">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub Actions" class="w-full h-full object-contain filter invert opacity-80">
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between gap-3 mb-1">
-                                <span class="text-sm md:text-base font-black uppercase text-white tracking-wide">GitHub Actions</span>
-                                <span class="font-mono text-xs font-black text-primary tracking-wide shrink-0">30%</span>
-                            </div>
-                            <p class="text-slate-500 text-[11px] italic mb-2.5 leading-relaxed">Planification et déclenchement automatique de scripts Python — <span class="text-primary font-bold not-italic">automatisation de base de workflows ETL.</span></p>
-                            <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden border border-white/5">
-                                <div class="skill-bar rounded-full h-full" data-progress="30%" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="relative glass rounded-[28px] border border-white/5 overflow-hidden">
-                <div class="absolute inset-0 opacity-[0.025] pointer-events-none" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 18px 18px;"></div>
-                <div class="relative z-10 px-6 md:px-8 pt-6">
-                    <span class="inline-flex items-center bg-primary/10 border border-primary/30 px-4 py-1.5 rounded-full text-primary font-black uppercase text-[10px] tracking-[0.2em]">Fondamentaux Data</span>
-                </div>
-                <div class="relative z-10 divide-y divide-white/5 mt-2">
-                    <div class="flex items-center gap-5 px-6 md:px-8 py-6 hover:bg-white/[0.02] transition-colors duration-300">
-                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-primary/5 border border-primary/20 flex items-center justify-center p-2.5">
-                            <img src="https://cdn-icons-png.flaticon.com/512/12663/12663372.png" alt="Comprendre la donnée" class="w-full h-full object-contain">
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between gap-3 mb-2.5">
-                                <span class="text-sm md:text-base font-black uppercase text-white tracking-wide">Comprendre comment la donnée opère</span>
-                                <div class="flex items-center gap-1.5 shrink-0">
-                                    <span class="relative flex h-1.5 w-1.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span><span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span></span>
-                                    <span class="font-mono text-xs font-black text-primary uppercase tracking-wide">Élevé</span>
-                                </div>
-                            </div>
-                            <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden border border-white/5">
-                                <div class="skill-bar rounded-full h-full" data-progress="90%" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-5 px-6 md:px-8 py-6 hover:bg-white/[0.02] transition-colors duration-300">
-                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-primary/5 border border-primary/20 flex items-center justify-center p-2.5">
-                            <img src="https://cdn-icons-png.flaticon.com/512/786/786695.png" alt="Statistiques" class="w-full h-full object-contain">
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between gap-3 mb-2.5">
-                                <span class="text-sm md:text-base font-black uppercase text-white tracking-wide">Statistiques</span>
-                                <span class="font-mono text-xs font-black text-primary uppercase tracking-wide shrink-0">Niveau Moyen</span>
-                            </div>
-                            <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden border border-white/5">
-                                <div class="skill-bar rounded-full h-full" data-progress="66.66%" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-5 px-6 md:px-8 py-6 hover:bg-white/[0.02] transition-colors duration-300">
-                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-primary/5 border border-primary/20 flex items-center justify-center p-2.5">
-                            <img src="https://cdn-icons-png.flaticon.com/512/8345/8345929.png" alt="Machine Learning & IA" class="w-full h-full object-contain">
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between gap-3 mb-2.5">
-                                <span class="text-sm md:text-base font-black uppercase text-white tracking-wide">Machine Learning & IA</span>
-                                <span class="font-mono text-xs font-black text-primary uppercase tracking-wide shrink-0">Niveau Moyen</span>
-                            </div>
-                            <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden border border-white/5">
-                                <div class="skill-bar rounded-full h-full" data-progress="55%" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="space-y-8 w-full max-w-md md:max-w-none mx-auto lg:mx-0">
-
-            <div class="flex items-center justify-between gap-3 flex-wrap">
-                <h4 class="text-xl md:text-2xl font-black text-primary italic uppercase tracking-widest">Soft Skills</h4>
-                <span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest border border-white/10 rounded-full px-3 py-1.5">03 Traits</span>
-            </div>
-
-            <div class="relative glass rounded-[28px] border border-white/5 overflow-hidden">
-                <div class="absolute inset-0 opacity-[0.025] pointer-events-none" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 18px 18px;"></div>
-                <div class="relative z-10 px-6 md:px-8 pt-6">
-                    <span class="inline-flex items-center bg-primary/10 border border-primary/30 px-4 py-1.5 rounded-full text-primary font-black uppercase text-[10px] tracking-[0.2em]">Profil comportemental</span>
-                </div>
-                <div class="relative z-10 divide-y divide-white/5 mt-2">
-
-                    <div class="flex items-center gap-5 px-6 md:px-8 py-6 hover:bg-white/[0.02] transition-colors duration-300">
-                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-primary/5 border border-primary/20 flex items-center justify-center p-3">
-                            <img src="https://static.thenounproject.com/png/1247089-200.png" alt="Souci du détail" class="w-full h-full object-contain">
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between gap-3 mb-2.5">
-                                <span class="text-sm md:text-base font-black uppercase text-white tracking-wide">Souci du détail</span>
-                                <div class="flex items-center gap-1.5 shrink-0">
-                                    <span class="relative flex h-1.5 w-1.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span><span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span></span>
-                                    <span class="font-mono text-xs font-black text-primary tracking-wide">85<span class="text-primary/40">/100</span></span>
-                                </div>
-                            </div>
-                            <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden border border-white/5">
-                                <div class="skill-bar rounded-full h-full" data-progress="85%" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-5 px-6 md:px-8 py-6 hover:bg-white/[0.02] transition-colors duration-300">
-                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-primary/5 border border-primary/20 flex items-center justify-center p-3">
-                            <img src="https://cdn-icons-png.flaticon.com/512/9186/9186482.png" alt="Communication" class="w-full h-full object-contain">
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between gap-3 mb-2.5">
-                                <span class="text-sm md:text-base font-black uppercase text-white tracking-wide">Communication</span>
-                                <span class="font-mono text-xs font-black text-primary tracking-wide shrink-0">70<span class="text-primary/40">/100</span></span>
-                            </div>
-                            <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden border border-white/5">
-                                <div class="skill-bar rounded-full h-full" data-progress="70%" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-5 px-6 md:px-8 py-6 hover:bg-white/[0.02] transition-colors duration-300">
-                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-primary/5 border border-primary/20 flex items-center justify-center p-3">
-                            <img src="https://cdn-icons-png.flaticon.com/512/7399/7399787.png" alt="Pensée analytique & Résolution" class="w-full h-full object-contain">
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between gap-3 mb-2.5">
-                                <span class="text-sm md:text-base font-black uppercase text-white tracking-wide">Pensée analytique & Résolution</span>
-                                <span class="font-mono text-xs font-black text-primary tracking-wide shrink-0">72<span class="text-primary/40">/100</span></span>
-                            </div>
-                            <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden border border-white/5">
-                                <div class="skill-bar rounded-full h-full" data-progress="72%" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="relative pl-6 py-2">
-                <div class="absolute left-0 top-0 bottom-0 w-px border-l border-dashed border-white/20 opacity-30"></div>
-                <p class="text-slate-400 italic text-xs md:text-sm leading-relaxed font-mono">
-                    Ces qualités se retrouvent dans chaque livrable : un travail soigné, des échanges clairs avec les parties prenantes, et une capacité à transformer un problème flou en solution structurée.
-                </p>
-            </div>
-
-        </div>
-        </div>
-</div>
-<!-- ===== FIN DE LA SECTION À COPIER ===== -->
-
-
-    <script src="Image/js1.js"></script>
-    <script src="Image/js2.js"></script>
-
-<section id="ai-section" class="py-12 px-6 overflow-hidden"> 
-        <!-- Harmonisation du conteneur parent (pl-12 ml-4) -->
-        <div class="container mx-auto px-6 pl-12 ml-4 md:pl-0 md:ml-0 w-full">
-            <!-- Application de l'élargissement (max-md:w-[130%]) pour compenser le décalage sur petit écran -->
-            <div class="ia-productivity-card group hover:bg-white/[0.03] transition-all duration-500 w-full max-md:w-[130%] max-md:ml-[0%]">
-                <div class="flex flex-row items-center gap-6 w-full">
-                    <div class="hidden sm:flex w-16 h-16 shrink-0 items-center justify-center bg-primary/10 rounded-xl border border-primary/20">
-                        <i class="fas fa-microchip text-2xl text-primary"></i>
-                    </div>
-                    <div class="flex-1 w-full">
-                        <span class="tech-tag-mini">Performance IA</span>
-                        <h3 class="text-lg md:text-2xl font-black uppercase mb-1 italic w-full">IA & <span class="text-gradient">Productivité</span></h3>
-                        <p class="text-slate-400 text-xs md:text-base font-medium italic w-full">Je sais tirer profit de l'IA pour gagner en productivité.</p>
-                    </div>
-                    <div class="flex items-center gap-2 shrink-0">
-                        <span class="relative flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                        </span>
-                        <span class="text-[9px] font-mono text-primary/70 uppercase">Active</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-<section id="career" class="py-24 border-t border-white/5 bg-white/[0.02]">
-        <div class="container mx-auto px-6 text-center mb-16"><div class="section-header-box"><h3 class="text-lg sm:text-2xl md:text-4xl font-black italic text-gradient uppercase tracking-[0.2em] mb-0 leading-tight">Parcours et Éducation</h3></div></div>
-        <div class="ps-8 sm:ps-0 overflow-visible"><div class="container mx-auto px-2 pl-10 pr-2 sm:px-6 w-full overflow-visible"><div class="max-w-4xl mx-auto space-y-12 w-full overflow-visible">
-
-            <div class="glass p-8 md:p-12 rounded-[40px] border-l-[12px] border-primary hover-card relative ml-0 w-[92vw] md:w-full">
-                <div class="absolute -top-5 left-6 md:left-10 bg-primary px-6 py-2 rounded-lg text-black font-black uppercase text-[10px]">Formation</div>
-
-                <h4 class="text-2xl md:text-3xl font-black mt-4 uppercase w-full">Formation Professionnelle en Génie Informatique et Décisionnel ( GID ) pendant 2 Ans</h4>
-                <p class="text-slate-400 text-base md:text-xl font-medium w-full mt-4">Spécialisation dans la branche de l'Analyse de données et de la Business Intelligence.</p>
-
-                <div class="w-full h-[1px] bg-white/10 my-8"></div>
-
-                <h4 class="text-2xl md:text-3xl font-black uppercase w-full">Formation Autodidacte</h4>
-                <p class="text-primary font-black italic uppercase text-[10px] md:text-xs mb-6 w-full">Perfectionnement Continu en Data & BI</p>
-                <p class="text-slate-400 text-base md:text-xl font-medium w-full">Veille technologique rigoureuse et montée en compétences en autonomie sur les outils, méthodologies et bonnes pratiques du métier (Power BI, SQL, Python), en complément du parcours académique.</p>
-            </div>
-
-            <div class="glass p-8 md:p-12 rounded-[40px] border-l-[12px] border-primary hover-card relative ml-0 w-[92vw] md:w-full shadow-[0_0_50px_rgba(var(--primary-rgb),0.15)]"><div class="absolute -top-5 left-6 md:left-10 bg-primary px-6 py-2 rounded-lg text-black font-black uppercase text-[10px]">Expérience</div><h4 class="text-2xl md:text-3xl font-black mt-4 uppercase w-full">Expérience Professionnelle</h4>
-
-                <div class="mt-6 p-6 md:p-8 rounded-3xl bg-primary/5 border-2 border-primary/40 flex flex-col md:flex-row items-center md:items-start gap-6 w-full relative overflow-hidden">
-                    <div class="flex-shrink-0 w-24 h-24 md:w-28 md:h-28 rounded-2xl bg-white flex items-center justify-center p-2 shadow-lg">
-                        <img src="Image/logofac.png" alt="Logo Faculté des Sciences de l'Université de Douala" class="w-full h-full object-contain">
-                    </div>
-                    <div class="flex-1 text-center md:text-left">
-                        <span class="inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-primary text-black mb-3">Stage Professionnel</span>
-                        <h5 class="text-xl md:text-2xl font-black uppercase leading-tight text-white">Stage Professionnel en Analyse de données et Business Intelligence à la Faculté des Sciences de l'Université de Douala</h5>
-                        <p class="text-primary font-black italic uppercase text-[10px] md:text-xs mt-3">De Avril 2026 à Août 2026</p>
-                    </div>
-                </div>
-
-                <ul class="text-slate-400 space-y-4 text-sm md:text-lg mt-6 w-full"><li class="flex items-start space-x-3 w-full"><i class="fas fa-check-circle text-primary mt-1 shrink-0"></i><span>Je participe activement à des collaborations, des meetups et des rencontres data</span></li></ul></div>
-
-        </div></div></div>
-    </section>
-
-    <section id="training" class="py-24 bg-white/[0.02] overflow-visible">
-        <div class="container mx-auto px-6 text-center mb-16"><div class="section-header-box"><h3 class="text-lg sm:text-2xl md:text-4xl font-black italic text-gradient uppercase tracking-[0.2em] mb-0 leading-tight">Mes recommandations pour ceux qui veulent se lancer dans le domaine</h3></div></div>
-        <div class="max-w-6xl mx-auto ps-20 sm:ps-0 overflow-visible transition-all duration-300"><div class="relative w-[92vw] md:w-full overflow-hidden rounded-[50px] py-10"><div class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#0f172a] to-transparent z-10 pointer-events-none"></div><div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#0f172a] to-transparent z-10 pointer-events-none"></div><div class="animate-infinite-scroll-right flex gap-10"><div class="flex gap-10 shrink-0"><a href="https://www.youtube.com/watch?v=fyri49fD2yk" target="_blank" class="glass rounded-[40px] overflow-hidden group w-[280px] md:w-[320px] shrink-0 border border-white/5 transition-all"><div class="h-44 overflow-hidden relative"><img src="https://img.youtube.com/vi/fyri49fD2yk/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-500"></div><div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500"><div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(255, 198, 9,0.4)]"><i class="fas fa-play text-black text-lg ml-1"></i></div></div></div><div class="p-6"><h4 class="text-lg font-black uppercase">SQL</h4><p class="text-slate-400 text-xs italic">PostgreSQL Initiation</p></div><div class="mt-6 flex items-center text-primary text-[10px] md:text-xs font-black uppercase tracking-widest">Regarder sur YouTube <i class="fas fa-external-link-alt ml-2"></i></div></a><a href="https://www.youtube.com/watch?v=air7T8wCYkU" target="_blank" class="glass rounded-[40px] overflow-hidden group w-[280px] md:w-[320px] shrink-0 border border-white/5 transition-all"><div class="h-44 overflow-hidden relative"><img src="https://img.youtube.com/vi/air7T8wCYkU/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-500"></div><div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500"><div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(255, 198, 9,0.4)]"><i class="fas fa-play text-black text-lg ml-1"></i></div></div></div><div class="p-6"><h4 class="text-lg font-black uppercase">Power BI</h4><p class="text-slate-400 text-xs italic">Data Modeling</p></div><div class="mt-6 flex items-center text-primary text-[10px] md:text-xs font-black uppercase tracking-widest">Regarder sur YouTube <i class="fas fa-external-link-alt ml-2"></i></div></a><a href="https://www.youtube.com/watch?v=1nVGaNbvuXg" target="_blank" class="glass rounded-[40px] overflow-hidden group w-[280px] md:w-[320px] shrink-0 border border-white/5 transition-all"><div class="h-44 overflow-hidden relative"><img src="https://img.youtube.com/vi/1nVGaNbvuXg/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-500"></div><div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500"><div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(255, 198, 9,0.4)]"><i class="fas fa-play text-black text-lg ml-1"></i></div></div></div><div class="p-6"><h4 class="text-lg font-black uppercase">Engineering</h4><p class="text-slate-400 text-xs italic">Roadmap 2026</p></div><div class="mt-6 flex items-center text-primary text-[10px] md:text-xs font-black uppercase tracking-widest">Regarder sur YouTube <i class="fas fa-external-link-alt ml-2"></i></div></a><a href="https://www.youtube.com/watch?v=6MbN0MVaQ5Y" target="_blank" class="glass rounded-[40px] overflow-hidden group w-[280px] md:w-[320px] shrink-0 border border-white/5 transition-all"><div class="h-44 overflow-hidden relative"><img src="https://img.youtube.com/vi/6MbN0MVaQ5Y/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-500"></div><div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500"><div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(255, 198, 9,0.4)]"><i class="fas fa-play text-black text-lg ml-1"></i></div></div></div><div class="p-6"><h4 class="text-lg font-black uppercase">Analytics</h4><p class="text-slate-400 text-xs italic">Roadmap 2026</p></div><div class="mt-6 flex items-center text-primary text-[10px] md:text-xs font-black uppercase tracking-widest">Regarder sur YouTube <i class="fas fa-external-link-alt ml-2"></i></div></a><a href="https://www.youtube.com/watch?v=J2rQTJby8XM" target="_blank" class="glass rounded-[40px] overflow-hidden group w-[280px] md:w-[320px] shrink-0 border border-white/5 transition-all"><div class="h-44 overflow-hidden relative"><img src="https://img.youtube.com/vi/J2rQTJby8XM/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-500"></div><div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500"><div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(255, 198, 9,0.4)]"><i class="fas fa-play text-black text-lg ml-1"></i></div></div></div><div class="p-6"><h4 class="text-lg font-black uppercase">Literacy</h4><p class="text-slate-400 text-xs italic">Visual Guide</p></div><div class="mt-6 flex items-center text-primary text-[10px] md:text-xs font-black uppercase tracking-widest">Regarder sur YouTube <i class="fas fa-external-link-alt ml-2"></i></div></a><a href="https://www.youtube.com/watch?v=6cJ5Ji8zSDg" target="_blank" class="glass rounded-[40px] overflow-hidden group w-[280px] md:w-[320px] shrink-0 border border-white/5 transition-all"><div class="h-44 overflow-hidden relative"><img src="https://img.youtube.com/vi/6cJ5Ji8zSDg/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-500"></div><div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500"><div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(255, 198, 9,0.4)]"><i class="fas fa-play text-black text-lg ml-1"></i></div></div></div><div class="p-6"><h4 class="text-lg font-black uppercase">Portfolio</h4><p class="text-slate-400 text-xs italic">SQL EDA Project</p></div><div class="mt-6 flex items-center text-primary text-[10px] md:text-xs font-black uppercase tracking-widest">Regarder sur YouTube <i class="fas fa-external-link-alt ml-2"></i></div></a></div><div class="flex gap-10 shrink-0" aria-hidden="true"></div></div></div></div>
-
-        <div class="max-w-4xl mx-auto mt-16 px-6 sm:px-0 w-[92vw] md:w-full">
-            <div class="glass rounded-[40px] overflow-hidden border-2 border-primary/40 hover-card transition-all duration-300">
-                <div class="p-8 md:p-12">
-                    <span class="inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-primary text-black mb-5">Ma recommandation n°1</span>
-                    <p class="text-slate-300 text-sm md:text-lg leading-relaxed">Que vous recherchez un complément à votre formation actuelle, ou vous souhaitez sérieusement vous former en autodidacte et devenir prêt et opérationnel pour le marché du travail de la donnée ( Analyse de données, Ingénierie de données, Business Intelligence ), je vous recommande vivement de suivre <span class="text-primary font-black">« Data With Baraa »</span>. Il s'agit en fait d'un professionnel du domaine avec plus de 17 ans d'expérience qui a créé sa chaîne YouTube pour transmettre tout ce qu'il a appris de par son expérience. C'est sérieux : grâce à lui, à ses méthodes et à ses enseignements, plusieurs personnes ont trouvé un job dans le domaine.</p>
-                </div>
-                <a href="https://www.youtube.com/@DataWithBaraa" target="_blank" rel="noopener noreferrer" class="group block relative h-40 md:h-48 bg-gradient-to-r from-black via-[#1a0000] to-red-700 overflow-hidden border-t border-white/10">
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition duration-500"></div>
-                    <div class="absolute inset-0 flex flex-col items-center justify-center gap-2">
-                        <i class="fab fa-youtube text-white text-5xl md:text-6xl drop-shadow-[0_0_20px_rgba(255,0,0,0.6)] group-hover:scale-110 transition-transform duration-500"></i>
-                        <span class="text-white font-black uppercase tracking-widest text-sm md:text-lg">Data With Baraa</span>
-                        <span class="text-white/70 text-[10px] md:text-xs uppercase tracking-widest inline-flex items-center gap-2">Voir sa chaîne YouTube <i class="fas fa-external-link-alt"></i></span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="data-news" class="py-12 bg-white/[0.01] overflow-visible">
-        <div class="ps-8 sm:ps-0 overflow-visible"><div class="container mx-auto px-2 pl-10 pr-2 sm:px-6 w-full overflow-visible"><div class="section-title-wrapper mb-16 w-full overflow-visible"><div class="section-title-glow"></div><h4 class="project-category-title text-xl md:text-2xl font-black uppercase italic w-full">Vidéos à propos de l'actu dans la data</h4><div class="title-accent-bar mr-auto md:mx-auto"></div></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 w-full overflow-visible"><a href="https://www.youtube.com/watch?v=uCTVYf9FBQY" target="_blank" class="glass rounded-[40px] overflow-hidden group hover-card block border border-white/5 ml-0 w-[92vw] md:w-full transition-all duration-300"><div class="h-48 md:h-52 overflow-hidden relative"><img src="https://img.youtube.com/vi/uCTVYf9FBQY/maxresdefault.jpg" alt="Data Engineering Roadmap 2026" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div><div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500"><div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(255, 198, 9,0.6)]"><i class="fas fa-play text-black text-xl ml-1"></i></div></div></div><div class="p-6 md:p-8 text-left w-full"><div class="flex items-center justify-between mb-4 gap-2"><h4 class="text-lg md:text-2xl font-black uppercase tracking-tight">Data Engineering</h4><span class="text-[9px] bg-primary/20 text-primary px-3 py-1 rounded-full font-black uppercase tracking-widest shrink-0">Actu 2026</span></div><p class="text-slate-400 text-xs md:text-sm font-medium italic leading-relaxed w-full">La feuille de route 2026 de l’ingénieur data : ère augmentée par l’IA.</p><div class="mt-6 flex items-center text-primary text-[10px] md:text-xs font-black uppercase tracking-widest">Regarder sur YouTube <i class="fas fa-external-link-alt ml-2"></i></div></div></a><a href="https://www.youtube.com/watch?v=bjQIq2h4KxM" target="_blank" class="glass rounded-[40px] overflow-hidden group hover-card block border border-white/5 ml-0 w-[92vw] md:w-full transition-all duration-300"><div class="h-48 md:h-52 overflow-hidden relative"><img src="https://img.youtube.com/vi/bjQIq2h4KxM/maxresdefault.jpg" alt="Data Skills Obsolescence" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div><div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500"><div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(255, 198, 9,0.6)]"><i class="fas fa-play text-black text-xl ml-1"></i></div></div></div><div class="p-6 md:p-8 text-left w-full"><div class="flex items-center justify-between mb-4 gap-2"><h4 class="text-lg md:text-2xl font-black uppercase tracking-tight">Skills 2026</h4><span class="text-[9px] bg-primary/20 text-primary px-3 py-1 rounded-full font-black uppercase tracking-widest shrink-0">Stratégie</span></div><p class="text-slate-400 text-xs md:text-sm font-medium italic leading-relaxed w-full">Vos compétences en data sont-elles bientôt obsolètes face à l'IA ?</p><div class="mt-6 flex items-center text-primary text-[10px] md:text-xs font-black uppercase tracking-widest">Regarder sur YouTube <i class="fas fa-external-link-alt ml-2"></i></div></div></a><a href="https://www.youtube.com/watch?v=zhQXO3_48SA" target="_blank" class="glass rounded-[40px] overflow-hidden group hover-card block border border-white/5 ml-0 w-[92vw] md:w-full transition-all duration-300"><div class="h-48 md:h-52 overflow-hidden relative"><img src="https://img.youtube.com/vi/zhQXO3_48SA/maxresdefault.jpg" alt="Data Analyst Job Market 2026" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div><div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500"><div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(255, 198, 9,0.6)]"><i class="fas fa-play text-black text-xl ml-1"></i></div></div></div><div class="p-6 md:p-8 text-left w-full"><div class="flex items-center justify-between mb-4 gap-2"><h4 class="text-lg md:text-2xl font-black uppercase tracking-tight">Data Analyst</h4><span class="text-[9px] bg-primary/20 text-primary px-3 py-1 rounded-full font-black uppercase tracking-widest shrink-0">Job Market</span></div><p class="text-slate-400 text-xs md:text-sm font-medium italic leading-relaxed w-full">La vérité sur le marché des Data Analysts en 2026 : Pourquoi les analystes deviennent indispensables.</p><div class="mt-6 flex items-center text-primary text-[10px] md:text-xs font-black uppercase tracking-widest">Regarder sur YouTube <i class="fas fa-external-link-alt ml-2"></i></div></div></a></div><div class="mt-12 w-full ps-8 sm:ps-0"><div class="px-6 py-6 border-t border-white/5 bg-white/[0.02] rounded-3xl w-[92vw] md:max-w-4xl mx-auto"><div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left"><div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center border border-amber-500/20"><i class="fas fa-exclamation-circle text-amber-500 text-xl"></i></div><div class="flex-1"><span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-widest bg-white/5 text-amber-500 mb-2 border border-white/10">Si vous voulez vous lancer dans la data</span><h3 class="text-lg md:text-xl font-black uppercase mb-1 italic text-white">Ceci pourrait etre<span class="text-gradient">grandement utile</span></h3><p class="text-slate-400 text-xs md:text-sm font-medium italic leading-relaxed">En entrée de ma formation, ce sont ces vidéos qui m'ont permis non seulement de me construire un repère mais aussi d'acquerir de bases qui m'ont aidé à maitriser le vocabulaire en data, comprendre profondément comment la data opère en coulisse et à faire mes premiers pas avec les outils data. Donc je recommende vivement ces vidéos à ceux qui souhaitent se lancer dans la data</p></div></div></div></div></div></div>
-    </section>
-
-    <section id="portfolio" class="py-24 bg-black/20">
-        <div class="container mx-auto px-6">
-            <section id="portfolio" class="py-24 bg-white/[0.02] transform -translate-x-14 md:translate-x-0 -ml-20 md:ml-0 transition-all duration-500"><div class="container mx-auto px-6 pl-24 md:pl-6 text-center"><div class="section-header-box"><h3 class="text-2xl sm:text-3xl md:text-4xl font-black italic text-gradient uppercase tracking-[0.2em] mb-0 leading-tight">Mes réalisations dans le domaine</h3></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10"></div></div></section>
-            <div class="mb-32 overflow-visible"><div class="section-title-wrapper mb-16 px-6"><div class="section-title-glow"></div><h4 class="project-category-title text-3xl font-black uppercase italic">Projets en Ingénierie de données</h4><div class="title-accent-bar"></div></div><div class="ps-8 sm:ps-0 overflow-visible"><div class="container mx-auto px-2 pl-10 pr-2 sm:px-6 w-full overflow-visible"><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 w-full overflow-visible"><a class='glass block rounded-[40px] overflow-hidden group hover-card w-[96vw] md:w-full -ml-4 md:ml-0 transition-all duration-300 relative' href='image/engineer1.html'><div class="absolute top-5 left-6 z-20 bg-primary px-4 py-1 rounded-lg text-black font-black uppercase text-[10px] tracking-wider">Infrastructure</div><div class="h-40 bg-white/5 flex items-center justify-center cursor-pointer overflow-hidden relative"><img src="Image/engineer1.png" alt="Aperçu du projet Data Engineer" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 transform group-hover:scale-110"><i class="fas fa-database text-7xl text-primary opacity-20 group-hover:opacity-100 transition duration-700 transform group-hover:scale-110 z-10"></i></div><div class="p-6 text-left w-full"><h4 class="text-lg font-medium font-sans tracking-wide leading-relaxed mb-4 text-primary" style="opacity: 0.8;">Transformer des données dispersées en décisions rentables : un Data Warehouse décisionnel pour une vision client et produit unifiée, fiable et immédiatement exploitable et accessible</h4><p class="text-base text-slate-200 font-medium leading-relaxed">• <strong>Technique :</strong> Ingestion et orchestration centralisées (Python), transformation et Data Quality avec protection Fail-Fast (PostgreSQL), modélisation en étoile (Kimball) et historisation avancée (SCD Type 2 via Window Functions).</p></div></a><a class='glass block rounded-[40px] overflow-hidden group hover-card w-[96vw] md:w-full -ml-4 md:ml-0 transition-all duration-300 relative' href='image/engineer2.html'><div class="absolute top-5 left-6 z-20 bg-primary px-4 py-1 rounded-lg text-black font-black uppercase text-[10px] tracking-wider">Infrastructure</div><div class="h-40 bg-white/5 flex items-center justify-center cursor-pointer overflow-hidden relative"><img src="Image/engineer2.png" alt="Aperçu du projet Data Engineer" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 transform group-hover:scale-110"><i class="fas fa-database text-7xl text-primary opacity-20 group-hover:opacity-100 transition duration-700 transform group-hover:scale-110 z-10"></i></div><div class="p-6 text-left w-full"><h4 class="text-lg font-medium font-sans tracking-wide leading-relaxed mb-4 text-primary" style="opacity: 0.8;">Et si vos données pouvaient enfin vous donner une vision claire de votre activité ? Découvrez comment ce Data Warehouse transforme des données dispersées en informations fiables pour mieux comprendre, analyser et décider.</h4><p class="text-base text-slate-200 font-medium leading-relaxed">• <strong>Technique :</strong>Découvrez comment j’ai conçu un Data Warehouse de bout en bout avec PostgreSQL, Python, Polars et une architecture Bronze → Silver → Gold, jusqu’à la modélisation en étoile et l’orchestration du pipeline.</p></div></a></div></div></div></div>
-            <div class="mb-20 overflow-visible"><div class="section-title-wrapper mb-16 px-6"><div class="section-title-glow"></div><h4 class="project-category-title text-3xl font-black uppercase italic">Projets en Analyse de Données</h4><div class="title-accent-bar"></div></div><div class="ps-8 sm:ps-0 overflow-visible"><div class="container mx-auto px-2 pl-10 pr-2 sm:px-6 w-full overflow-visible"><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 w-full overflow-visible"><a class='glass block rounded-[40px] overflow-hidden group hover-card w-[96vw] md:w-full -ml-4 md:ml-0 transition-all duration-300 relative' href='image/analyst1.html'><div class="absolute top-5 left-6 z-20 bg-primary px-4 py-1 rounded-lg text-black font-black uppercase text-[10px] tracking-wider">Projet</div><div class="h-40 bg-white/5 flex items-center justify-center cursor-pointer overflow-hidden relative"><img src="Image/analyst1.png" alt="Aperçu du projet Data Analyst" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 transform group-hover:scale-110"><i class="fas fa-chart-bar text-7xl text-primary opacity-20 group-hover:opacity-100 transition duration-700 transform group-hover:scale-110 z-10"></i></div><div class="p-6 text-left w-full"><h4 class="text-lg font-medium font-sans tracking-wide leading-relaxed mb-4 text-primary" style="opacity: 0.8;">L'entreprise vendait beaucoup mais ignorait quels produits détruisaient sa marge. Ce projet identifies ces pertes cachées pour concentrer les efforts sur les articles rentables.</h4><p class="text-base text-slate-200 font-medium leading-relaxed">• <strong>Technique :</strong> Pipeline de données complet (ETL Python), modélisation robuste (PostgreSQL Star Schema) et calculs stratégiques (Power BI DAX).</p></div></a></div></div></div></div>
-            <div class="mt-16 flex justify-center px-4 relative z-10"><a href="Image/cadeau_miguel_heuya.zip" download class="w-full sm:w-auto px-10 py-4 border-2 border-primary text-primary font-black rounded-xl hover:scale-105 hover:bg-primary hover:text-black transition shadow-2xl uppercase tracking-widest text-center flex items-center justify-center gap-3"><i class="fas fa-download"></i> Télécharger mon cadeau gratuit</a></div>
-        </div>
-    </section>
-
-<section id="contact" class="py-24 overflow-visible">
-    <div class="container mx-auto px-6 text-center"><h3 class="text-7xl font-black mb-20 italic uppercase">Me <span class="text-primary">Contacter</span></h3></div>
-    <div class="ps-8 sm:ps-0 overflow-visible"><div class="container mx-auto px-2 pl-14 pr-2 sm:px-6 w-full overflow-visible"><div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 overflow-visible"><a href="https://wa.me/237679153015?text=Salut%20Miguel%20Heuya%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services%20en%20business%20intelligence%20et%20la%20fa%C3%A7on%20dont%20vous%20accompagnez%20les%20entreprises" target="_blank" class="w-[92vw] md:w-full"><div class="glass-vivid p-14 md:p-16 rounded-[50px] flex flex-col items-center text-center hover:bg-green-500 hover:scale-105 transition-all duration-500 group shadow-2xl border-amber-500/20 h-full cursor-pointer" id="whatsapp"><div class="w-28 h-28 bg-[#25D366] rounded-full flex items-center justify-center text-5xl mb-8 group-hover:bg-black group-hover:text-[#25D366] transition shadow-2xl text-white"><i class="fab fa-whatsapp"></i></div><h4 class="text-3xl md:text-4xl font-black mb-2 group-hover:text-black uppercase tracking-tighter text-white">WhatsApp</h4><span class="text-xs font-bold uppercase tracking-widest mb-4 opacity-60 group-hover:text-black group-hover:opacity-100 text-white/60">Laisser un message WhatsApp d'ici</span><p class="text-green-400 group-hover:text-black font-bold text-lg md:text-xl break-all leading-relaxed">+237 679 15 30 15</p></div></a><a href="https://www.linkedin.com/in/miguel-heuya-analytics-engineering-analyse-de-donn%C3%A9es-business-intelligence-specialiste-performances/" target="_blank" class="w-[92vw] md:w-full"><div class="glass-vivid p-14 md:p-16 rounded-[50px] flex flex-col items-center text-center hover:bg-[#0077b5] hover:scale-105 transition-all duration-500 group shadow-2xl border-amber-500/20 h-full cursor-pointer" id="linkedin"><div class="w-28 h-28 bg-[#0077b5] rounded-full flex items-center justify-center text-5xl mb-8 group-hover:bg-white group-hover:text-[#0077b5] transition shadow-2xl text-white"><i class="fab fa-linkedin-in"></i></div><h4 class="text-3xl md:text-4xl font-black mb-2 group-hover:text-white uppercase tracking-tighter text-white">LinkedIn</h4><span class="text-xs font-bold uppercase tracking-widest mb-4 opacity-60 group-hover:text-white group-hover:opacity-100 text-white/60">Rechercher sur LinkedIn</span><p class="text-slate-400 group-hover:text-white font-black text-xl md:text-2xl tracking-[0.25em] mb-4">MIGUEL HEUYA</p><span class="text-sm font-medium italic opacity-50 group-hover:text-white group-hover:opacity-100 transition duration-300 text-white">Ou cliquer ici</span></div></a></div></div></div>
-</section>
-
-    <div class="ps-10 sm:ps-0 overflow-hidden"><div class="container mx-auto px-6 pl-14 sm:px-6 pb-20 mt-10 w-full"><div class="max-w-5xl mx-auto border-t border-white/10 pt-20 text-center w-full"><h2 class="text-4xl md:text-6xl font-black tracking-tighter leading-[1.1]"><span class="text-white/40 block mb-2">J’améliore en continu mes méthodes pour</span><span class="text-primary italic uppercase">apporter des solutions concrètes</span><span class="block mt-6 text-white/80 text-2xl md:text-3xl font-light italic leading-relaxed font-mono tracking-wide">aux entreprises, afin de les aider à prendre de meilleures décisions et améliorer leurs résultats.</span></h2><div class="title-accent-bar mx-auto mt-12 opacity-50 w-32 h-1.5"></div></div></div></div>
-
-    <div class="ps-10 sm:ps-0 overflow-hidden">
-        <section class="py-40 relative overflow-hidden bg-white/[0.01] pl-14 sm:pl-0">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/3 -translate-y-1/2 text-[20vw] font-black text-white/[0.02] uppercase select-none pointer-events-none">MIGUEL HEUYA</div>
-            <div class="container mx-auto px-6 relative z-10 w-full"><div class="max-w-5xl mx-auto flex flex-col items-center"><div class="w-px h-32 bg-gradient-to-b from-transparent via-primary to-transparent mb-12"></div><div class="mb-12"><img src="Image/LogoNew Copie - Copie (2).png" alt="HSML Logo" class="h-32 w-auto animate-pulse transition-all duration-500 cursor-pointer hover:animate-none hover:scale-110" style="filter: drop-shadow(0 0 30px var(--primary));" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='drop-shadow(0 0 30px var(--primary))'"></div><h2 class="text-2xl md:text-4xl lg:text-5xl font-black normal-case tracking-normal text-center leading-snug max-w-4xl mx-auto"><span class="block text-white drop-shadow-[0_0_20px_rgba(255, 198, 9,0.3)]">Et si vous pouviez enfin savoir, à tout moment, ce qui se passe réellement dans votre entreprise ?</span></h2><p class="mt-6 text-primary italic font-medium normal-case tracking-normal text-base md:text-xl lg:text-2xl text-center max-w-3xl mx-auto leading-relaxed">Je transforme vos données dispersées en un système clair qui vous permet de voir, comprendre et décider et surtout piloter votre croissance</p><div class="mt-16 flex flex-wrap items-center justify-center gap-6 relative z-10"><div class="relative group"><div class="absolute -inset-1 bg-primary rounded-xl blur-lg opacity-40 group-hover:opacity-75 transition duration-500"></div><a href="Image/cadeau_miguel_heuya.zip" download class="relative px-10 py-4 border-2 border-primary text-primary font-black rounded-xl hover:scale-105 hover:bg-primary hover:text-black transition shadow-2xl uppercase tracking-widest text-center flex items-center justify-center gap-3"><i class="fas fa-download"></i> Télécharger mon cadeau gratuit</a></div></div><div class="mt-16 flex flex-row items-center justify-center gap-8"><div class="w-4 h-4 rounded-full bg-primary animate-bounce shadow-[0_0_20px_rgba(255, 198, 9,0.6)]"></div><div class="w-4 h-4 rounded-full bg-primary animate-[bounce_1s_infinite_200ms] shadow-[0_0_20px_rgba(255, 198, 9,0.3)]"></div><div class="w-4 h-4 rounded-full bg-primary animate-[bounce_1s_infinite_400ms] shadow-[0_0_20px_rgba(255, 198, 9,0.3)]"></div><div class="w-4 h-4 rounded-full bg-primary animate-[bounce_1s_infinite_600ms] shadow-[0_0_20px_rgba(255, 198, 9,0.3)]"></div><div class="w-4 h-4 rounded-full bg-primary animate-[bounce_1s_infinite_800ms] shadow-[0_0_20px_rgba(255, 198, 9,0.3)]"></div></div></div></div>
-        </section>
-    </div>
-
-<footer class="mt-20 border-t border-white/5 bg-gradient-to-b from-black/40 to-black/80 backdrop-blur-md overflow-hidden relative" id="cfooter">
-        <!-- Fond filigrane premium -->
-        <div class="absolute bottom-[-20px] right-[-10px] text-[120px] md:text-[200px] font-black italic text-white/[0.04] pointer-events-none select-none z-0">Miguel Heuya</div>
-        
-        <div class="ps-8 sm:ps-0 overflow-visible relative z-10">
-            <div class="container mx-auto px-2 pl-10 pr-4 sm:px-6 py-16 w-full overflow-visible">
-                
-                <!-- Grille principale à 3 colonnes de taille asymétrique pour un effet plus design -->
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-16 mb-16 overflow-visible">
-                    
-                    <!-- Colonne 1 : Identité & Proposition de valeur Data (Prend 5 colonnes sur 12) -->
-                    <div class="flex flex-col space-y-6 w-[92vw] md:w-full md:col-span-5 overflow-visible">
-                        <div class="relative group">
-                            <!-- Conteneur Logo d'origine conservé avec ses animations -->
-                            
-                            <div class="text-4xl md:text-5xl font-black italic tracking-tighter text-gradient leading-none">Miguel Heuya</div>
-                            
-                            <!-- Style CSS d'origine et barre d'animation préservés (Ajustement de la marge) -->
-                            <style>@keyframes slide {0%, 100% { transform: translateX(0); } 50% { transform: translateX(150%); }}.animate-slide { animation: slide 2s ease-in-out infinite; }</style>
-                            <div class="mt-3 mb-4">
-                                <div class="w-16 h-1 bg-primary rounded-full shadow-[0_0_20px_#ffc70d] animate-slide"></div>
-                            </div>
-                            
-                            <div class="mt-2 text-white font-black uppercase tracking-tighter italic text-lg opacity-100">Miguel<span class="text-primary">Heuya</span></div>
-                        </div>
-                        
-                        <!-- Texte nettoyé : Focus pur Data / Business Intelligence -->
-                        <p class="text-slate-400 text-sm italic leading-relaxed max-w-sm">
-                            Transformer la complexité de l’activité en une vision claire, exploitable et orientée performance.
-                        </p>
-                        
-                        <!-- Réseaux Sociaux avec l'effet hover-liquid d'origine préservé -->
-<div class="flex flex-wrap gap-3 pt-2 overflow-visible">
-    <!-- Bouton LinkedIn Pro -->
-    <a href="https://www.linkedin.com/in/miguel-heuya-analytics-engineering-analyse-de-donn%C3%A9es-business-intelligence-specialiste-performances/" target="_blank" rel="noopener noreferrer" class="group relative flex items-center justify-center h-12 w-12 rounded-xl border border-white/5 bg-white/[0.02] transition-all duration-500 hover:border-primary/50 hover:-translate-y-1 hover-liquid overflow-visible">
-        <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 blur-xl bg-primary/20 transition-opacity duration-500"></div>
-        <i class="fab fa-linkedin-in text-lg text-slate-400 group-hover:text-primary transition-colors duration-300 relative z-10"></i>
-        <div class="absolute bottom-1 w-0 h-0.5 bg-primary group-hover:w-1/2 transition-all duration-500 rounded-full"></div>
-    </a>
-    
-    <!-- Bouton WhatsApp Business -->
-    <a href="https://wa.me/237679153015?text=Salut%20Miguel%20Heuya%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services%20en%20business%20intelligence%20et%20la%20fa%C3%A7on%20dont%20vous%20accompagnez%20les%20entreprises" target="_blank" rel="noopener noreferrer" class="group relative flex items-center justify-center h-12 w-12 rounded-xl border border-white/5 bg-white/[0.02] transition-all duration-500 hover:border-primary/50 hover:-translate-y-1 hover-liquid overflow-visible">
-        <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 blur-xl bg-primary/20 transition-opacity duration-500"></div>
-        <i class="fab fa-whatsapp text-lg text-slate-400 group-hover:text-primary transition-colors duration-300 relative z-10"></i>
-        <div class="absolute bottom-1 w-0 h-0.5 bg-primary group-hover:w-1/2 transition-all duration-500 rounded-full"></div>
-    </a>
-</div>
-                        
-                        <style>@keyframes liquid-pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 200, 18, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(214, 164, 0, 0); } 100% { box-shadow: 0 0 0 0 rgba(216, 166, 0, 0); }}.hover-liquid:hover { animation: liquid-pulse 1.5s infinite; background: rgba(255, 201, 22, 0.1); }</style>
-                    </div>
-                    
-                    <!-- Colonne 2 : Ingénieries Decisionnelles (Prend 4 colonnes sur 12) -->
-                    <div class="flex flex-col space-y-6 w-[92vw] md:w-full md:col-span-4">
-                        <h4 class="text-primary font-black uppercase tracking-[0.2em] text-[11px] flex items-center">
-                            <span class="w-4 h-px bg-primary/50 mr-2"></span> Domaines d'Expertise
-                        </h4>
-                        <ul class="space-y-4">
-                            <li>
-                                <a href="#profiles" class="group flex flex-col space-y-0.5">
-                                    <span class="text-white/90 group-hover:text-primary transition-colors text-sm uppercase font-black italic tracking-wide">Business Intelligence</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#profiles" class="group flex flex-col space-y-0.5">
-                                    <span class="text-white/90 group-hover:text-primary transition-colors text-sm uppercase font-black italic tracking-wide">Analyse de Données</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#profiles" class="group flex flex-col space-y-0.5">
-                                    <span class="text-white/90 group-hover:text-primary transition-colors text-sm uppercase font-black italic tracking-wide">Ingénierie de Données</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Colonne 3 : Contact & Hub (Prend 3 colonnes sur 12) -->
-<div class="flex flex-col space-y-6 w-[92vw] md:w-full md:col-span-3">
-    <h4 class="text-primary font-black uppercase tracking-[0.2em] text-[11px] flex items-center">
-        <span class="w-4 h-px bg-primary/50 mr-2"></span> Contacts Directs
-    </h4>
-    <div class="space-y-5 text-slate-300">
-        <!-- Lien WhatsApp avec message d'accroche personnalisé -->
-        <a href="https://wa.me/237679153015?text=Salut%20Miguel%20Heuya%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services%20en%20business%20intelligence%20et%20la%20fa%C3%A7on%20dont%20vous%20accompagnez%20les%20entreprises" target="_blank" rel="noopener noreferrer" class="group flex flex-col p-3 rounded-xl border border-white/[0.03] bg-white/[0.01] hover:border-primary/20 hover:bg-white/[0.02] transition-all duration-300">
-            <span class="text-[10px] text-slate-500 uppercase font-black tracking-wider mb-1 flex items-center gap-1.5">
-                <i class="fab fa-whatsapp text-emerald-500 text-xs"></i> Contact WhatsApp
-            </span>
-            <span class="group-hover:text-primary transition-colors text-xs font-medium italic font-mono">+237 679 15 30 15</span>
-        </a>
-
-        <!-- Lien LinkedIn Pro Exécutif -->
-        <a href="https://www.linkedin.com/in/miguel-heuya-analytics-engineering-analyse-de-donn%C3%A9es-business-intelligence-specialiste-performances/" target="_blank" rel="noopener noreferrer" class="group flex flex-col p-3 rounded-xl border border-white/[0.03] bg-white/[0.01] hover:border-primary/20 hover:bg-white/[0.02] transition-all duration-300">
-            <span class="text-[10px] text-slate-500 uppercase font-black tracking-wider mb-1 flex items-center gap-1.5">
-                <i class="fab fa-linkedin-in text-sky-500 text-xs"></i> Profil Professionnel
-            </span>
-            <span class="group-hover:text-primary transition-colors text-xs break-all font-medium italic font-mono">LinkedIn &bull; Miguel Heuya</span>
-        </a>
-    </div>
-</div>
-                </div>
-                
-                <!-- Section Basse : Droits d'auteur & Bouton d'Ancre Fixe d'origine -->
-                <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center md:items-end space-y-4 md:space-y-0 relative z-10">
-                    <div class="flex flex-col space-y-2 text-center md:text-left">
-                        <div class="text-[9px] md:text-[10px] text-slate-500 uppercase tracking-[0.35em] font-medium leading-relaxed">
-                            &copy; 2026 Miguel HEUYA <span class="text-slate-700">|</span> Tous droits réservés <span class="text-slate-700">|</span> Conçu et développé par MIGUEL HEUYA
-                        </div>
-                        <div class="text-[9px] text-slate-600 font-mono uppercase tracking-widest italic">
-                            Data Ingénierie Era &bull; 2026 Portfolio
-                        </div>
-                    </div>
-                    
-                    <!-- Bouton fixe d'origine vers le footer (Images et animations préservées sans altérer le JS) -->
-                    <a href="#cfooter">
-                        <div class="fixed bottom-6 right-6 z-[9999] h-14 w-14 md:h-16 md:w-16 hover:scale-110 transition-all duration-300 cursor-pointer filter drop-shadow-[0_0_15px_rgba(255, 198, 9,0.3)]">
-                            <img src="Image/LogoNew2 - Copy.png" alt="HSML Secondary" class="absolute inset-0 w-full h-full object-contain animate-sophisticated-morph-1">
-                            <img src="Image/LogoNew Copie - Copie (2).png" alt="HSML Primary" class="absolute inset-0 w-full h-full object-contain animate-sophisticated-morph-2">
-                        </div>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </footer>
-
-    <script src="Image/theme.js"></script>
-    <script src="Image/animationunefois.js"></script>
-    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-    <script src="https://dashboard.causeriebot.com/widget.js" data-id="42a2c702-c477-4abf-b67c-433742160da4" data-url="https://dashboard.causeriebot.com"></script>
-    <!-- Script pour l'activation des liens de navigation lors du scroll -->
-    <script>
-        (function() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            function updateActiveLink() {
-                let current = '';
-                const scrollPos = window.scrollY + 150;
-                
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.offsetHeight;
-                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                        current = section.getAttribute('id');
-                    }
-                });
-                
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    const href = link.getAttribute('href');
-                    if (href === `#${current}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-            
-            window.addEventListener('scroll', updateActiveLink);
-            window.addEventListener('load', updateActiveLink);
-        })();
-    </script>
-    <script type="application/ld+json">
-        {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Miguel Heuya",
-        "alternateName": "Miguel HEUYA",
-        "url": "https://miguelheuya.netlify.app/",
-        "image": "https://miguelheuya.netlify.app/Image/LogoNew2%20-%20Copy.png",
-        "jobTitle": ["Data Analyst", "Business Intelligence Specialist"],
-        "description": "Data Analyst & Business Intelligence Specialist basé à Douala, Cameroun, spécialisé en Power BI, SQL et ingénierie de données.",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Douala",
-            "addressCountry": "Cameroon"
-        },
-        "knowsAbout": ["Business Intelligence", "Data Analysis", "Data Engineering", "Power BI", "SQL", "Python"],
-        "sameAs": [
-            "https://github.com/MiguelHeuya",
-            "https://www.linkedin.com/in/miguel-heuya-analytics-engineering-analyse-de-donn%C3%A9es-business-intelligence-specialiste-performances/"
-        ]
-        }
-    </script>
-    <script type="application/ld+json">
-        {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Miguel Heuya | Portfolio",
-        "url": "https://miguelheuya.netlify.app/",
-        "author": {
-            "@type": "Person",
-            "name": "Miguel Heuya"
-        }
-        }
-    </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Miguel Heuya",
+    "alternateName": "Miguel HEUYA",
+    "url": "https://miguelheuya.netlify.app/",
+    "image": "https://miguelheuya.netlify.app/Image/LogoNew2%20-%20Copy.png",
+    "jobTitle": ["Data Analyst", "Business Intelligence Specialist"],
+    "description": "Data Analyst & Business Intelligence Specialist basé à Douala, Cameroun, spécialisé en Power BI, SQL et ingénierie de données.",
+    "address": { "@type": "PostalAddress", "addressLocality": "Douala", "addressCountry": "Cameroon" },
+    "knowsAbout": ["Business Intelligence", "Data Analysis", "Data Engineering", "Power BI", "SQL", "Python"],
+    "sameAs": [
+      "https://github.com/MiguelHeuya",
+      "https://www.linkedin.com/in/miguel-heuya-analytics-engineering-analyse-de-donn%C3%A9es-business-intelligence-specialiste-performances/"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Miguel Heuya | Portfolio",
+    "url": "https://miguelheuya.netlify.app/",
+    "author": { "@type": "Person", "name": "Miguel Heuya" }
+  }
+  </script>
 </body>
 </html>

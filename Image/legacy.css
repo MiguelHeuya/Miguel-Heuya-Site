@@ -1,0 +1,165 @@
+/* ==========================================================================
+   Pages de réalisations (analyst1, engineer1, engineer2)
+   Reprise visuelle uniquement : les textes et la structure du contenu sont
+   inchangés. Les classes Tailwind d'origine sont rattachées aux couleurs du
+   thème (style.css + theme.js) pour que tous les thèmes restent lisibles.
+   ========================================================================== */
+
+body.legacy {
+  --c-red: #F87171; --c-green: #4ADE80; --c-blue: #60A5FA; --c-orange: #FB923C;
+  --c-yellow: #FACC15; --c-purple: #C084FC; --c-rose: #FB7185; --c-teal: #2DD4BF;
+  --medal-bronze: #E0A464; --medal-silver: #C7CBD1;
+  font-family: var(--sans); background: var(--bg); color: var(--text); overflow-x: hidden; font-size: 1.0625rem;
+}
+/* Sur fond clair, les teintes « 400 » (pensées pour le sombre) passent en versions foncées */
+html[data-mode="light"] body.legacy {
+  --c-red: #B91C1C; --c-green: #166534; --c-blue: #1D4ED8; --c-orange: #C2410C;
+  --c-yellow: #854D0E; --c-purple: #7E22CE; --c-rose: #BE123C; --c-teal: #115E59;
+  --medal-bronze: #8A5320; --medal-silver: #4B5563;
+}
+
+/* ---------- Couleurs de texte ---------- */
+body.legacy .text-white,
+body.legacy .text-slate-100,
+body.legacy .text-slate-200 { color: var(--text) !important; }
+body.legacy .text-slate-300 { color: color-mix(in srgb, var(--text) 84%, var(--bg)) !important; }
+body.legacy .text-slate-400,
+body.legacy .text-slate-500,
+body.legacy .text-slate-600,
+body.legacy [class*="text-white/60"] { color: var(--muted) !important; }
+body.legacy [class*="text-white/20"],
+body.legacy [class*="text-white/30"] { color: var(--muted) !important; }
+body.legacy .text-primary,
+body.legacy [class*="text-primary/"] { color: var(--accent-text) !important; }
+body.legacy .text-red-400 { color: var(--c-red) !important; }
+body.legacy .text-green-400 { color: var(--c-green) !important; }
+body.legacy .text-blue-400 { color: var(--c-blue) !important; }
+body.legacy .text-orange-400 { color: var(--c-orange) !important; }
+body.legacy .text-yellow-400 { color: var(--c-yellow) !important; }
+body.legacy .text-purple-400 { color: var(--c-purple) !important; }
+body.legacy .text-rose-400 { color: var(--c-rose) !important; }
+body.legacy .text-teal-400 { color: var(--c-teal) !important; }
+body.legacy .text-black { color: var(--accent-ink) !important; }
+body.legacy .hover\:text-primary:hover, body.legacy .group:hover .group-hover\:text-primary { color: var(--accent-text) !important; }
+body.legacy .hover\:text-white:hover { color: var(--text) !important; }
+body.legacy .hover\:text-black:hover, body.legacy .group:hover .group-hover\:text-black { color: var(--accent-ink) !important; }
+
+/* Médailles (couleurs écrites en dur dans les pages) */
+body.legacy [style*="color:#cd7f32"] { color: var(--medal-bronze) !important; }
+body.legacy [style*="color:#c0c0c0"] { color: var(--medal-silver) !important; }
+
+/* ---------- Fonds & bordures ---------- */
+body.legacy .bg-primary,
+body.legacy .hover\:bg-primary:hover,
+body.legacy .group:hover .group-hover\:bg-primary { background-color: var(--accent) !important; }
+body.legacy [class*="bg-primary/"],
+body.legacy .hover\:bg-primary\/10:hover { background-color: var(--accent-soft) !important; }
+body.legacy .bg-black, body.legacy [class*="bg-black/"],
+body.legacy .bg-white\/5, body.legacy .bg-white\/10 { background-color: var(--surface-2) !important; }
+body.legacy .border-primary, body.legacy .hover\:border-primary:hover { border-color: var(--accent-text) !important; }
+body.legacy [class*="border-primary/"] { border-color: color-mix(in srgb, var(--accent-text) 38%, var(--line)) !important; }
+body.legacy [class*="border-white/"] { border-color: var(--line) !important; }
+body.legacy .border-white\/30 { border-color: var(--strong-line) !important; }
+/* Dégradés : plus de fondu vers le noir (sauf voiles sur images) */
+body.legacy [class*="to-black"] { --tw-gradient-to: transparent !important; --tw-gradient-stops: var(--tw-gradient-from), transparent !important; }
+body.legacy [class*="from-black"] { --tw-gradient-from: rgba(0,0,0,.78) !important; --tw-gradient-to: rgba(0,0,0,0) !important; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important; }
+body.legacy [class*="from-black"], body.legacy [class*="from-black"] * { color: #fff !important; }
+/* Cartes « médaille » à dégradé écrit en dur */
+body.legacy [style*="linear-gradient(135deg"]:not([style*="blur"]) { background: var(--surface) !important; }
+body.legacy [style*="blur(6px)"] { display: none !important; }
+
+/* ---------- Surfaces ---------- */
+body.legacy .glass { background: var(--surface); border: 1px solid var(--line); backdrop-filter: none; -webkit-backdrop-filter: none; }
+body.legacy .glass-gold { background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent-text) 30%, var(--line)); backdrop-filter: none; -webkit-backdrop-filter: none; }
+body.legacy .shadow-2xl { box-shadow: 0 24px 48px -28px rgba(0, 0, 0, .35); }
+body.legacy [class*="shadow-[0_0"] { box-shadow: none !important; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--text) 28%, transparent); border-radius: 99px; }
+
+/* ---------- Décors supprimés (sobriété) ---------- */
+.hero-mesh, .grid-dots, .glow-orb, .code-bg, .quote-section::before { display: none !important; }
+body.legacy::before { display: none; }
+.pulse-dot { animation: none; }
+body.legacy [style*="opacity: 0.04"] { display: none !important; } /* filigrane de code décoratif */
+
+/* ---------- Composants ---------- */
+.gradient-free, .text-gradient { background: none !important; -webkit-background-clip: initial !important; background-clip: initial !important; -webkit-text-fill-color: currentColor !important; color: var(--accent-text) !important; font-style: italic; }
+.section-num { font-family: var(--mono); font-size: .7rem; font-weight: 500; color: var(--accent-text); text-transform: uppercase; letter-spacing: .16em; display: flex; align-items: center; gap: 12px; }
+.section-num::before { content: ''; display: block; width: 36px; height: 1px; background: var(--strong-line); }
+.title-line { width: 48px; height: 2px; background: var(--accent); border-radius: 2px; margin-top: 14px; box-shadow: none; }
+.section-divider { width: 1px; height: 56px; background: var(--line); margin: 0 auto; }
+.hover-card { transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.hover-card:hover { transform: translateY(-3px); border-color: var(--accent-text) !important; box-shadow: 0 22px 40px -28px rgba(0, 0, 0, .45); }
+.step-badge { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent-text) 35%, var(--line)); color: var(--accent-text); font-family: var(--mono); font-size: .72rem; font-weight: 600; flex-shrink: 0; }
+.tech-tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 99px; background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent-text) 28%, var(--line)); color: var(--accent-text); font-family: var(--mono); font-size: 10.5px; font-weight: 500; text-transform: uppercase; letter-spacing: .08em; }
+.tech-tag-mini { font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; color: var(--accent-text); text-transform: uppercase; font-weight: 500; margin-bottom: .25rem; display: block; }
+.badge-bronze, .badge-silver, .badge-gold { border-radius: 99px; }
+.badge-bronze { background: color-mix(in srgb, var(--medal-bronze) 14%, transparent); border: 1px solid color-mix(in srgb, var(--medal-bronze) 45%, transparent); color: var(--medal-bronze); }
+.badge-silver { background: color-mix(in srgb, var(--medal-silver) 14%, transparent); border: 1px solid color-mix(in srgb, var(--medal-silver) 45%, transparent); color: var(--medal-silver); }
+.badge-gold { background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent-text) 40%, transparent); color: var(--accent-text); }
+.accent-red { border-top-color: var(--c-red) !important; } .accent-orange { border-top-color: var(--c-orange) !important; }
+.accent-yellow { border-top-color: var(--c-yellow) !important; } .accent-blue { border-top-color: var(--c-blue) !important; }
+.accent-purple { border-top-color: var(--c-purple) !important; } .accent-rose { border-top-color: var(--c-rose) !important; }
+.accent-green { border-top-color: var(--c-green) !important; } .accent-teal { border-top-color: var(--c-teal) !important; }
+.accent-primary { border-top-color: var(--accent) !important; }
+.metric-tile { background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent-text) 22%, var(--line)); border-radius: 16px; padding: 1rem; text-align: center; }
+.flow-arrow { color: var(--muted); font-size: .8rem; opacity: .8; }
+.pipeline-connector { position: absolute; right: -2rem; top: 50%; transform: translateY(-50%); width: 2rem; height: 1px; background: var(--strong-line); display: none; }
+@media (min-width: 768px) { .pipeline-connector { display: block; } }
+
+.dw-table { width: 100%; border-collapse: collapse; }
+.dw-table th { background: var(--accent-soft); color: var(--accent-text); font-family: var(--mono); font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .16em; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--line); }
+.dw-table td { padding: 10px 14px; font-size: 13px; color: var(--muted); border-bottom: 1px solid var(--line); vertical-align: top; }
+.dw-table td strong { color: var(--text); }
+.dw-table tr:last-child td { border-bottom: none; }
+.schema-box { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 1.2rem 1.5rem; }
+.schema-box.gold-box { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent-text) 30%, var(--line)); }
+.schema-field { font-family: var(--mono); font-size: 11px; color: var(--muted); padding: 2px 0; }
+.schema-field.pk { color: var(--accent-text); font-weight: 500; }
+.schema-field.fk { color: var(--c-blue); }
+
+/* engineer2 */
+.content-monument { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; width: 100%; }
+.monument-card { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; min-height: 130px; padding: 22px 20px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); transition: border-color .25s ease, transform .25s ease; }
+.monument-card:hover { border-color: var(--accent-text); transform: translateY(-3px); }
+.monument-card i { position: absolute; top: 18px; right: 18px; font-size: 1.7rem; color: var(--accent-text); opacity: .45; }
+.monument-card span { font-size: 1rem; font-weight: 700; line-height: 1.25; color: var(--text); text-transform: none; }
+.monument-card p { color: var(--muted); font-size: .95rem; }
+.wide-card { grid-column: span 2; min-height: 100px; }
+.img-frame { border: 1.5px dashed color-mix(in srgb, var(--accent-text) 45%, var(--line)); border-radius: 18px; background: var(--surface); min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .7rem; color: var(--accent-text); margin: 2rem 0; }
+.img-frame i { font-size: 2.2rem; }
+.img-frame span { font-family: var(--mono); font-size: .8rem; font-weight: 500; text-transform: uppercase; letter-spacing: .16em; }
+.flow-step { border: 1px solid color-mix(in srgb, var(--accent-text) 30%, var(--line)); background: var(--accent-soft); border-radius: 12px; padding: .8rem 1.3rem; font-weight: 700; text-transform: uppercase; font-size: .85rem; letter-spacing: .08em; color: var(--accent-text); text-align: center; }
+.concept-chip { display: inline-block; padding: .4rem 1rem; margin: .25rem; border-radius: 99px; font-family: var(--mono); font-size: .75rem; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; color: var(--accent-text); background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent-text) 28%, var(--line)); }
+.contact-btn-custom { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid var(--strong-line); color: var(--text) !important; padding: 8px 18px; border-radius: 10px; font-size: .85rem; text-transform: none; transition: border-color .2s ease, color .2s ease; }
+.contact-btn-custom:hover { border-color: var(--accent-text); color: var(--accent-text) !important; }
+
+/* Visionneuse d'image */
+.bi-card { position: relative; overflow: hidden; border-radius: 16px; cursor: zoom-in; }
+.bi-card img { transition: transform .5s ease; width: 100%; height: 100%; object-fit: cover; }
+.bi-card:hover img { transform: scale(1.03); }
+.bi-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.65) 0%, transparent 55%); opacity: 0; transition: opacity .3s; display: flex; align-items: flex-end; padding: 1rem; color: #fff; }
+.bi-card:hover .bi-card-overlay { opacity: 1; }
+.bi-card-overlay, .bi-card-overlay * { color: #fff !important; }
+#lightbox { position: fixed; inset: 0; z-index: 9999; background: rgba(8, 10, 12, .92); display: flex; align-items: center; justify-content: center; padding: 2rem; }
+#lightbox.hidden { display: none; }
+#lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 12px; }
+#lightbox, #lightbox * { color: #fff !important; }
+
+.quote-section { position: relative; text-align: center; }
+
+/* ---------- En-tête commun : lien « retour » ---------- */
+.back-link { display: inline-flex; align-items: center; gap: .5rem; }
+.legacy .site-footer { margin-top: 0; }
+.legacy .f-bottom { margin-top: 0; padding-top: 0; border-top: 0; justify-content: space-between; align-items: center; }
+
+/* Réveil : conserve les délais d'origine */
+.reveal-delay-1 { --d: .1s; } .reveal-delay-2 { --d: .2s; } .reveal-delay-3 { --d: .3s; } .reveal-delay-4 { --d: .4s; }
+
+/* Évite qu'un tableau large élargisse sa cellule de grille (mobile) */
+body.legacy .grid > *, body.legacy .flex > * { min-width: 0; }
+body.legacy table { max-width: 100%; }
+body.legacy .flex:has(> .flow-step) { flex-wrap: wrap; justify-content: center; row-gap: .6rem; }
+/* Titres en capitales (engineer2) : sans-serif droit, plus posé */
+body.legacy :is(h1, h2, h3).uppercase { font-family: var(--sans); font-style: normal; letter-spacing: -.005em; font-weight: 700; }

@@ -3,212 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="LogoNew2 - Copy.png">
     <title>Data Warehouse E-commerce — Olist | Miguel Heuya</title>
+    <meta name="theme-color" content="#F6F3EC">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    <link href="style1.css" rel="stylesheet">
-    <style>
-        /* Confort de lecture : taille de base et interlignage un peu réduits */
-        body {
-            font-size: 22px;
-            line-height: 1.65;
-        }
-
-        /* Style pour le lien actif dans la navigation */
-        .nav-link.active {
-            color: #ffc70d !important;
-            text-shadow: 0 0 8px rgba(255, 202, 28, 0.5);
-            font-weight: 900;
-        }
-
-        /* Cadre réservé pour une image à venir */
-        .img-frame {
-            border: 2px dashed rgba(var(--primary-rgb), 0.35);
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.02);
-            min-height: 220px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            color: var(--primary);
-            opacity: 0.55;
-            margin: 2.5rem 0;
-            transition: opacity 0.4s ease, border-color 0.4s ease;
-        }
-        .img-frame:hover { opacity: 0.9; border-color: var(--primary); }
-        .img-frame i { font-size: 2.75rem; }
-        .img-frame span { font-size: 1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; }
-
-        .flow-step {
-            border: 1px solid rgba(var(--primary-rgb), 0.25);
-            background: rgba(var(--primary-rgb), 0.05);
-            border-radius: 16px;
-            padding: 0.9rem 1.5rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 1.15rem;
-            letter-spacing: 0.1em;
-            color: var(--primary);
-            text-align: center;
-        }
-        .flow-arrow { color: var(--primary); opacity: 0.5; font-size: 1.3rem; }
-
-        .concept-chip {
-            display: inline-block;
-            padding: 0.5rem 1.2rem;
-            margin: 0.3rem;
-            border-radius: 50px;
-            font-size: 1.05rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--primary);
-            background: rgba(var(--primary-rgb), 0.08);
-            border: 1px solid rgba(var(--primary-rgb), 0.25);
-        }
-
-        /* Les libellés hérités de style.css, ajustés seulement sur cette page */
-        .tech-tag-mini { font-size: 1.1rem !important; }
-        .monument-card span { font-size: 1.5rem !important; }
-        .monument-card p { font-size: 1.15rem !important; }
-        table.w-full { font-size: 1.25rem; }
-
-        /* Tailles du contenu (hors navigation), légèrement réduites */
-        .text-xs { font-size: 1rem !important; }
-        .text-sm { font-size: 1.125rem !important; }
-        .text-base { font-size: 1.25rem !important; }
-        .text-lg { font-size: 1.375rem !important; }
-        .text-xl { font-size: 1.5rem !important; }
-        .text-2xl { font-size: 1.875rem !important; }
-        .text-3xl { font-size: 2.25rem !important; }
-        .text-\[13px\] { font-size: 16px !important; }
-        .text-\[14px\] { font-size: 17px !important; }
-        .text-\[15px\] { font-size: 18px !important; }
-
-        @media (min-width: 640px) {
-            .sm\:text-base { font-size: 1.25rem !important; }
-        }
-        @media (min-width: 768px) {
-            .md\:text-base { font-size: 1.25rem !important; }
-            .md\:text-xl { font-size: 1.5rem !important; }
-            .md\:text-2xl { font-size: 1.875rem !important; }
-            .md\:text-3xl { font-size: 2.25rem !important; }
-            .md\:text-5xl { font-size: 3.75rem !important; }
-        }
-        @media (min-width: 1024px) {
-            .lg\:text-\[14px\] { font-size: 17px !important; }
-        }
-
-        /* La navigation (barre du haut, menu mobile, tiroir de thème) garde ses tailles d'origine, */
-        /* même si ses éléments partagent des classes Tailwind agrandies ci-dessus. */
-        #mobile-menu { font-size: 1.25rem !important; }
-        #menu-btn { font-size: 1.5rem !important; }
-        #close-btn { font-size: 1.875rem !important; }
-        #theme-toggle-btn { font-size: 1.125rem !important; }
-        @media (min-width: 768px) {
-            #theme-toggle-btn { font-size: 1.25rem !important; }
-        }
-    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" href="LogoNew2 - Copy.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&amp;family=Instrument+Sans:wght@400..700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="legacy.css">
+    <!-- Thème appliqué dans <head> : aucun flash au chargement -->
+    <script src="theme.js"></script>
 </head>
-<body>
-    <div id="theme-sidebar" class="fixed right-6 top-1/2 z-[100] glass p-6 rounded-[30px] flex flex-col items-center border-white/10 shadow-2xl space-y-6">
-        <div class="text-center w-full">
-            <p class="text-[10px] font-black uppercase mb-3 opacity-60 tracking-widest text-white">Couleur d'Accent</p>
-            <div class="color-picker-wrapper"><input type="color" id="accent-picker" value="#ffc70d"></div>
-        </div>
-        <div class="w-full h-px bg-white/10"></div>
-        <div class="text-center w-full">
-            <p class="text-[10px] font-black uppercase mb-3 opacity-60 tracking-widest text-white">Couleur de Fond</p>
-            <div class="color-picker-wrapper"><input type="color" id="bg-picker" value="#050505"></div>
-        </div>
+<body class="legacy">
+
+
+<!-- Panneau de thème -->
+<div id="theme-panel" class="theme-panel" role="dialog" aria-label="Apparence du site" aria-hidden="true">
+  <div class="tp-head"><span class="tp-title">Apparence</span><span id="theme-custom-tag" class="tp-custom" hidden>Personnalisé</span></div>
+  <div id="theme-presets" class="presets" role="group" aria-label="Palettes de couleurs"></div>
+  <div class="tp-sep"></div>
+  <div class="tp-row"><label for="accent-picker">Couleur d'accent</label><input type="color" id="accent-picker" value="#1e5b4c"></div>
+  <div class="tp-row"><label for="bg-picker">Couleur de fond</label><input type="color" id="bg-picker" value="#f6f3ec"></div>
+  <p class="tp-note">Textes et surfaces s'adaptent automatiquement pour rester lisibles.</p>
+  <button id="theme-reset" class="tp-reset" type="button" hidden>Revenir au thème d'origine</button>
+</div>
+
+<!-- Menu mobile -->
+<div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Menu" aria-hidden="true">
+  <div class="mm-top">
+    <span class="brand"><span class="mark" aria-hidden="true">MH</span><span class="brand-name">Miguel Heuya</span></span>
+    <button id="close-btn" class="icon-btn" type="button" aria-label="Fermer le menu"><i class="fas fa-xmark"></i></button>
+  </div>
+  <nav class="mm-links" aria-label="Navigation de la page">
+    <a href="#probleme">Problème</a>
+    <a href="#projet">Projet</a>
+    <a href="#impact">Impact</a>
+    <a href="#synthese">Synthèse</a>
+    <a href="https://github.com/MiguelHeuya/second_datawarehouse_automatise_et_orchestre_avec_github_actions" target="_blank" rel="noopener noreferrer">Voir le repo GitHub</a>
+    </nav>
+  <a class="btn btn-primary" href="https://miguelheuya.netlify.app/#portfolio"><i class="fas fa-arrow-left"></i> Retour au portfolio</a>
+</div>
+
+<!-- En-tête -->
+<div class="site-header">
+  <div class="wrap">
+    <a class="brand" href="https://miguelheuya.netlify.app" aria-label="Miguel Heuya, accueil">
+      <span class="mark" aria-hidden="true">MH</span>
+      <span><span class="brand-name">Miguel Heuya</span><span class="brand-role">Business Intelligence</span></span>
+    </a>
+    <nav class="nav" aria-label="Navigation de la page">
+        <a class="nav-link" href="#probleme">Problème</a>
+        <a class="nav-link" href="#projet">Projet</a>
+        <a class="nav-link" href="#impact">Impact</a>
+        <a class="nav-link" href="#synthese">Synthèse</a>
+        <a class="nav-link" href="https://github.com/MiguelHeuya/second_datawarehouse_automatise_et_orchestre_avec_github_actions" target="_blank" rel="noopener noreferrer">Voir le repo GitHub</a>
+        </nav>
+    <div class="header-actions">
+      <button id="theme-toggle-btn" class="icon-btn" type="button" aria-label="Personnaliser le thème" aria-expanded="false" aria-controls="theme-panel"><i class="fas fa-palette"></i></button>
+      <a class="btn btn-ghost btn-sm header-btn-contact" href="https://miguelheuya.netlify.app/#portfolio"><i class="fas fa-arrow-left"></i> Portfolio</a>
+      <button id="menu-btn" class="icon-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu"><i class="fas fa-bars"></i></button>
     </div>
-
-<nav class="fixed w-full z-50 glass bg-opacity-10 backdrop-blur-md py-3">
-    <div class="container mx-auto px-6 flex justify-between items-center relative min-h-[60px]">
-        <a href="https://miguelheuya.netlify.app/#portfolio" class="text-white no-underline">
-            <div style="font-family: 'Allura', cursive; color: #ffc70d; opacity: 0.9; transform: rotate(-5deg); white-space: nowrap; cursor: default; font-size: clamp(1.5rem, 4vw, 2.2rem); min-width: clamp(140px, 20vw, 220px);">
-                Miguel Heuya
-            </div>
-        </a>
-
-        <div class="hidden md:flex md:absolute md:left-1/2 md:-translate-x-1/2 z-0">
-            <div class="flex space-x-3 lg:space-x-6 text-[9px] lg:text-[10px] font-bold uppercase tracking-widest items-center">
-                <a href="#probleme" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
-                    <i class="fas fa-circle-exclamation"></i>
-                    <span>Problème</span>
-                </a>
-                <a href="#projet" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
-                    <i class="fas fa-diagram-project"></i>
-                    <span>Projet</span>
-                </a>
-                <a href="#impact" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Impact</span>
-                </a>
-                <a href="#synthese" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
-                    <i class="fas fa-flag-checkered"></i>
-                    <span>Synthèse</span>
-                </a>
-                <a href="https://github.com/MiguelHeuya/second_datawarehouse_automatise_et_orchestre_avec_github_actions" target="_blank" rel="noopener noreferrer" class="nav-link whitespace-nowrap inline-flex items-center gap-1.5">
-                    <i class="fab fa-github"></i>
-                    <span>Voir le repo GitHub</span>
-                </a>
-                <a href="https://miguelheuya.netlify.app/#portfolio" class="contact-btn-custom font-black ml-2 inline-flex items-center gap-1.5">
-                    <i class="fas fa-arrow-left"></i>
-                    <span>Retour</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0 flex items-center group" id="attractor-container">
-            <div class="hidden lg:block mr-4 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                <span class="relative px-4 py-2 bg-black border border-primary/50 text-primary text-[11px] font-black uppercase tracking-widest rounded-full shadow-[0_0_20px_rgba(var(--primary-rgb),0.4)]">
-                    Personnaliser le Thème
-                </span>
-            </div>
-            <button id="theme-toggle-btn" class="bg-primary text-black w-10 h-10 md:w-12 md:h-12 rounded-full shadow-[0_0_25px_rgba(var(--primary-rgb),0.5)] flex items-center justify-center text-lg md:text-xl hover:scale-110 transition-all duration-300 z-[110]">
-                <i class="fas fa-palette"></i>
-            </button>
-        </div>
-
-        <button id="menu-btn" class="md:hidden text-primary text-2xl z-[110] ml-auto">
-            <i class="fas fa-bars"></i>
-        </button>
-    </div>
-</nav>
-
-<div id="mobile-menu" class="fixed inset-0 z-[120] bg-black/95 flex flex-col items-center justify-center space-y-8 text-xl font-bold uppercase md:hidden translate-x-full transition-transform duration-500">
-    <button id="close-btn" class="absolute top-6 right-6 text-primary text-3xl"><i class="fas fa-times"></i></button>
-
-    <a href="#probleme" class="nav-link inline-flex items-center gap-3">
-        <i class="fas fa-circle-exclamation"></i>
-        <span>Problème</span>
-    </a>
-    <a href="#projet" class="nav-link inline-flex items-center gap-3">
-        <i class="fas fa-diagram-project"></i>
-        <span>Projet</span>
-    </a>
-    <a href="#impact" class="nav-link inline-flex items-center gap-3">
-        <i class="fas fa-chart-line"></i>
-        <span>Impact</span>
-    </a>
-    <a href="#synthese" class="nav-link inline-flex items-center gap-3">
-        <i class="fas fa-flag-checkered"></i>
-        <span>Synthèse</span>
-    </a>
-    <a href="https://github.com/MiguelHeuya/second_datawarehouse_automatise_et_orchestre_avec_github_actions" target="_blank" rel="noopener noreferrer" class="nav-link inline-flex items-center gap-3">
-        <i class="fab fa-github"></i>
-        <span>Voir le repo GitHub</span>
-    </a>
-    <a href="https://miguelheuya.netlify.app/#portfolio" class="contact-btn-custom font-black inline-flex items-center gap-3">
-        <i class="fas fa-arrow-left"></i>
-        <span>Retour au portfolio</span>
-    </a>
+  </div>
 </div>
 
 <!-- ============ HERO ============ -->
@@ -675,38 +533,5 @@
 <footer class="py-10 text-center border-t border-white/5">
     <p class="text-slate-500 text-[15px] font-mono uppercase tracking-widest">&copy; 2026 Miguel Heuya — Data Warehouse Era &bull; 2026 Portfolio</p>
 </footer>
-
-<script src="theme.js"></script>
-<script src="animationunefois.js"></script>
-<script>
-    (function() {
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        function updateActiveLink() {
-            let current = '';
-            const scrollPos = window.scrollY + 150;
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                const href = link.getAttribute('href');
-                if (href === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', updateActiveLink);
-        window.addEventListener('load', updateActiveLink);
-    })();
-</script>
 </body>
 </html>
