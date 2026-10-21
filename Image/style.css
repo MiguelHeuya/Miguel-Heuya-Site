@@ -7,12 +7,12 @@
    ========================================================================== */
 
 :root {
-  /* Valeurs par défaut = palette « Ivoire » (identiques à theme.js) */
-  --bg: #F6F3EC; --surface: #FFFFFF; --surface-2: #EFEBE1; --line: #DDD6C7;
-  --text: #1B2430; --muted: #586271;
-  --accent: #1E5B4C; --accent-text: #1E5B4C; --accent-ink: #FFFFFF; --accent-soft: #E1EBE5;
-  --accent-rgb: 30, 91, 76;
-  --primary: var(--accent); --primary-rgb: 30, 91, 76; --bg-custom: var(--bg); /* alias pages de réalisations */
+  /* Valeurs par défaut = palette « Marine » (identiques à theme.js) */
+  --bg: #0D1626; --surface: #131F35; --surface-2: #192A46; --line: #27395B;
+  --text: #E7ECF5; --muted: #9AA9C3;
+  --accent: #E3B866; --accent-text: #E3B866; --accent-ink: #1A1405; --accent-soft: #2A2A2F;
+  --accent-rgb: 227, 184, 102;
+  --primary: var(--accent); --primary-rgb: 227, 184, 102; --bg-custom: var(--bg); /* alias pages de réalisations */
 
   --serif: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
   --sans: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;

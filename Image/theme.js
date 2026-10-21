@@ -19,7 +19,7 @@
     graphite: { label: 'Graphite', mode: 'dark',  bg: '#16171A', surface: '#1E2024', surface2: '#272A2F', line: '#34373D', text: '#EDEEF0', muted: '#9CA1A9', accent: '#9DB1F7', accentText: '#9DB1F7', accentInk: '#0E1426', accentSoft: '#23273A' }
   };
   var ORDER = ['ivoire', 'sable', 'brume', 'encre', 'marine', 'graphite'];
-  var DEFAULT_PRESET = 'ivoire';
+  var DEFAULT_PRESET = 'marine';
   var STORAGE_KEY = 'hsml-theme-v2';
 
   /* ---------- Maths couleur ----------------------------------------------- */
