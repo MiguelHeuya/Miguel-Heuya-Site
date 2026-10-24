@@ -44,7 +44,7 @@
   <script src="Image/theme.js"></script>
 </head>
 <body id="top">
-  <a class="skip" href="#probleme">Aller au contenu</a>
+  <a class="skip" href="#problemes">Aller au contenu</a>
 
   <!-- ============ En-tête ============ -->
   <header class="site-header">
@@ -54,8 +54,9 @@
         <span><span class="brand-name">Miguel Heuya</span><span class="brand-role">Business Intelligence</span></span>
       </a>
       <nav class="nav" aria-label="Navigation principale">
-        <a class="nav-link" href="#probleme">Problème</a>
-        <a class="nav-link" href="#offre">Offre</a>
+        <a class="nav-link" href="#problemes">Problèmes</a>
+        <a class="nav-link" href="#resultats">Résultats</a>
+        <a class="nav-link" href="#profils">Profils</a>
         <a class="nav-link" href="#portfolio">Réalisations</a>
         <a class="nav-link" href="#experience">Expérience</a>
         <a class="nav-link" href="#competences">Compétences</a>
@@ -74,8 +75,8 @@
     <div class="tp-head"><span class="tp-title">Apparence</span><span id="theme-custom-tag" class="tp-custom" hidden>Personnalisé</span></div>
     <div id="theme-presets" class="presets" role="group" aria-label="Palettes de couleurs"></div>
     <div class="tp-sep"></div>
-    <div class="tp-row"><label for="accent-picker">Couleur d'accent</label><input type="color" id="accent-picker" value="#1e5b4c"></div>
-    <div class="tp-row"><label for="bg-picker">Couleur de fond</label><input type="color" id="bg-picker" value="#f6f3ec"></div>
+    <div class="tp-row"><label for="accent-picker">Couleur d'accent</label><input type="color" id="accent-picker" value="#e3b866"></div>
+    <div class="tp-row"><label for="bg-picker">Couleur de fond</label><input type="color" id="bg-picker" value="#0d1626"></div>
     <p class="tp-note">Textes et surfaces s'adaptent automatiquement pour rester lisibles.</p>
     <button id="theme-reset" class="tp-reset" type="button" hidden>Revenir au thème d'origine</button>
   </div>
@@ -87,8 +88,9 @@
       <button id="close-btn" class="icon-btn" type="button" aria-label="Fermer le menu"><i class="fas fa-xmark"></i></button>
     </div>
     <nav class="mm-links" aria-label="Navigation mobile">
-      <a href="#probleme">Problème <span class="mono">01</span></a>
-      <a href="#offre">Offre <span class="mono">02</span></a>
+      <a href="#problemes">Problèmes <span class="mono">Avant</span></a>
+      <a href="#resultats">Résultats <span class="mono">Après</span></a>
+      <a href="#profils">Profils <span class="mono">02</span></a>
       <a href="#portfolio">Réalisations <span class="mono">03</span></a>
       <a href="#experience">Expérience <span class="mono">04</span></a>
       <a href="#competences">Compétences <span class="mono">05</span></a>
@@ -103,8 +105,8 @@
       <div class="wrap hero-grid">
         <div>
           <p class="eyebrow reveal"><span>Business Intelligence</span><span>Analyse de données</span><span>Ingénierie de données</span></p>
-          <h1 class="reveal" style="--d:.05s">Voyez enfin ce qui se passe <em>vraiment</em> dans votre entreprise.</h1>
-          <p class="lead reveal" style="--d:.1s">Je transforme vos données dispersées en une source fiable et en tableaux de bord clairs : ce qui rapporte, ce qui coûte, quoi décider.</p>
+          <h1 class="reveal" style="--d:.05s">Accédez aux chiffres et aux statistiques de votre entreprise, à tout moment et où que vous soyez, sans stress, sans procédures interminables et sans efforts inutiles.</h1>
+          <p class="lead reveal" style="--d:.1s">Je vous permets d’accéder aux chiffres et aux statistiques de votre entreprise en quelques clics, où que vous soyez et quand vous en avez besoin.</p>
           <div class="hero-actions reveal" style="--d:.15s">
             <a class="btn btn-primary" href="https://wa.me/237679153015?text=Salut%20Miguel%20Heuya%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services%20en%20business%20intelligence%20et%20la%20fa%C3%A7on%20dont%20vous%20accompagnez%20les%20entreprises" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Écrire sur WhatsApp</a>
             <a class="btn btn-ghost" href="#portfolio">Voir mes réalisations <i class="fas fa-arrow-down"></i></a>
@@ -115,91 +117,57 @@
           </div>
         </div>
 
-        <aside class="flow reveal" style="--d:.15s" aria-label="De la donnée à la décision">
-          <div class="flow-title"><span class="tag">De la donnée à la décision</span></div>
-          <ol>
-            <li class="step">
-              <span class="step-dot">1</span>
-              <div>
-                <p class="step-title">Dispersé</p>
-                <p class="step-desc">Vos informations sont partout.</p>
-                <div class="chips"><span class="chip">Fichiers</span><span class="chip">Logiciels</span><span class="chip">Outils</span><span class="chip">Chiffres</span></div>
-              </div>
-            </li>
-            <li class="step">
-              <span class="step-dot">2</span>
-              <div>
-                <p class="step-title">Centralisé</p>
-                <p class="step-desc">Une seule version fiable des chiffres.</p>
-                <div class="chips"><span class="chip solid">Source unique</span></div>
-              </div>
-            </li>
-            <li class="step">
-              <span class="step-dot">3</span>
-              <div>
-                <p class="step-title">Visible</p>
-                <p class="step-desc">Des indicateurs à jour, sans effort.</p>
-                <div class="minibars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-              </div>
-            </li>
-            <li class="step">
-              <span class="step-dot"><i class="fas fa-check" aria-hidden="true"></i></span>
-              <div>
-                <p class="step-title">Décidé</p>
-                <p class="step-desc">Des choix appuyés sur des faits.</p>
-              </div>
-            </li>
-          </ol>
-        </aside>
+        <figure class="hero-visual reveal" style="--d:.15s">
+          <picture>
+            <source srcset="Image/image_droite_entete.webp" type="image/webp">
+            <img src="Image/image_droite_entete.png" width="1536" height="1024" alt="Miguel Heuya devant son ordinateur, entouré de sources de données, d’un entrepôt de données et d’un tableau de bord de statistiques" decoding="async" fetchpriority="high">
+          </picture>
+        </figure>
       </div>
     </section>
 
-    <!-- ============ 01 — Le problème ============ -->
-    <section id="probleme" class="section">
-      <span id="profiles"></span>
+
+    <!-- ============ Avant — Les problèmes rencontrés ============ -->
+    <section id="problemes" class="section sec-avant">
       <div class="wrap">
         <div class="sec-head reveal">
-          <p class="kicker"><span class="num">01</span><span class="rule"></span><span>Le problème</span></p>
-          <h2>Le problème n'est pas le manque de données. C'est le désordre.</h2>
-          <p class="lead">Des fichiers, des logiciels, des outils, des chiffres… mais aucun système pour comprendre et piloter l'activité.</p>
+          <p class="kicker"><span class="num">Avant</span><span class="rule"></span></p>
+          <h2>Les problèmes rencontrés</h2>
         </div>
-        <div class="ledger reveal">
-          <div class="ledger-head"><span class="tag">Aujourd'hui</span><span></span><span class="tag">Avec un système décisionnel</span></div>
-        <div class="ledger-row">
-          <p class="from">Des informations dispersées entre fichiers, personnes et outils.</p>
-          <p class="arrow-col"><span>→</span></p>
-          <p class="to">Tout est centralisé au même endroit.</p>
-        </div>
-        <div class="ledger-row">
-          <p class="from">Les chiffres changent selon qui les présente.</p>
-          <p class="arrow-col"><span>→</span></p>
-          <p class="to">Une seule version fiable des chiffres.</p>
-        </div>
-        <div class="ledger-row">
-          <p class="from">Du temps perdu à chercher des réponses simples.</p>
-          <p class="arrow-col"><span>→</span></p>
-          <p class="to">L'information accessible à tout moment.</p>
-        </div>
-        <div class="ledger-row">
-          <p class="from">Des rapports qui arrivent trop tard.</p>
-          <p class="arrow-col"><span>→</span></p>
-          <p class="to">Des indicateurs mis à jour sans effort.</p>
-        </div>
-        <div class="ledger-row">
-          <p class="from">Des décisions prises « au feeling ».</p>
-          <p class="arrow-col"><span>→</span></p>
-          <p class="to">Des décisions appuyées sur des faits.</p>
-        </div>
-        </div>
-        <p class="ledger-foot reveal"><strong>Résultat :</strong> sans système, vous avancez sans réelle visibilité ni contrôle.</p>
+        <ul class="pb-grid">
+          <li class="pb pb-a reveal"><span class="pb-ic" aria-hidden="true"><i class="fas fa-shuffle"></i></span><div class="pb-vis v-scatter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><p><strong>Des informations dispersées et parfois contradictoires :</strong> les chiffres varient selon les services, les personnes ou la date à laquelle ils sont présentés.</p></li>
+          <li class="pb pb-b reveal"><span class="pb-ic" aria-hidden="true"><i class="fas fa-hourglass-half"></i></span><div class="pb-vis v-wait" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div><p><strong>Des chiffres difficiles à obtenir :</strong> pour connaître les performances de l’entreprise, il faut formuler une demande et attendre des heures, voire des jours.</p></li>
+          <li class="pb pb-c reveal"><span class="pb-ic" aria-hidden="true"><i class="fas fa-file-excel"></i></span><div class="pb-vis v-files" aria-hidden="true"><i></i><i></i><i></i></div><p><strong>Des échanges interminables de fichiers :</strong> les équipes s’échangent des documents et cherchent constamment la dernière version d’un même rapport.</p></li>
+          <li class="pb pb-c reveal"><span class="pb-ic" aria-hidden="true"><i class="fas fa-hammer"></i></span><p><strong>Des rapports longs et pénibles à préparer :</strong> la collecte, la vérification et le regroupement des données demandent beaucoup d’efforts.</p></li>
+          <li class="pb pb-c reveal"><span class="pb-ic" aria-hidden="true"><i class="fas fa-circle-question"></i></span><p><strong>Des chiffres difficiles à comprendre :</strong> il faut parcourir plusieurs rapports pour comprendre un indicateur et savoir ce qu’il révèle réellement sur l’activité.</p></li>
+        </ul>
+        <p class="pb-foot reveal"><span class="pb-foot-ic" aria-hidden="true"><i class="fas fa-triangle-exclamation"></i></span><span><strong>Résultat :</strong> votre reporting est lent, manuel et contraignant. Vous perdez du temps à chercher les chiffres au lieu de les exploiter pour prendre vos décisions.</span></p>
       </div>
     </section>
 
-    <!-- ============ 02 — L'offre ============ -->
-    <section id="offre" class="section">
+    <!-- ============ Après — Ce que je vous permets d’accomplir ============ -->
+    <section id="resultats" class="section sec-apres">
       <div class="wrap">
         <div class="sec-head reveal">
-          <p class="kicker"><span class="num">02</span><span class="rule"></span><span>Mon offre</span></p>
+          <p class="kicker"><span class="num">Après</span><span class="rule"></span></p>
+          <h2>Ce que je vous permets d’accomplir</h2>
+        </div>
+        <ul class="gn-grid">
+          <li class="gn reveal" style="--d:0.00s"><span class="gn-ic" aria-hidden="true"><i class="fas fa-mobile-screen-button"></i></span><p><strong>Accédez à vos chiffres où que vous soyez :</strong> consultez les rapports et les indicateurs de votre entreprise en quelques clics, depuis votre bureau, votre domicile ou n’importe où dans le monde.</p><div class="gn-vis"><span></span><span></span><span class="on"></span></div></li>
+          <li class="gn reveal" style="--d:0.06s"><span class="gn-ic" aria-hidden="true"><i class="fas fa-folder-open"></i></span><p><strong>Mettez fin aux échanges interminables de fichiers :</strong> retrouvez vos rapports dans un environnement centralisé, sans devoir rechercher constamment le bon document ou sa dernière version.</p><div class="gn-vis g-one"><span class="on"></span></div></li>
+          <li class="gn reveal" style="--d:0.12s"><span class="gn-ic" aria-hidden="true"><i class="fas fa-arrows-rotate"></i></span><p><strong>Suivez vos performances en temps réel ou à intervalles réguliers :</strong> vos indicateurs se mettent à jour automatiquement selon la fréquence de mise à jour des données.</p><div class="minibars" aria-hidden="true"><i></i><i></i><i></i><i></i></div></li>
+          <li class="gn reveal" style="--d:0.18s"><span class="gn-ic" aria-hidden="true"><i class="fas fa-scale-balanced"></i></span><p><strong>Fiez-vous à des chiffres cohérents et fiables :</strong> tous les services concernés s’appuient sur les mêmes définitions et une version de référence des indicateurs.</p><div class="chips"><span class="chip solid">=</span><span class="chip solid">=</span><span class="chip solid">=</span></div></li>
+          <li class="gn reveal" style="--d:0.24s"><span class="gn-ic" aria-hidden="true"><i class="fas fa-lock"></i></span><p><strong>Contrôlez l’accès à vos informations :</strong> chaque collaborateur consulte uniquement les données et les rapports auxquels il est autorisé à accéder.</p><div class="chips"><span class="chip solid"><i class="fas fa-check" aria-hidden="true"></i></span><span class="chip"><i class="fas fa-xmark" aria-hidden="true"></i></span></div></li>
+          <li class="gn reveal" style="--d:0.30s"><span class="gn-ic" aria-hidden="true"><i class="fas fa-compass"></i></span><p><strong>Comprenez plus facilement votre activité :</strong> retrouvez les indicateurs essentiels et identifiez plus rapidement les informations nécessaires à vos décisions.</p><div class="minibars rise" aria-hidden="true"><i></i><i></i><i></i><i></i></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 02 — Mes profils ============ -->
+    <section id="profils" class="section">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="kicker"><span class="num">02</span><span class="rule"></span><span>Mes profils</span></p>
           <h2>Trois services, un objectif : des chiffres fiables pour décider.</h2>
           <p class="lead">Chaque service répond à un problème précis et débouche sur un résultat concret.</p>
         </div>
@@ -645,9 +613,9 @@
         </div>
         <div class="f-col">
           <h4>Expertises</h4>
-          <a href="#offre">Business Intelligence</a>
-          <a href="#offre">Analyse de données</a>
-          <a href="#offre">Ingénierie de données</a>
+          <a href="#profils">Business Intelligence</a>
+          <a href="#profils">Analyse de données</a>
+          <a href="#profils">Ingénierie de données</a>
         </div>
         <div class="f-col">
           <h4>Contact</h4>
