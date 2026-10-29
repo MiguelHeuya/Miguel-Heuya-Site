@@ -37,11 +37,12 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&amp;family=Instrument+Sans:wght@400..700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Lexend:wght@400..600&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="Image/style.css">
   <!-- Appliqué dans <head> pour éviter tout flash lors du chargement du thème choisi -->
   <script src="Image/theme.js"></script>
+  <script src="Image/hero-slides.js" defer></script>
 </head>
 <body id="top">
   <a class="skip" href="#problemes">Aller au contenu</a>
@@ -118,10 +119,26 @@
         </div>
 
         <figure class="hero-visual reveal" style="--d:.15s">
-          <picture>
-            <source srcset="Image/image_droite_entete.png" type="image/webp">
+          <div class="hero-slides" role="group" aria-roledescription="diaporama" aria-label="Exemples de rapports utilisés dans différents secteurs d’activité">
+          <div class="slides-stage">
+          <picture class="slide is-active">
+            <source srcset="Image/image_droite_entete.webp" type="image/webp">
             <img src="Image/image_droite_entete.png" width="1536" height="1024" alt="Miguel Heuya devant son ordinateur, entouré de sources de données, d’un entrepôt de données et d’un tableau de bord de statistiques" decoding="async" fetchpriority="high">
           </picture>
+          <picture class="slide" aria-hidden="true">
+            <source srcset="Image/image_droite_entete_1.webp" type="image/webp">
+            <img src="Image/image_droite_entete_1.png" width="1536" height="1024" alt="Rapports consultés en réunion et sur tablette, dans le commerce, la logistique et la distribution" decoding="async" loading="lazy">
+          </picture>
+          <picture class="slide" aria-hidden="true">
+            <source srcset="Image/image_droite_entete_2.webp" type="image/webp">
+            <img src="Image/image_droite_entete_2.png" width="1536" height="1024" alt="Rapports consultés en réunion et sur tablette, dans la construction et les travaux publics" decoding="async" loading="lazy">
+          </picture>
+          <picture class="slide" aria-hidden="true">
+            <source srcset="Image/image_droite_entete_3.webp" type="image/webp">
+            <img src="Image/image_droite_entete_3.png" width="1536" height="1024" alt="Rapports consultés en réunion et sur tablette, dans les services, l’accueil des clients et l’atelier mécanique" decoding="async" loading="lazy">
+          </picture>
+          </div>
+          </div>
         </figure>
       </div>
     </section>
@@ -633,9 +650,35 @@
 
   <button id="to-top" class="to-top" type="button" aria-label="Retour en haut de page"><i class="fas fa-arrow-up"></i></button>
 
+  <!-- Bouton WhatsApp flottant (à gauche du bouton du chatbot) -->
+  <a id="wa-fab" class="wa-fab" href="https://wa.me/237679153015?text=Salut%20Miguel%20Heuya%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services%20en%20business%20intelligence%20et%20la%20fa%C3%A7on%20dont%20vous%20accompagnez%20les%20entreprises" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <script>
+  (function () {
+    var fab = document.getElementById('wa-fab');
+    function place() {
+      var best = null;
+      for (var el = document.body.firstElementChild; el; el = el.nextElementSibling) {
+        if (el === fab || el.id === 'to-top' || el.tagName === 'SCRIPT') continue;
+        if (getComputedStyle(el).position !== 'fixed') continue;
+        var r = el.getBoundingClientRect();
+        if (r.width < 30 || r.width > 120 || r.height < 30 || r.height > 120) continue;
+        if (r.left < innerWidth / 2 || r.top < innerHeight / 2) continue;
+        best = r; break;
+      }
+      if (!best) return;
+      var size = Math.max(48, Math.min(64, Math.round(best.height)));
+      fab.style.width = fab.style.height = size + 'px';
+      fab.style.bottom = Math.round(innerHeight - best.bottom + (best.height - size) / 2) + 'px';
+      fab.style.right = Math.round(innerWidth - best.left + 12) + 'px';
+    }
+    var n = 0, t = setInterval(function () { place(); if (++n > 40) clearInterval(t); }, 500);
+    addEventListener('resize', place);
+  })();
+  </script>
+
   <!-- Assistant (chatbot) existant -->
   <script src="https://dashboard.causeriebot.com/widget.js" data-id="42a2c702-c477-4abf-b67c-433742160da4" data-url="https://dashboard.causeriebot.com"></script>
-  <script src="Image/carousel-hero.js"></script>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
